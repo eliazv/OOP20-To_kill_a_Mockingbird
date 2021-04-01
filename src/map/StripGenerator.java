@@ -61,5 +61,5 @@ public class StripGenerator {
 		// Adds image to strip.
 		return oneBlock;
 	}
-
+//PROVA 1
 }
