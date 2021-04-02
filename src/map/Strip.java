@@ -2,11 +2,12 @@ package map;
 
 import java.util.Random;
 
-public class StripGenerator {
-	Box[] getStrip() {
+public class Strip {
+	
+	public Box[] getStrip() {
 
 		// Array to hold strip.
-		Box[] boxStrip = new Box[7];
+		Box[] boxStrip = new Box[8];
 
 		// Number of grids wide.
 		int y = boxStrip.length;
@@ -36,9 +37,8 @@ public class StripGenerator {
 		// Special Land.
 		case 2:
 			for (int i = 0; i < y; i++) {
-				// Holds random number.
-				// env = gen.nextInt(5);
-				boxStrip[i] = stripWithObstacles(i, env, "Grass.png", "Tree_One.png");
+
+				boxStrip[i] = stripWithObstacles(i, "Grass.png", "Tree_One.png");
 			}
 			break;
 
@@ -47,12 +47,13 @@ public class StripGenerator {
 		return boxStrip;
 	}
 
-	private Box stripWithObstacles(int i, int x, String background, String specialBlock) {
+	private Box stripWithObstacles(int i, String background, String specialBlock) {
 
 		Box oneBlock = new Box();
 		Random gen = new Random();
 		int rand = gen.nextInt(5);
-		if (rand == 4) { // una possibilitÃ  su 5 di mettere ostacolo
+		// una possibilità  su 5 di mettere ostacolo
+		if (rand == 4) { 	
 			oneBlock.setImage(specialBlock);
 		} else {
 			oneBlock.setImage(background);
@@ -61,5 +62,18 @@ public class StripGenerator {
 		// Adds image to strip.
 		return oneBlock;
 	}
-//PROVA 1
+	
+	public Box[] getSpecificStrip(String background, String specialBlock) {
+
+		//Makes random numbers.
+		Random gen = new Random();
+
+		//Array to hold strip.
+		Box[] spriteStrip = new Box[8];
+
+		for (int i = 0; i < 8; i++) {
+			spriteStrip[i] = stripWithObstacles(i, background, specialBlock);
+		}
+		return spriteStrip;
+	}
 }
