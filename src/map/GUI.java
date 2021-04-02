@@ -37,7 +37,7 @@ public class GUI extends JFrame {
 		setResizable(false);
 
 		//Add panel to frame.
-		//add(new Display(pause));
+		add(new MapGenerator());
 
 		//Display the window.
 		setVisible(true);
