@@ -22,7 +22,7 @@ public class GUI extends JFrame {
 	GUI(boolean pause) {
 
 		//Set the title.
-		setTitle("Frogger Remix");
+		setTitle("Mockingbird");
 
 		//Set the size of the JFrame.
 		setSize(SIZE, SIZE);
