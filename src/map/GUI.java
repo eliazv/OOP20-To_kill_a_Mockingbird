@@ -1,4 +1,7 @@
 package map;
+import java.awt.Image;
+import java.util.List;
+
 import javax.swing.*;
 
 
@@ -13,8 +16,6 @@ public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	//Variable for final JFrame size.
 	private final int SIZE = 800;
-
-
 
 	/**
 	 * Default constructor.

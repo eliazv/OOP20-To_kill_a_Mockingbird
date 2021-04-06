@@ -38,7 +38,7 @@ public class Strip {
 		case 2:
 			for (int i = 0; i < y; i++) {
 
-				boxStrip[i] = stripWithObstacles(i, "/Mockingbird/resources/Grass.png", "/Mockingbird/resources/Tree_One.png");
+				boxStrip[i] = setObstacles(i, "/Mockingbird/resources/Grass.png", "/Mockingbird/resources/Tree_One.png");
 			}
 			break;
 
@@ -46,14 +46,14 @@ public class Strip {
 
 		return boxStrip;
 	}
-
-	private Box stripWithObstacles(int i, String background, String specialBlock) {
+	
+	private Box setObstacles(int i, String background, String specialBlock) {
 
 		Box oneBlock = new Box();
 		Random gen = new Random();
-		int rand = gen.nextInt(5);
-		// una possibilità su 5 di mettere ostacolo
-		if (rand == 4) { 	
+		int rand = gen.nextInt(4);
+		// una possibilità su 4 di mettere un ostacolo  (es albero)
+		if (rand == 3) { 	
 			oneBlock.setImage(specialBlock);
 		} else {
 			oneBlock.setImage(background);
@@ -69,7 +69,7 @@ public class Strip {
 		Box[] boxStrip = new Box[8];
 
 		for (int i = 0; i < 8; i++) {
-			boxStrip[i] = stripWithObstacles(i, background, specialBlock);
+			boxStrip[i] = setObstacles(i, background, specialBlock);
 		}
 		return boxStrip;
 	}

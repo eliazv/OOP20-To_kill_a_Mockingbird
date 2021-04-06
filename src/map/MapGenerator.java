@@ -1,13 +1,8 @@
 package map;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class MapGenerator  extends JPanel implements ActionListener {
@@ -22,17 +17,14 @@ public class MapGenerator  extends JPanel implements ActionListener {
 		//Initializes game with land strips.
 		for (int i = 0; i < NSTRIP; i++) {
 			//allStrips[i] = striscia.getSpecificStrip("/Mockingbird/resources/Grass.png","/Mockingbird/resources/Tree_One.png");
-			allStrips[i] = striscia.getStrip();
+			allStrips[i] = striscia.getStrip();			
 		}
-
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub	
 	}
-	
 	
 	
 	public void paintComponent(Graphics g) {
