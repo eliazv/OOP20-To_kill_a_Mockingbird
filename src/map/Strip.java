@@ -4,73 +4,83 @@ import java.util.Random;
 
 public class Strip {
 	
+	//restituisce una striscia casuale
 	public Box[] getStrip() {
 
-		// Array to hold strip.
 		Box[] boxStrip = new Box[8];
-
-		// Number of grids wide.
-		int y = boxStrip.length;
-
-		// Selects random landscape.
 		Random gen = new Random();
-		int env = gen.nextInt(3);
+		int env = gen.nextInt(3); 
 
-		// Sets landscape.
+		// select landscape.
 		switch (env) {
-		// Road.
+		// riempie la striscia con box di strada
 		case 0:
-			for (int i = 0; i < y; i++) {
-				Box strip = new Box("/Mockingbird/resources/Road.png");
+			for (int i = 0; i < boxStrip.length; i++) {
+				Box strip = new Box("Road.png");
 				boxStrip[i] = strip;
 			}
 			break;
 
-		// Tracks.
+		//riempie la striscia con box di ferrovia
 		case 1:
-			for (int i = 0; i < y; i++) {
-				Box strip = new Box("/Mockingbird/resources/Tracks.png");
+			for (int i = 0; i < boxStrip.length; i++) {
+				Box strip = new Box("Tracks.png");
 				boxStrip[i] = strip;
 			}
 			break;
 
-		// Special Land.
+		// riempie la striscia con box di erba e alberi
 		case 2:
-			for (int i = 0; i < y; i++) {
-
-				boxStrip[i] = setObstacles(i, "/Mockingbird/resources/Grass.png", "/Mockingbird/resources/Tree_One.png");
+			for (int i = 0; i < boxStrip.length; i++) {
+				boxStrip[i] = setObstacles("Grass.png", "Tree_One.png");
 			}
 			break;
-
 		}
 
 		return boxStrip;
 	}
 	
-	private Box setObstacles(int i, String background, String specialBlock) {
+	//retituisce un box che può essere un ostacolo una volta su quattro
+	private Box setObstacles(String background, String specialBlock) {
 
 		Box oneBlock = new Box();
 		Random gen = new Random();
 		int rand = gen.nextInt(4);
+		
 		// una possibilità su 4 di mettere un ostacolo  (es albero)
 		if (rand == 3) { 	
 			oneBlock.setImage(specialBlock);
 		} else {
 			oneBlock.setImage(background);
 		}
-
-		// Adds image to strip.
+		
 		return oneBlock;
 	}
 	
+	
+	//restituisce una striscia specifica
+	public Box[] getSpecificStrip(String background) {
+
+		Box[] boxStrip = new Box[8];
+		
+		for (int i = 0; i < boxStrip.length; i++) {
+			Box strip = new Box(background);
+			boxStrip[i] = strip;
+		}
+		
+		return boxStrip;
+	}
+	
+	
+	//restituisce una striscia specifica con ostacoli
 	public Box[] getSpecificStrip(String background, String specialBlock) {
 
-		//Array to hold strip.
 		Box[] boxStrip = new Box[8];
 
-		for (int i = 0; i < 8; i++) {
-			boxStrip[i] = setObstacles(i, background, specialBlock);
+		for (int i = 0; i < boxStrip.length; i++) {
+			boxStrip[i] = setObstacles( background, specialBlock);
 		}
 		return boxStrip;
 	}
+	
 }

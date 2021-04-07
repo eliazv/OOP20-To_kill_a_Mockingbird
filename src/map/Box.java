@@ -8,39 +8,31 @@ import javax.swing.JPanel;
 public class Box {
 
 	private ImageIcon image;
-	private String filename;
+	private String filename="";
 	private int xloc=0, yloc=0; //locazione delle immagini all'interno della gui
 
 
-	public Box(String filename) {
-		setImage(filename);
-	}
 	public Box() {
 		image = null;
 		xloc = 0;
 		yloc = 0;
-		//xdir = 0;
-		//ydir = 0;
+	}
+	
+	public Box(String filename) {
+		setImage(filename);
 	}
 
-	/**
-	 * Constructor that sets the sprite
-	 * image and location.
-	 */
+	public Box(int xloc, int yloc) {
+		this.xloc = xloc;
+		this.yloc = yloc;
+	}
+
 	public Box(String filename, int xloc, int yloc) {
 		setImage(filename);
 		this.xloc = xloc;
 		this.yloc = yloc;
 	}
 
-	/**
-	 * Constructor that takes the location
-	 * as the argument.
-	 */
-	public Box(int xloc, int yloc) {
-		this.xloc = xloc;
-		this.yloc = yloc;
-	}
 
 	
 	// set the image variable.
@@ -49,12 +41,12 @@ public class Box {
 
 		try {
 			this.image = new ImageIcon(getClass().getResource(filename));
+			
 		} catch (Exception e) {
 			image = null;
 		}
 	}
 
-	
 	
 	int getXLoc() {
 		return xloc;
@@ -64,6 +56,7 @@ public class Box {
 		this.xloc = xloc;
 	}
 
+	
 	int getYLoc() {
 		return  yloc;
 	}
@@ -75,9 +68,13 @@ public class Box {
 	
 
 	void paint(Graphics g, JPanel panel) {
-		if (image == null)
-			g.drawRect( xloc, yloc, 50, 50);
-		else
+		if (image == null) {
+			g.drawRect( xloc, yloc, 100, 100);			
+		}
+			
+		else {
 			image.paintIcon(panel, g,  xloc,  yloc);
+		}
+			
 	}
 }

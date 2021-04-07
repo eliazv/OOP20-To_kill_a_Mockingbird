@@ -5,27 +5,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
-public class MapGenerator  extends JPanel implements ActionListener {
+public class MapGenerator  extends JPanel  {
 
     private static final long serialVersionUID = 1L;
-    private int NSTRIP = 9; 		//numero di righe, 9 perche cosi carica quella nuova?
-	private int BOXFORSTRIP = 8;	//numero di box per ogni strip, serve?
+    protected int NSTRIP = 9; 				//numero di righe, 9 perche cosi carica quella nuova?
+	protected int BOXFORSTRIP = 8;			//numero di box per ogni strip
 	private Strip striscia = new Strip();
 	private Box[][] allStrips = new Box[NSTRIP][BOXFORSTRIP];
 		
 	public MapGenerator() {
 		//Initializes game with land strips.
 		for (int i = 0; i < NSTRIP; i++) {
-			//allStrips[i] = striscia.getSpecificStrip("/Mockingbird/resources/Grass.png","/Mockingbird/resources/Tree_One.png");
-			allStrips[i] = striscia.getStrip();			
+			allStrips[i] = striscia.getSpecificStrip("Grass.png");
+			//allStrips[i] = striscia.getStrip();			
 		}
+		this.repaint();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub	
-	}
-	
 	
 	public void paintComponent(Graphics g) {
 		//Erases the previous screen.
@@ -37,10 +33,10 @@ public class MapGenerator  extends JPanel implements ActionListener {
 				allStrips[i][x].paint(g, this);
 			}
 		}
-		
-		repaint();
+
 	}
-	
+
+
 }
 	
 
