@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -23,6 +24,7 @@ public class prova {
 		BufferedImage img = ImageIO.read(prova.class.getClassLoader().getResourceAsStream("Tracks.png"));
 		BufferedImage img2 = ImageIO.read(prova.class.getClassLoader().getResourceAsStream("Grass.png"));
 		BufferedImage bird = ImageIO.read(prova.class.getClassLoader().getResourceAsStream("bird.png"));
+		ImageIcon p1 = new ImageIcon("Grass.png");
 		
 		JPanel p =new JPanel() {
 			protected void paintComponent(Graphics g) {

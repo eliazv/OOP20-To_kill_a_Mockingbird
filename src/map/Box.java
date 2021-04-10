@@ -1,19 +1,23 @@
 package map;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Box {
 
-	private ImageIcon image;
-	private String filename="";
-	private int xloc=0, yloc=0; //locazione delle immagini all'interno della gui
+	BufferedImage img ;
+	private String filename = null;
+	private int xloc = 0, yloc = 0; 	//locazione delle immagini all'interno della gui
+	
+
 
 
 	public Box() {
-		image = null;
+		img = null;
 		xloc = 0;
 		yloc = 0;
 	}
@@ -21,29 +25,25 @@ public class Box {
 	public Box(String filename) {
 		setImage(filename);
 	}
-
-	public Box(int xloc, int yloc) {
-		this.xloc = xloc;
-		this.yloc = yloc;
-	}
-
+	
+	
 	public Box(String filename, int xloc, int yloc) {
 		setImage(filename);
-		this.xloc = xloc;
-		this.yloc = yloc;
+		this.xloc= xloc*100;
+		this.yloc = yloc*100;
 	}
 
 
 	
-	// set the image variable.
+	// set the image 
 	public void setImage(String filename) {
 		this.filename = filename;
 
 		try {
-			this.image = new ImageIcon(getClass().getResource(filename));
+			 img = ImageIO.read(prova.class.getClassLoader().getResourceAsStream(filename));
 			
 		} catch (Exception e) {
-			image = null;
+			img = null;
 		}
 	}
 
@@ -51,7 +51,6 @@ public class Box {
 	int getXLoc() {
 		return xloc;
 	}
-
 	void setXLoc(int xloc) {
 		this.xloc = xloc;
 	}
@@ -60,20 +59,20 @@ public class Box {
 	int getYLoc() {
 		return  yloc;
 	}
-
 	void setYLoc(int yloc) {
 		this.yloc = yloc;
 	}
 	
 	
-
+	//stampa blocco
 	void paint(Graphics g, JPanel panel) {
-		if (image == null) {
+		//se non c'è l'immagine stampa un quadrato 
+		if (img == null) {
 			g.drawRect( xloc, yloc, 100, 100);			
 		}
-			
+		
 		else {
-			image.paintIcon(panel, g,  xloc,  yloc);
+			g.drawImage(img, xloc, yloc, 100,100, null);
 		}
 			
 	}

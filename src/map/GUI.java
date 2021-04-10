@@ -1,6 +1,6 @@
 package map;
-import java.awt.Image;
-import java.util.List;
+
+import java.io.IOException;
 
 import javax.swing.*;
 
@@ -11,7 +11,7 @@ public class GUI extends JFrame {
 	//Variable for final JFrame size.
 	private final int SIZE = 800;
 
-	GUI(boolean pause) {
+	GUI(boolean pause) throws IOException {
 
 		//Set the title.
 		setTitle("Mockingbird");
@@ -35,7 +35,7 @@ public class GUI extends JFrame {
 		setVisible(true);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		//Pause game if first run.
 		final boolean pause = true;
