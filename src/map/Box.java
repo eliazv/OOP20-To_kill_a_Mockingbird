@@ -2,24 +2,23 @@ package map;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Box {
 
-	BufferedImage img ;
-	private String filename = null;
-	private int xloc = 0, yloc = 0; 	//locazione delle immagini all'interno della gui
+	private BufferedImage img ;
+	//private String filename = null;
+	private int xloc, yloc; // locazione delle immagini all'interno della gui
+	private int xdir, ydir;
 	
 
-
-
 	public Box() {
-		img = null;
-		xloc = 0;
-		yloc = 0;
+		this.img = null;
+		this.xloc = 0;
+		this.yloc = 0;
+		this.xdir = 0;
+		this.ydir = 0;
 	}
 	
 	public Box(String filename) {
@@ -37,7 +36,7 @@ public class Box {
 	
 	// set the image 
 	public void setImage(String filename) {
-		this.filename = filename;
+		//this.filename = filename;
 
 		try {
 			 img = ImageIO.read(prova.class.getClassLoader().getResourceAsStream(filename));
@@ -63,6 +62,19 @@ public class Box {
 		this.yloc = yloc;
 	}
 	
+	
+	public void setYDir(int ydir) {
+		this.ydir = ydir;
+	}
+
+	public void setXDir(int xdir) {
+		this.xdir = xdir;
+	}
+
+	public void move() {
+		this.xloc += this.xdir;
+		this.yloc += this.ydir;
+	}
 	
 	//stampa blocco
 	void paint(Graphics g, JPanel panel) {
