@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class Box {
 
 	private BufferedImage img ;
-	//private String filename = null;
+	private String filename = null;
 	private int xloc, yloc; // locazione delle immagini all'interno della gui
 	private int xdir, ydir;
 	
@@ -29,14 +29,14 @@ public class Box {
 	public Box(String filename, int xloc, int yloc) {
 		setImage(filename);
 		this.xloc= xloc*100;
-		this.yloc = yloc*100;
+		this.yloc = 800 - yloc*100;   //stampare le righe dal basso verso l'altro 
 	}
 
 
 	
 	// set the image 
 	public void setImage(String filename) {
-		//this.filename = filename;
+		this.filename = filename;
 
 		try {
 			 img = ImageIO.read(prova.class.getClassLoader().getResourceAsStream(filename));
@@ -47,18 +47,23 @@ public class Box {
 	}
 
 	
-	int getXLoc() {
+	String getFileName() {
+		return filename;
+	}
+
+	
+	public int getXLoc() {
 		return xloc;
 	}
-	void setXLoc(int xloc) {
+	public void setXLoc(int xloc) {
 		this.xloc = xloc;
 	}
 
 	
-	int getYLoc() {
+	public int getYLoc() {
 		return  yloc;
 	}
-	void setYLoc(int yloc) {
+	public void setYLoc(int yloc) {
 		this.yloc = yloc;
 	}
 	
@@ -77,7 +82,7 @@ public class Box {
 	}
 	
 	//stampa blocco
-	void paint(Graphics g, JPanel panel) {
+	public void paint(Graphics g, JPanel panel) {
 		//se non c'è l'immagine stampa un quadrato 
 		if (img == null) {
 			g.drawRect( xloc, yloc, 100, 100);			

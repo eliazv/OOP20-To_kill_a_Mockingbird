@@ -4,14 +4,19 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import enemy.Vehicle;
 
 public class MapGenerator extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	
-	protected int NSTRIP = 9; // numero di righe 
+
+	protected int NSTRIP = 19; // numero di righe da stampare 
 	protected int BOXFORSTRIP = 8; // numero di box per ogni strip (n colonne)
 	protected int TIMER_DELAY = 10;
 
@@ -19,6 +24,13 @@ public class MapGenerator extends JPanel implements ActionListener {
 	private Box[][] allStrips = new Box[NSTRIP][BOXFORSTRIP];
 	private Timer timer;
 	//private Box bird;
+	
+	//veicoli ma non stampa
+	private ArrayList<Box> cars = new ArrayList<>();
+	private ArrayList<Box> trains = new ArrayList<>();
+	private Vehicle veicoli = new Vehicle();
+	
+	
 
 	public MapGenerator() throws IOException {
 
@@ -43,6 +55,14 @@ public class MapGenerator extends JPanel implements ActionListener {
 				allStrips[i][x].paint(g, this);
 			}
 		}
+		
+		//draw vehicles NON FUNZIONA
+		for (Box s : cars)
+			s.paint(g, this);
+
+		for (Box s : trains)
+			s.paint(g, this);
+		
 		//this.bird.paint(g, this);
 
 	}
@@ -68,11 +88,23 @@ public class MapGenerator extends JPanel implements ActionListener {
 		//this.bird.setYLoc(300);
 		
 		for (int i = 0; i < NSTRIP; i++) {
-			// allStrips[i] = striscia.getSpecificStrip("Grass.png",i);
+
 			allStrips[i] = striscia.getStrip(i);
+			
+			
+			//Set vehicles NON FUNZIONA
+			if (allStrips[i][0].getFileName().equals("Misc/Road.png")){
+			    cars.add(veicoli.setCar(allStrips[i][0].getYLoc() + 10));
+			}
+			
+	        if (allStrips[i][0].getFileName().equals("Misc/Tracks.png")) {
+	            trains.add(veicoli.setTrain(allStrips[i][0].getYLoc() + 10));
+	        }
+	        
 		}
 		
 	}
+	
 	
 	private void scroolScren() {
 		for (int v = 0; v < this.NSTRIP; v++) {
