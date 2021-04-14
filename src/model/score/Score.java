@@ -1,4 +1,4 @@
-package map;
+package model.score;
 
 public class Score {
 

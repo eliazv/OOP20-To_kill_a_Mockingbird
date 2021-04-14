@@ -1,6 +1,7 @@
-package gamestructure.mainmenu;
+package controllers;
 
 public class MainMenuControllerImpl implements MainMenuController {
+
 
 	@Override
 	public void setup() {

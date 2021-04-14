@@ -1,17 +1,18 @@
-package enemy;
+package model.enemy;
 
 import java.util.Random;
 
-import map.Box;
+import model.map.BoxImpl;
 
-public class Vehicle {
+public class VehicleImpl implements Vehicle{
+
 	
     private Random rand = new Random();
 
-	public Box setCar(int stripYLoc) {
+	public BoxImpl setCar(int stripYLoc) {
 
         //Makes sprite.
-        Box car = new Box("Car.png");
+        BoxImpl car = new BoxImpl("Car.png");
 
         //Scrolls sprite.
         car.setYDir(2);
@@ -21,15 +22,15 @@ public class Vehicle {
         
         //random per settare se arrivano da sestra o sinistra
         car.setXLoc(700);
-        //car.setXDir(-(rand.nextInt(10) + 10)); //velocità casuale
+        car.setXDir(-(rand.nextInt(10) + 10)); //velocità casuale
         
         return car;
 	}
 	
-	public Box setTrain(int stripYLoc) {
+	public BoxImpl setTrain(int stripYLoc) {
 
         //Makes sprite.
-        Box train = new Box("Train.png");
+        BoxImpl train = new BoxImpl("Train.png");
 
         //Scrolls sprite.
         train.setYDir(2);
@@ -39,7 +40,7 @@ public class Vehicle {
         
         
         train.setXLoc(500);
-        //train.setXDir(-(rand.nextInt(10) + 30));
+        train.setXDir(-(rand.nextInt(10) + 30));
         
         return train;
 	}

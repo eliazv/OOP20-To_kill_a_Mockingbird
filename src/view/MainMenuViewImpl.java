@@ -1,4 +1,4 @@
-package gamestructure.mainmenu;
+package view;
 
 public class MainMenuViewImpl {
 

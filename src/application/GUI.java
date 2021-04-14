@@ -1,14 +1,15 @@
-package map;
+package application;
 
 import java.io.IOException;
 
 import javax.swing.*;
 
+import view.MapViewImpl;
+
 public class GUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	//Variable for final JFrame size.
 	private final int SIZE = 800;
 
 	GUI(boolean pause) throws IOException {
@@ -29,7 +30,7 @@ public class GUI extends JFrame {
 		setResizable(false);
 
 		//Add panel to frame.
-		add(new MapGenerator());
+		add(new MapViewImpl());//da cambiare con mapview
 
 		//Display the window.
 		setVisible(true);

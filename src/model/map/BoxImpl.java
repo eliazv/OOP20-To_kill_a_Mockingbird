@@ -1,11 +1,11 @@
-package map;
+package model.map;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class Box {
+public class BoxImpl implements Box{
 
 	private BufferedImage img ;
 	private String filename = null;
@@ -13,7 +13,7 @@ public class Box {
 	private int xdir, ydir;
 	
 
-	public Box() {
+	public BoxImpl() {
 		this.img = null;
 		this.xloc = 0;
 		this.yloc = 0;
@@ -21,12 +21,12 @@ public class Box {
 		this.ydir = 0;
 	}
 	
-	public Box(String filename) {
+	public BoxImpl(String filename) {
 		setImage(filename);
 	}
 	
 	
-	public Box(String filename, int xloc, int yloc) {
+	public BoxImpl(String filename, int xloc, int yloc) {
 		setImage(filename);
 		this.xloc= xloc*100;
 		this.yloc = 800 - yloc*100;   //stampare le righe dal basso verso l'altro 
@@ -39,7 +39,7 @@ public class Box {
 		this.filename = filename;
 
 		try {
-			 img = ImageIO.read(prova.class.getClassLoader().getResourceAsStream(filename));
+			 img = ImageIO.read(BoxImpl.class.getClassLoader().getResourceAsStream(filename));
 			
 		} catch (Exception e) {
 			img = null;
@@ -47,7 +47,7 @@ public class Box {
 	}
 
 	
-	String getFileName() {
+	public String getFileName() {
 		return filename;
 	}
 
