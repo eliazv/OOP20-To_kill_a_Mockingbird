@@ -12,7 +12,7 @@ public class VehicleImpl implements Vehicle{
 	public BoxImpl setCar(double stripYLoc) {
 
 		//Nel view
-        BoxImpl car = new BoxImpl("Car.png");
+		BoxImpl car = new BoxImpl();
 
         //Scrolls sprite.
         car.setYDir(1);
@@ -20,24 +20,26 @@ public class VehicleImpl implements Vehicle{
         //Set sprite to strip location.
         car.setYLoc(stripYLoc);
         
-        //random per settare se arrivano da sestra o sinistra
+
         if (rand.nextInt(2) == 1) {
             //Right to left.
             car.setXLoc(900);
             car.setXDir(-(rand.nextInt(10) + 2));
+            car.setImage("Car_Left.png");
 
         } else {
             //Left to right.
             car.setXLoc(-200);
             car.setXDir((rand.nextInt(10) + 2));
+            car.setImage("Car_Right.png");
         }
 
-        //car.setXLoc(700);
-        //car.setXDir(-(rand.nextInt(10) + 2)); //velocità casuale
-        
+  
         return car;
 	}
 	
+	
+	//TODO il treno dovrebbe essere piu box cosecutivi
 	public BoxImpl setTrain(double stripYLoc) {
 
         //Nel view
@@ -59,8 +61,6 @@ public class VehicleImpl implements Vehicle{
             train.setXLoc(-1500);
             train.setXDir((rand.nextInt(10) + 10));
         }
-
-        
         return train;
 	}
 	

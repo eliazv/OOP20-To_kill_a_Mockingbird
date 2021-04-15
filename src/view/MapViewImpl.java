@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -78,8 +79,8 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 		
 		this.moveVehicle(cars);
 		this.moveVehicle(trains);
-		this.restartVehicle(cars, 0);
-		this.restartVehicle(trains, 0);//delay aggiungere
+		this.restartVehicle(cars, 2);
+		this.restartVehicle(trains, 5);//delay aggiungere
 		
 		this.generateMap();
 
@@ -145,13 +146,17 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 	
 	
 	//rimuove veicoli fuori dalla mappa e se usciti lateralmente li fa ripartire
-	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay) { //delay TODO
+	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay)  { //delay TODO
 		for(BoxImpl s : vehicles) {
 			if(s.getXLoc()>900) {
-				s.setXLoc(-100);
+				//TODO thread 
+				//TimeUnit.SECONDS.sleep(delay);
+				 //Thread.sleep(4000);
+				s.setXLoc(-100 );
 			}
-			if(s.getXLoc()<-100) {
-				s.setXLoc(900);
+			else if(s.getXLoc()<-100) {
+				//TimeUnit.SECONDS.sleep(delay);
+				s.setXLoc(900 );
 			}
 			
 			//TODO rimuovi se y >800
