@@ -145,13 +145,13 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 	
 	
 	//rimuove veicoli fuori dalla mappa e se usciti lateralmente li fa ripartire
-	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay) { //delay per i treni
+	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay) { //delay TODO
 		for(BoxImpl s : vehicles) {
 			if(s.getXLoc()>900) {
-				s.setXLoc(0);
+				s.setXLoc(-100);
 			}
 			if(s.getXLoc()<-100) {
-				s.setXLoc(800);
+				s.setXLoc(900);
 			}
 			
 			//TODO rimuovi se y >800

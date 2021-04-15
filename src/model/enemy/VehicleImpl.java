@@ -21,8 +21,19 @@ public class VehicleImpl implements Vehicle{
         car.setYLoc(stripYLoc);
         
         //random per settare se arrivano da sestra o sinistra
-        car.setXLoc(700);
-        car.setXDir(-(rand.nextInt(10) + 2)); //velocità casuale
+        if (rand.nextInt(2) == 1) {
+            //Right to left.
+            car.setXLoc(900);
+            car.setXDir(-(rand.nextInt(10) + 2));
+
+        } else {
+            //Left to right.
+            car.setXLoc(-200);
+            car.setXDir((rand.nextInt(10) + 2));
+        }
+
+        //car.setXLoc(700);
+        //car.setXDir(-(rand.nextInt(10) + 2)); //velocità casuale
         
         return car;
 	}
@@ -39,8 +50,16 @@ public class VehicleImpl implements Vehicle{
         train.setYLoc(stripYLoc);
         
         
-        train.setXLoc(500);
-        train.setXDir(-(rand.nextInt(10) + 10));
+        if (rand.nextInt(2) == 1) {
+            //Right to left.
+            train.setXLoc(900);
+            train.setXDir(-(rand.nextInt(10) + 10));
+        } else {
+            //Left to right.
+            train.setXLoc(-1500);
+            train.setXDir((rand.nextInt(10) + 10));
+        }
+
         
         return train;
 	}
