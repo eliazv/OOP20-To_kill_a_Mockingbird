@@ -9,41 +9,42 @@ public class VehicleImpl implements Vehicle{
 	
     private Random rand = new Random();
 
-	public BoxImpl setCar(int stripYLoc) {
+	public BoxImpl setCar(double stripYLoc) {
 
-        //Makes sprite.
+		//Nel view
         BoxImpl car = new BoxImpl("Car.png");
 
         //Scrolls sprite.
-        car.setYDir(2);
+        car.setYDir(1);
 
         //Set sprite to strip location.
         car.setYLoc(stripYLoc);
         
         //random per settare se arrivano da sestra o sinistra
         car.setXLoc(700);
-        car.setXDir(-(rand.nextInt(10) + 10)); //velocità casuale
+        car.setXDir(-(rand.nextInt(10) + 2)); //velocità casuale
         
         return car;
 	}
 	
-	public BoxImpl setTrain(int stripYLoc) {
+	public BoxImpl setTrain(double stripYLoc) {
 
-        //Makes sprite.
+        //Nel view
         BoxImpl train = new BoxImpl("Train.png");
 
         //Scrolls sprite.
-        train.setYDir(2);
+        train.setYDir(1);
 
         //Set sprite to strip location.
         train.setYLoc(stripYLoc);
         
         
         train.setXLoc(500);
-        train.setXDir(-(rand.nextInt(10) + 30));
+        train.setXDir(-(rand.nextInt(10) + 10));
         
         return train;
 	}
+	
 	
 
 }

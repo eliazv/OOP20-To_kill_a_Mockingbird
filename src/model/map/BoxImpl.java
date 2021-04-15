@@ -9,8 +9,8 @@ public class BoxImpl implements Box{
 
 	private BufferedImage img ;
 	private String filename = null;
-	private int xloc, yloc; // locazione delle immagini all'interno della gui
-	private int xdir, ydir;
+	private double xloc, yloc; // locazione delle immagini all'doubleerno della gui
+	private double xdir, ydir;
 	
 
 	public BoxImpl() {
@@ -26,7 +26,7 @@ public class BoxImpl implements Box{
 	}
 	
 	
-	public BoxImpl(String filename, int xloc, int yloc) {
+	public BoxImpl(String filename, double xloc, double yloc) {
 		setImage(filename);
 		this.xloc= xloc*100;
 		this.yloc = 800 - yloc*100;   //stampare le righe dal basso verso l'altro 
@@ -52,27 +52,27 @@ public class BoxImpl implements Box{
 	}
 
 	
-	public int getXLoc() {
+	public double getXLoc() {
 		return xloc;
 	}
-	public void setXLoc(int xloc) {
+	public void setXLoc(double xloc) {
 		this.xloc = xloc;
 	}
 
 	
-	public int getYLoc() {
+	public double getYLoc() {
 		return  yloc;
 	}
-	public void setYLoc(int yloc) {
+	public void setYLoc(double yloc) {
 		this.yloc = yloc;
 	}
 	
 	
-	public void setYDir(int ydir) {
+	public void setYDir(double ydir) {
 		this.ydir = ydir;
 	}
 
-	public void setXDir(int xdir) {
+	public void setXDir(double xdir) {
 		this.xdir = xdir;
 	}
 
@@ -85,11 +85,11 @@ public class BoxImpl implements Box{
 	public void paint(Graphics g, JPanel panel) {
 		//se non c'è l'immagine stampa un quadrato 
 		if (img == null) {
-			g.drawRect( xloc, yloc, 100, 100);			
+			g.drawRect( (int)xloc, (int)yloc, 100, 100);			
 		}
 		
 		else {
-			g.drawImage(img, xloc, yloc, 100,100, null);
+			g.drawImage(img, (int)xloc, (int)yloc, 100,100, null);
 		}
 			
 	}

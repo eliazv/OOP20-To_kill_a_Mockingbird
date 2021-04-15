@@ -6,7 +6,7 @@ public class EnemyViewImpl implements EnemyView {
 
 	@Override
 	public void setSprite() {
-		BoxImpl car = new BoxImpl("Car.png");
+		//BoxImpl car = new BoxImpl("Car.png");
 		
 	}
 	

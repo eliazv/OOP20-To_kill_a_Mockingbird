@@ -10,17 +10,17 @@ public interface Box {
 	
 	String getFileName();
 
-	public int getXLoc();
+	public double getXLoc();
 	
-	public void setXLoc(int xloc);
+	public void setXLoc(double xloc);
 	
-	public int getYLoc();
+	public double getYLoc();
 	
-	public void setYLoc(int yloc);
+	public void setYLoc(double yloc);
 	
-	public void setYDir(int ydir);
+	public void setYDir(double ydir);
 	
-	public void setXDir(int xdir);
+	public void setXDir(double xdir);
 	
 	public void move();
 

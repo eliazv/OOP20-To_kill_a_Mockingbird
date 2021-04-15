@@ -4,8 +4,8 @@ import model.map.BoxImpl;
 
 public interface Vehicle {
 	
-	BoxImpl setCar(int stripYLoc);
+	BoxImpl setCar(double stripYLoc);
 	
-	BoxImpl setTrain(int stripYLoc);
+	BoxImpl setTrain(double stripYLoc);
 
 }

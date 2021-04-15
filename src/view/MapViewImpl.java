@@ -18,9 +18,9 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 
 	private static final long serialVersionUID = 1L;
 
-	protected int NSTRIP = 19; // numero di righe da stampare
-	protected int BOXFORSTRIP = 8; // numero di box per ogni strip (n
-									// colonne)
+	protected int NSTRIP = 11; // numero di righe da stampare
+	protected int iriga=11;
+	protected int BOXFORSTRIP = 8; // numero di box per ogni strip (n colonne)
 	protected int TIMER_DELAY = 10;
 
 	private Strip striscia = new Strip();
@@ -75,6 +75,13 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 		this.scroolScren();
 
 		this.repaint();
+		
+		this.moveVehicle(cars);
+		this.moveVehicle(trains);
+		this.restartVehicle(cars, 0);
+		this.restartVehicle(trains, 0);//delay aggiungere
+		
+		this.generateMap();
 
 	}
 
@@ -83,7 +90,7 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 		for (int i = 0; i < NSTRIP; i++) {
 
 			allStrips[i] = striscia.getStrip(i);
-
+			
 			if (allStrips[i][0].getFileName().equals("Road.png")) {
 				cars.add(veicoli.setCar(allStrips[i][0].getYLoc() + 10));
 			}
@@ -95,13 +102,59 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 		}
 
 	}
+	
+	public void generateMap() {
+		for (int i = 0; i < NSTRIP; i++) {
+			if(allStrips[i][0].getYLoc() > 800) {
+				allStrips[i]=striscia.getStrip(iriga);
+				if (allStrips[i][0].getFileName().equals("Road.png")) {
+					cars.add(veicoli.setCar(allStrips[i][0].getYLoc() + 10));
+				}
 
-	public void scroolScren() {
-		for (int v = 0; v < this.NSTRIP; v++) {
-			// TODO cicla cars e trains qui
-			for (int x = 0; x < this.BOXFORSTRIP; x++) {
-				allStrips[v][x].setYDir(1);
+				if (allStrips[i][0].getFileName().equals("Tracks.png")) {
+					trains.add(veicoli.setTrain(allStrips[i][0].getYLoc() + 10));
+				}
 			}
+			
+
+		}
+		
+	}
+	
+	//è controller
+	public void scroolScren() {
+		for (int y = 0; y < this.NSTRIP; y++) {
+			
+			for (int x = 0; x < this.BOXFORSTRIP; x++) {
+				allStrips[y][x].setYDir(1);
+			}
+		}
+	}
+	
+	
+	public void moveVehicle(ArrayList<BoxImpl> vehicles) {
+
+		for(BoxImpl s : vehicles) {
+			s.move();
+			//TODO
+			//if(s.getYLoc()>800) {
+				//vehicles.remove(s);
+			//}
+		}
+	}
+	
+	
+	//rimuove veicoli fuori dalla mappa e se usciti lateralmente li fa ripartire
+	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay) { //delay per i treni
+		for(BoxImpl s : vehicles) {
+			if(s.getXLoc()>900) {
+				s.setXLoc(0);
+			}
+			if(s.getXLoc()<-100) {
+				s.setXLoc(800);
+			}
+			
+			//TODO rimuovi se y >800
 		}
 	}
 
