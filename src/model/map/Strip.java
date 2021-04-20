@@ -3,6 +3,7 @@ package model.map;
 import java.util.Random;
 
 public class Strip {
+	//TODO strip impl
 	
 	//restituisce una striscia casuale
 	public BoxImpl[] getStrip(int riga) {

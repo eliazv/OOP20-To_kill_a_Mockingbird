@@ -8,4 +8,5 @@ public interface Vehicle {
 	
 	BoxImpl setTrain(double stripYLoc);
 
+	void rndDir(BoxImpl vehicle, int pos, int speed);
 }

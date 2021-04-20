@@ -5,11 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.BoxImpl;
@@ -20,7 +17,7 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 	private static final long serialVersionUID = 1L;
 
 	protected int NSTRIP = 11; // numero di righe da stampare
-	protected int iriga=11;
+	protected int iriga = 11;
 	protected int BOXFORSTRIP = 8; // numero di box per ogni strip (n colonne)
 	protected int TIMER_DELAY = 10;
 
@@ -31,6 +28,7 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 	private ArrayList<BoxImpl> cars = new ArrayList<>();
 	private ArrayList<BoxImpl> trains = new ArrayList<>();
 	private Vehicle veicoli = new VehicleImpl();
+	private VehicleView vehicleManager = new VehicleView();
 
 	public MapViewImpl() throws IOException {
 
@@ -77,14 +75,14 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 
 		this.repaint();
 		
-		this.moveVehicle(cars);
-		this.moveVehicle(trains);
-		this.restartVehicle(cars, 2);
-		this.restartVehicle(trains, 5);//delay aggiungere
+		vehicleManager.moveVehicle(cars);
+		vehicleManager.moveVehicle(trains);
+		vehicleManager.restartVehicle(cars, 1500);
+		vehicleManager.restartVehicle(trains, 5000);
 		
 		this.generateMap();
-
 	}
+	
 
 	public void SetInitialPosition() {
 
@@ -99,9 +97,7 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 			if (allStrips[i][0].getFileName().equals("Tracks.png")) {
 				trains.add(veicoli.setTrain(allStrips[i][0].getYLoc() + 10));
 			}
-
 		}
-
 	}
 	
 	public void generateMap() {
@@ -116,10 +112,7 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 					trains.add(veicoli.setTrain(allStrips[i][0].getYLoc() + 10));
 				}
 			}
-			
-
 		}
-		
 	}
 	
 	//è controller
@@ -133,34 +126,5 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 	}
 	
 	
-	public void moveVehicle(ArrayList<BoxImpl> vehicles) {
-
-		for(BoxImpl s : vehicles) {
-			s.move();
-			//TODO
-			//if(s.getYLoc()>800) {
-				//vehicles.remove(s);
-			//}
-		}
-	}
-	
-	
-	//rimuove veicoli fuori dalla mappa e se usciti lateralmente li fa ripartire
-	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay)  { //delay TODO
-		for(BoxImpl s : vehicles) {
-			if(s.getXLoc()>900) {
-				//TODO thread 
-				//TimeUnit.SECONDS.sleep(delay);
-				 //Thread.sleep(4000);
-				s.setXLoc(-100 );
-			}
-			else if(s.getXLoc()<-100) {
-				//TimeUnit.SECONDS.sleep(delay);
-				s.setXLoc(900 );
-			}
-			
-			//TODO rimuovi se y >800
-		}
-	}
 
 }

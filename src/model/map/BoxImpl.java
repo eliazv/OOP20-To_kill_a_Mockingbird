@@ -53,7 +53,7 @@ public class BoxImpl implements Box{
 
 	
 	public double getXLoc() {
-		return xloc;
+		return this.xloc;
 	}
 	public void setXLoc(double xloc) {
 		this.xloc = xloc;
@@ -61,7 +61,7 @@ public class BoxImpl implements Box{
 
 	
 	public double getYLoc() {
-		return  yloc;
+		return  this.yloc;
 	}
 	public void setYLoc(double yloc) {
 		this.yloc = yloc;
@@ -76,6 +76,10 @@ public class BoxImpl implements Box{
 		this.xdir = xdir;
 	}
 
+	public double getXDir() {
+		return  this.xdir;
+	}
+	
 	public void move() {
 		this.xloc += this.xdir;
 		this.yloc += this.ydir;

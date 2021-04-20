@@ -63,7 +63,25 @@ public class VehicleImpl implements Vehicle{
         }
         return train;
 	}
+
+	//ancora da implemnt
+	public void rndDir(BoxImpl vehicle, int pos, int speed) {
+
+        if (rand.nextInt(2) == 1) {
+            //Right to left.
+        	vehicle.setXLoc( pos);
+        	vehicle.setXDir(-(rand.nextInt(10) +  speed));
+        	vehicle.setImage("Car_Left.png");//da cambiare
+
+        } else {
+            //Left to right.
+        	vehicle.setXLoc( pos-1100);
+        	vehicle.setXDir((rand.nextInt(10) +  speed));
+        	vehicle.setImage("Car_Right.png");//da cambiare
+        }
+
+	}
 	
-	
+
 
 }
