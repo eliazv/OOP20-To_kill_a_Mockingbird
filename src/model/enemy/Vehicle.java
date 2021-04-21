@@ -7,6 +7,9 @@ public interface Vehicle {
 	BoxImpl setCar(double stripYLoc);
 	
 	BoxImpl setTrain(double stripYLoc);
+	
+	//servono i get?
 
-	void rndDir(BoxImpl vehicle, int pos, int speed);
+	//img non qui
+	void rndDir(BoxImpl vehicle, int pos, int speed, String imgDx, String imgSx);
 }

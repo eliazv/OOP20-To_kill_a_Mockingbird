@@ -28,7 +28,7 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 	private ArrayList<BoxImpl> cars = new ArrayList<>();
 	private ArrayList<BoxImpl> trains = new ArrayList<>();
 	private Vehicle veicoli = new VehicleImpl();
-	private VehicleView vehicleManager = new VehicleView();
+	private VehicleViewImpl vehicleManager = new VehicleViewImpl();
 
 	public MapViewImpl() throws IOException {
 
