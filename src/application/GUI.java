@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import controllers.MainMenuController;
+import controllers.MainMenuControllerImpl;
 import view.GameViewImpl;
 
 
@@ -35,5 +37,8 @@ public class GUI extends JFrame {
 		final boolean pause = true;//serve?
 
 		new GUI(pause);
+		
+		//MainMenuController controller = new MainMenuControllerImpl();
+		//controller.setup();
 	}
 }

@@ -40,10 +40,9 @@ public class MainMenuViewImpl implements MainMenuView {
 		//Set layout to absolute for buttons.
 		//setLayout(null);
 
-		imgStart = new ImageIcon("D");
+		//imgStart = new ImageIcon("D");
 		//Create button component, set image, remove borders.
-		//startButton = new JButton(new ImageIcon(getClass().getResource("startButton.png")));
-		startButton = new JButton();
+		startButton = new JButton(new ImageIcon(getClass().getResource("startButton.png")));
 		startButton.setBorder(BorderFactory.createEmptyBorder());
 		controlsButton = new JButton(new ImageIcon(getClass().getResource("controlsButton.png")));
 		controlsButton.setBorder(BorderFactory.createEmptyBorder());
