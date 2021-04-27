@@ -20,6 +20,7 @@ public class MainMenuControllerImpl implements MainMenuController {
     @Override
     public void newGame() {
         this.view.hide();
+        
     }
 
 }
