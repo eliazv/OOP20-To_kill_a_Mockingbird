@@ -6,7 +6,7 @@ public class Strip {
 	//TODO strip impl
 	
 	//restituisce una striscia casuale
-	public BoxImpl[] getStrip(int riga) {
+	public BoxImpl[] setRndStrip(int riga) {
 
 		BoxImpl[] boxStrip = new BoxImpl[8];
 		Random gen = new Random();

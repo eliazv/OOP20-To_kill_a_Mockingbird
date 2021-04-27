@@ -1,5 +1,5 @@
 package view;
 
-public class GameView {
+public interface GameView {
 
 }

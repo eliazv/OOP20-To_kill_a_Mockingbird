@@ -4,7 +4,8 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import view.MapViewImpl;
+import view.GameViewImpl;
+
 
 public class GUI extends JFrame {
 	
@@ -24,7 +25,7 @@ public class GUI extends JFrame {
 
 		setResizable(false);
 
-		add(new MapViewImpl());
+		add(new GameViewImpl());
 
 		setVisible(true);
 	}

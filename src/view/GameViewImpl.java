@@ -7,18 +7,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import model.enemy.Vehicle;
+
+import controllers.GameControllerImpl;
 import model.enemy.VehicleImpl;
 import model.map.BoxImpl;
 import model.map.Strip;
 
-public class MapViewImpl extends JPanel implements ActionListener, MapView {
+public class GameViewImpl extends JPanel implements ActionListener, GameView {
 
 	private static final long serialVersionUID = 1L;
-
-	protected int NSTRIP = 11; // numero di righe da stampare
+	protected int NSTRIP = 11; 
 	protected int iriga = 11;
-	protected int BOXFORSTRIP = 8; // numero di box per ogni strip (n colonne)
+	protected int BOXFORSTRIP = 8; 
 	protected int TIMER_DELAY = 10;
 
 	private Strip striscia = new Strip();
@@ -27,10 +27,11 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 
 	private ArrayList<BoxImpl> cars = new ArrayList<>();
 	private ArrayList<BoxImpl> trains = new ArrayList<>();
-	private Vehicle veicoli = new VehicleImpl();
-	private VehicleViewImpl vehicleManager = new VehicleViewImpl();
+	private VehicleImpl vehicleManager = new VehicleImpl();
+	
+	private GameControllerImpl gameContr = new GameControllerImpl();
 
-	public MapViewImpl() throws IOException {
+	public GameViewImpl() throws IOException {
 
 		this.timer = new Timer(this.TIMER_DELAY, this);
 
@@ -44,8 +45,8 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 	}
 
 	public void paintComponent(Graphics g) {
-		// Erases the previous screen.
-		super.paintComponent(g);
+		
+		super.paintComponent(g); // Erases the previous screen.
 
 		// Draws strips.
 		for (int i = 0; i < NSTRIP; i++) {
@@ -54,7 +55,7 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 			}
 		}
 
-		for (BoxImpl s : cars)
+		for (BoxImpl s : cars) //da fare un metodo ma problemi con paint
 			s.paint(g, this);
 
 		for (BoxImpl s : trains)
@@ -71,14 +72,12 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 			}
 		}
 
-		this.scroolScren();
+		gameContr.scroolScren(allStrips);
 
 		this.repaint();
 		
-		vehicleManager.moveVehicle(cars);
-		vehicleManager.moveVehicle(trains);
-		vehicleManager.restartVehicle(cars, 1500);
-		vehicleManager.restartVehicle(trains, 5000);
+		gameContr.startVehicle(vehicleManager, cars, 1500);
+		gameContr.startVehicle(vehicleManager, trains, 5000);
 		
 		this.generateMap();
 	}
@@ -87,44 +86,20 @@ public class MapViewImpl extends JPanel implements ActionListener, MapView {
 	public void SetInitialPosition() {
 
 		for (int i = 0; i < NSTRIP; i++) {
-
-			allStrips[i] = striscia.getStrip(i);
-			
-			if (allStrips[i][0].getFileName().equals("Road.png")) {
-				cars.add(veicoli.setCar(allStrips[i][0].getYLoc() + 10));
-			}
-
-			if (allStrips[i][0].getFileName().equals("Tracks.png")) {
-				trains.add(veicoli.setTrain(allStrips[i][0].getYLoc() + 10));
-			}
+			allStrips[i] = striscia.setRndStrip(i);
+			vehicleManager.checkOnRoad(allStrips, cars, trains, i);
 		}
 	}
 	
 	public void generateMap() {
+		
 		for (int i = 0; i < NSTRIP; i++) {
 			if(allStrips[i][0].getYLoc() > 800) {
-				allStrips[i]=striscia.getStrip(iriga);
-				if (allStrips[i][0].getFileName().equals("Road.png")) {
-					cars.add(veicoli.setCar(allStrips[i][0].getYLoc() + 10));
-				}
-
-				if (allStrips[i][0].getFileName().equals("Tracks.png")) {
-					trains.add(veicoli.setTrain(allStrips[i][0].getYLoc() + 10));
-				}
-			}
-		}
-	}
-	
-	//è controller
-	public void scroolScren() {
-		for (int y = 0; y < this.NSTRIP; y++) {
-			
-			for (int x = 0; x < this.BOXFORSTRIP; x++) {
-				allStrips[y][x].setYDir(1);
+				allStrips[i]=striscia.setRndStrip(iriga);
+				vehicleManager.checkOnRoad(allStrips, cars, trains, i);
 			}
 		}
 	}
 	
 	
-
 }
