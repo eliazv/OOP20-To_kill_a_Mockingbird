@@ -1,7 +1,11 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Rectangle;
+
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +28,7 @@ public class MainMenuViewImpl implements MainMenuView {
 
 	JLabel lblBackground;
 	JButton startButton, controlsButton;
-	Rectangle rStartButton, rCreditsButton, rLblBackgrouns;
+	Rectangle rStartButton, rCreditsButton, rLblBackground;
 	
 	public MainMenuViewImpl(final MainMenuController controller) {
 		final panelMenu menuPanel = new panelMenu();
@@ -49,30 +53,33 @@ public class MainMenuViewImpl implements MainMenuView {
 
 		public panelMenu() {
 
-			this.setBackground(BACKGROUND_COLOR);
-			
+			rLblBackground = new Rectangle(0,0,600,700);
+			//this.setBackground(BACKGROUND_COLOR);
+			ImageIcon background = new ImageIcon(new ImageIcon("resources/MainMenu.png").getImage().getScaledInstance(600, 700, Image.SCALE_SMOOTH));
+
+			lblBackground = new JLabel(background);
+			lblBackground.setBounds(rLblBackground);
+			//lblBackground.setIcon(background);
+			add(lblBackground, DEFAULT_LAYER);
 			//Set layout to absolute for buttons.
 			//setLayout(null);
-			//Icon icon = new ImageIcon(this.getClass().getResource("/resources/startButton.png"));
-			rStartButton = new Rectangle(MENU_WIDTH/2-50,200,100,30);
-			rCreditsButton = new Rectangle(MENU_WIDTH/2-50,400,100,30);
-			rLblBackgrouns = new Rectangle(0,0,600,700);
+			ImageIcon startImage = new ImageIcon (new ImageIcon("resources/startButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
+			ImageIcon controlsImage = new ImageIcon (new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
+			rStartButton = new Rectangle(MENU_WIDTH/2-80, 450, 150, 70);
+			rCreditsButton = new Rectangle(MENU_WIDTH/2-80, 550, 150, 70);
+			
 			//Create button component, set image, remove borders.
-			startButton = new JButton("start");
-			//startButton = new JButton(icon);
-			//startButton.setBorder(BorderFactory.createEmptyBorder());
+			startButton = new JButton ("", startImage);
 			startButton.setBounds(rStartButton);
 			//startButton.setIcon(new ImageIcon(this.getClass().getResource("/resources/startButton.png")));
-			this.add(startButton, PALETTE_LAYER);
+			lblBackground.add(startButton);
 			
-			controlsButton = new JButton("controls");
+			controlsButton = new JButton("", controlsImage);
 			//controlsButton.setBorder(BorderFactory.createEmptyBorder());
 			controlsButton.setBounds(rCreditsButton);
-			this.add(controlsButton, PALETTE_LAYER);
+			lblBackground.add(controlsButton);
 			
-			lblBackground = new JLabel();
-			//lblBackground.setIcon(icon);
-			this.add(lblBackground, DEFAULT_LAYER);
+			
 			//this.add(imgLabel);
 			//this.add(startButton);
 			//this.add(controlsButton);
