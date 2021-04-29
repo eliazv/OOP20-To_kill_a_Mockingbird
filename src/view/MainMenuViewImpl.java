@@ -1,36 +1,30 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
+import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import controllers.MainMenuController;
 
 public class MainMenuViewImpl implements MainMenuView {
 
-	private static final int MENU_WIDTH = 613;
-	private static final int MENU_HEIGHT = 727;
+	private static final int MENU_WIDTH = 600;
+	private static final int MENU_HEIGHT = 700;
 	private static final Color BACKGROUND_COLOR = new Color(60, 179, 113);
-	
+
 	JLabel imgLabel = new JLabel(new ImageIcon("startButton.png"));
-	
+
 	private final MainMenuController controller;
 
 	final JFrame frame = new JFrame();
 
+	JLabel lblBackground;
 	JButton startButton, controlsButton;
+	Rectangle rStartButton, rCreditsButton, rLblBackgrouns;
 	
 	public MainMenuViewImpl(final MainMenuController controller) {
 		final panelMenu menuPanel = new panelMenu();
@@ -40,52 +34,68 @@ public class MainMenuViewImpl implements MainMenuView {
 		this.frame.setResizable(false);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menuPanel);
-
 		this.frame.setBackground(BACKGROUND_COLOR);
 		this.frame.setVisible(true);
 
 		//Set layout to absolute for buttons.
-		//setLayout(null);
+		this.frame.setLayout(null);
 	}
-	class panelMenu extends JPanel {
+	class panelMenu extends JLayeredPane {
 
 		private static final long serialVersionUID = 1L;
 
-			public panelMenu() {
+		//private final ImageIcon wall = new ImageIcon(this.getClass().getResource("/resources/startButton.png"));
 
-				this.setBackground(BACKGROUND_COLOR);
-				
-				//Set layout to absolute for buttons.
-				//setLayout(null);
-				
-				//Create button component, set image, remove borders.
-				startButton = new JButton("start");
-				//startButton.setBorder(BorderFactory.createEmptyBorder());
-				controlsButton = new JButton("controls");
-				//controlsButton.setBorder(BorderFactory.createEmptyBorder());
-				this.add(imgLabel);
-				this.add(startButton);
-				this.add(controlsButton);
 
-				//startButton.setBounds(250, 175, 300, 200);
-				//controlsButton.setBounds(300, 390, 200, 100);
-				
-				startButton.addActionListener(e -> {
-		            controller.newGame();
-		        });
-				
-				controlsButton.addActionListener(e -> {
-					JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the frog." +
-							"\nCtrl:  Activates 3 seconds of invincibility once per game." +
-							"\n         (Makes frog pass through any object)" +
-							"\nShift:  Pause / Resume the game." +
-							"\nEnter:  Start game / Restart game while paused.");
-				});
-				
-			}
+		public panelMenu() {
+
+			this.setBackground(BACKGROUND_COLOR);
 			
+			//Set layout to absolute for buttons.
+			//setLayout(null);
+			//Icon icon = new ImageIcon(this.getClass().getResource("/resources/startButton.png"));
+			rStartButton = new Rectangle(MENU_WIDTH/2-50,200,100,30);
+			rCreditsButton = new Rectangle(MENU_WIDTH/2-50,400,100,30);
+			rLblBackgrouns = new Rectangle(0,0,600,700);
+			//Create button component, set image, remove borders.
+			startButton = new JButton("start");
+			//startButton = new JButton(icon);
+			//startButton.setBorder(BorderFactory.createEmptyBorder());
+			startButton.setBounds(rStartButton);
+			//startButton.setIcon(new ImageIcon(this.getClass().getResource("/resources/startButton.png")));
+			this.add(startButton, PALETTE_LAYER);
+			
+			controlsButton = new JButton("controls");
+			//controlsButton.setBorder(BorderFactory.createEmptyBorder());
+			controlsButton.setBounds(rCreditsButton);
+			this.add(controlsButton, PALETTE_LAYER);
+			
+			lblBackground = new JLabel();
+			//lblBackground.setIcon(icon);
+			this.add(lblBackground, DEFAULT_LAYER);
+			//this.add(imgLabel);
+			//this.add(startButton);
+			//this.add(controlsButton);
+
+			//startButton.setBounds(250, 175, 300, 200);
+			//controlsButton.setBounds(300, 390, 200, 100);
+
+			startButton.addActionListener(e -> {
+				controller.newGame();
+			});
+
+			controlsButton.addActionListener(e -> {
+				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the frog." +
+						"\nCtrl:  Activates 3 seconds of invincibility once per game." +
+						"\n         (Makes frog pass through any object)" +
+						"\nShift:  Pause / Resume the game." +
+						"\nEnter:  Start game / Restart game while paused.");
+			});
+
+		}
+
 	}
-	
+
 
 	public void hide() {
 		this.frame.dispose();
