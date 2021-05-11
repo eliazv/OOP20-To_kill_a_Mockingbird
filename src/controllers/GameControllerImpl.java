@@ -3,19 +3,20 @@ package controllers;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+
 import model.enemy.VehicleImpl;
 import model.map.BoxImpl;
 import model.map.Strip;
+import model.player.Player;
+import model.player.PlayerImpl;
 
+public class GameControllerImpl extends JPanel implements GameController, ActionListener {
 
-public class GameControllerImpl extends JPanel	implements GameController,ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	protected int NSTRIP = 11;
@@ -30,9 +31,9 @@ public class GameControllerImpl extends JPanel	implements GameController,ActionL
 	private ArrayList<BoxImpl> cars = new ArrayList<>();
 	private ArrayList<BoxImpl> trains = new ArrayList<>();
 	private VehicleImpl vehicleManager = new VehicleImpl();
+	private Player player = new PlayerImpl("bird.png",400,600);
 
-	private InGameMenuController controller;
-
+	//private GameControllerImpl gameContr = new GameControllerImpl();
 
 	public GameControllerImpl() {
 
@@ -40,10 +41,11 @@ public class GameControllerImpl extends JPanel	implements GameController,ActionL
 
 		this.SetInitialPosition();
 
+		this.setDoubleBuffered(true);
+
 		this.timer.start();
-		
-		addKeyListener(new KeyPressing());//non va
-		
+
+		this.repaint();
 	}
 
 	public void startVehicle(VehicleImpl vehicleManager,
@@ -77,8 +79,12 @@ public class GameControllerImpl extends JPanel	implements GameController,ActionL
 
 		for (BoxImpl s : trains)
 			s.paint(g, this);
+		
+		//spawno il personaggio principale
+		this.player.paint(g, this);
 
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -94,7 +100,7 @@ public class GameControllerImpl extends JPanel	implements GameController,ActionL
 		this.repaint();
 
 		this.startVehicle(vehicleManager, cars, 1500);
-		this.startVehicle(vehicleManager, trains, 14000);
+		this.startVehicle(vehicleManager, trains, 5000);
 
 		this.generateMap();
 	}
@@ -116,21 +122,12 @@ public class GameControllerImpl extends JPanel	implements GameController,ActionL
 			}
 		}
 	}
-
-	public class KeyPressing extends KeyAdapter {
-
-		public void keyPressed(KeyEvent e) {
-
-			switch (e.getKeyCode()) {
-
-				case KeyEvent.VK_ESCAPE :
-					controller = new InGameMenuControllerImpl();
-					break;
-
-				case KeyEvent.VK_ENTER :
-
-					break;
-			}
-		}
+	/**
+	 * 
+	 * @return player
+	 */
+	public Player getPlayer() {
+		return this.player;
 	}
+
 }
