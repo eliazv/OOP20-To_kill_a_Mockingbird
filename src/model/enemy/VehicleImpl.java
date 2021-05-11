@@ -60,12 +60,12 @@ public class VehicleImpl implements Vehicle{
 	public void setRndDir(BoxImpl vehicle,int speed, String imgR, String imgL) {
 
         if (rand.nextInt(2) == 1) {           						//Right to left.
-        	vehicle.setXLoc(rand.nextInt(500) + HIGHER_LIMIT);
+        	vehicle.setXLoc((rand.nextInt(1500)*speed) + HIGHER_LIMIT);
         	vehicle.setXDir(-(rand.nextInt(10) +  speed));
         	vehicle.setImage(imgR);
 
         } else {           											//Left to right.
-        	vehicle.setXLoc(-(rand.nextInt(500) - INFERIOR_LIMIT));
+        	vehicle.setXLoc((-(rand.nextInt(1500)*speed) - INFERIOR_LIMIT));
         	vehicle.setXDir((rand.nextInt(10) +  speed));
         	vehicle.setImage(imgL);
         }

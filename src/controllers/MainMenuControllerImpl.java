@@ -8,6 +8,7 @@ public class MainMenuControllerImpl implements MainMenuController {
 
 
 	private final MainMenuView view;
+	
 	GameViewImpl gameV ;
 
     public MainMenuControllerImpl() {
@@ -24,5 +25,7 @@ public class MainMenuControllerImpl implements MainMenuController {
         this.view.hide();
         gameV = new GameViewImpl();
     }
+    
+
 
 }

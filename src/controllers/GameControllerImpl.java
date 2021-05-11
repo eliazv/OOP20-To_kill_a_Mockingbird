@@ -3,18 +3,19 @@ package controllers;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-
 import model.enemy.VehicleImpl;
 import model.map.BoxImpl;
 import model.map.Strip;
 
-public class GameControllerImpl extends JPanel implements GameController, ActionListener {
 
+public class GameControllerImpl extends JPanel	implements GameController,ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	protected int NSTRIP = 11;
@@ -30,7 +31,8 @@ public class GameControllerImpl extends JPanel implements GameController, Action
 	private ArrayList<BoxImpl> trains = new ArrayList<>();
 	private VehicleImpl vehicleManager = new VehicleImpl();
 
-	//private GameControllerImpl gameContr = new GameControllerImpl();
+	private InGameMenuController controller;
+
 
 	public GameControllerImpl() {
 
@@ -38,11 +40,10 @@ public class GameControllerImpl extends JPanel implements GameController, Action
 
 		this.SetInitialPosition();
 
-		this.setDoubleBuffered(true);
-
 		this.timer.start();
-
-		this.repaint();
+		
+		addKeyListener(new KeyPressing());//non va
+		
 	}
 
 	public void startVehicle(VehicleImpl vehicleManager,
@@ -78,7 +79,6 @@ public class GameControllerImpl extends JPanel implements GameController, Action
 			s.paint(g, this);
 
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -94,7 +94,7 @@ public class GameControllerImpl extends JPanel implements GameController, Action
 		this.repaint();
 
 		this.startVehicle(vehicleManager, cars, 1500);
-		this.startVehicle(vehicleManager, trains, 5000);
+		this.startVehicle(vehicleManager, trains, 14000);
 
 		this.generateMap();
 	}
@@ -117,4 +117,20 @@ public class GameControllerImpl extends JPanel implements GameController, Action
 		}
 	}
 
+	public class KeyPressing extends KeyAdapter {
+
+		public void keyPressed(KeyEvent e) {
+
+			switch (e.getKeyCode()) {
+
+				case KeyEvent.VK_ESCAPE :
+					controller = new InGameMenuControllerImpl();
+					break;
+
+				case KeyEvent.VK_ENTER :
+
+					break;
+			}
+		}
+	}
 }

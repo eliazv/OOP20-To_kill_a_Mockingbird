@@ -1,10 +1,15 @@
 package view;
 
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import controllers.GameController;
 import controllers.GameControllerImpl;
+import model.map.BoxImpl;
 
 public class GameViewImpl implements GameView {
 
@@ -31,20 +36,19 @@ public class GameViewImpl implements GameView {
 		this.frame.setVisible(true);
 
 		this.frame.getContentPane().add(new GameControllerImpl());
-
 		
+
+
 	}
 
-	
-	
-	class panelGame extends JPanel {
+	class panelGame extends JPanel{
 
-		private static final long serialVersionUID = 1L;
+
 
 		public panelGame()  {
-
-
-
+			
 		}
+		
+
 	}
 }

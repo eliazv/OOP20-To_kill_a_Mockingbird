@@ -4,8 +4,12 @@ import view.InGameMenuView;
 import view.InGameMenuViewImpl;
 
 public class InGameMenuControllerImpl implements InGameMenuController {
-
-	InGameMenuView view = new InGameMenuViewImpl(this);
+	
+	InGameMenuView view;
+	
+	public InGameMenuControllerImpl() {
+		view = new InGameMenuViewImpl(this);
+	}
 	
 	@Override
 	public void exit() {
@@ -24,5 +28,7 @@ public class InGameMenuControllerImpl implements InGameMenuController {
 		// TODO Auto-generated method stub
 		this.view.show();
 	}
+	
+
 
 }
