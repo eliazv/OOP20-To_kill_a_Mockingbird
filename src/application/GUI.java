@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import controllers.InGameMenuController;
+import controllers.InGameMenuControllerImpl;
 import controllers.MainMenuController;
 import controllers.MainMenuControllerImpl;
 
@@ -24,5 +26,7 @@ public class GUI extends JFrame {
 		MainMenuController controller = new MainMenuControllerImpl();
 		controller.setup();
 		
+		//InGameMenuController contr = new InGameMenuControllerImpl();
+		//contr.setup();
 	}
 }

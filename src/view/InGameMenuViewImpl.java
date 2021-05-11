@@ -1,3 +1,4 @@
+
 package view;
 
 import java.awt.Color;
@@ -16,8 +17,8 @@ import controllers.InGameMenuController;
 
 public class InGameMenuViewImpl implements InGameMenuView {
 
-	private static final int MENU_WIDTH = 600;
-	private static final int MENU_HEIGHT = 700;
+	private static final int MENU_WIDTH = 400;
+	private static final int MENU_HEIGHT = 500;
 	private static final Color BACKGROUND_COLOR = new Color(60, 179, 113);
 
 	private final InGameMenuController controller;
@@ -29,40 +30,37 @@ public class InGameMenuViewImpl implements InGameMenuView {
 	
 	public InGameMenuViewImpl(final InGameMenuController controller) {
 		
-		//final panelInGameMenu menuPanel = new panelMenu();
+		final InGameMenuPanel menu = new InGameMenuPanel();
 		this.controller = controller;
 		this.frame.setTitle("To Kill a Mockingbird");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
 		//this.frame.setLocation();
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
-		//this.frame.getContentPane().add(menuPanel);
+		this.frame.getContentPane().add(menu);
 		this.frame.setBackground(BACKGROUND_COLOR);
 		this.frame.setVisible(true);
 
 		//Set layout to absolute for buttons.
 		this.frame.setLayout(null);
-		
-		final InGameMenuPanel panel = new InGameMenuPanel();
-		
 	}
 
 	class InGameMenuPanel extends JLayeredPane {
-		/**
-		 * 
-		 */
+		
 		private static final long serialVersionUID = 1L;
 
 		public InGameMenuPanel() {
 			
+			//CAMBIARE NOMI IMMAGINI
+			
 			rLblBackground = new Rectangle(0,0,400,500);
-			ImageIcon background = new ImageIcon(new ImageIcon("resources/InGameMenu.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
+			ImageIcon background = new ImageIcon(new ImageIcon("resources/MainMenu.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
 
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
-			ImageIcon resumeImage = new ImageIcon (new ImageIcon("resources/resumeButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			ImageIcon controlsImage = new ImageIcon (new ImageIcon("resources/controlsButton2.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
+			ImageIcon resumeImage = new ImageIcon (new ImageIcon("resources/startButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
+			ImageIcon controlsImage = new ImageIcon (new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
 			rResumeButton = new Rectangle(MENU_WIDTH/2-80, 150, 150, 70);
 			rControlsButton = new Rectangle(MENU_WIDTH/2-80, 150, 150, 70);
 			
@@ -70,6 +68,7 @@ public class InGameMenuViewImpl implements InGameMenuView {
 			resumeButton = new JButton ("", resumeImage);
 			resumeButton.setBounds(rResumeButton);
 			resumeButton.setBorder(BorderFactory.createEmptyBorder());
+			
 			lblBackground.add(resumeButton);
 			
 			controlsButton = new JButton("", controlsImage);

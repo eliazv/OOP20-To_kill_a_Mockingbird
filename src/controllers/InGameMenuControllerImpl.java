@@ -1,20 +1,23 @@
 package controllers;
 
+import view.GameViewImpl;
 import view.InGameMenuView;
 import view.InGameMenuViewImpl;
+import view.MainMenuView;
 
 public class InGameMenuControllerImpl implements InGameMenuController {
-	
-	InGameMenuView view;
+
+	private final InGameMenuView view;
+	GameViewImpl gameV;
 	
 	public InGameMenuControllerImpl() {
-		view = new InGameMenuViewImpl(this);
+		this.view = new InGameMenuViewImpl(this);
 	}
 	
 	@Override
 	public void exit() {
 		// TODO Auto-generated method stub
-		
+		//chiudere tutto
 	}
 
 	@Override
@@ -28,7 +31,5 @@ public class InGameMenuControllerImpl implements InGameMenuController {
 		// TODO Auto-generated method stub
 		this.view.show();
 	}
-	
-
 
 }
