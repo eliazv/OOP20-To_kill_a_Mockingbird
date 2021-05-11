@@ -85,15 +85,23 @@ public class BoxImpl implements Box{
 		this.yloc += this.ydir;
 	}
 	
+	public int getImgWidth() {
+		return img.getWidth();
+	}
+	
+	public int getImgHeight() {
+		return img.getHeight();
+	}
+	
 	//stampa blocco
 	public void paint(Graphics g, JPanel panel) {
 		//se non c'è l'immagine stampa un quadrato 
 		if (img == null) {
 			g.drawRect( (int)xloc, (int)yloc, 100, 100);			
 		}
-		
+
 		else {
-			g.drawImage(img, (int)xloc, (int)yloc, 100,100, null);
+			g.drawImage(img, (int)xloc, (int)yloc, img.getWidth(), img.getHeight(), null);
 		}
 			
 	}

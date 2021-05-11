@@ -22,11 +22,11 @@ public class VehicleImpl implements Vehicle{
 	
 	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay)  { 
 		for(BoxImpl s : vehicles) {
-			if(s.getXLoc() > HIGHER_LIMIT && s.getXDir()>0) {
+			if(s.getXLoc() > (HIGHER_LIMIT + s.getImgWidth())  && s.getXDir()>0) {
 				s.setXLoc(-(s.getXDir() ) *SPEED_MOLTIPLICATOR - delay/2);//DA TOGLIERE IL /2
 			}
 			
-			else if(s.getXLoc() < INFERIOR_LIMIT && s.getXDir()<0) {
+			else if(s.getXLoc() < (INFERIOR_LIMIT - s.getImgWidth()) && s.getXDir()<0) {
 				s.setXLoc((s.getXDir())*SPEED_MOLTIPLICATOR + delay  );
 			}
 			
@@ -54,7 +54,7 @@ public class VehicleImpl implements Vehicle{
         this.setRndDir(train, 10, "Train.png", "Train.png"); //TODO togliere le immagini	
         return train;
 	}
-
+	
 
 	//TODO settare le immagini da un'altra parte, non qui
 	public void setRndDir(BoxImpl vehicle,int speed, String imgR, String imgL) {
@@ -81,12 +81,13 @@ public class VehicleImpl implements Vehicle{
 	
 	public void carOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> cars, int i) {
 		if (allStrips[i][0].getFileName().equals("Road.png")) {
-			cars.add(this.setCar(allStrips[i][0].getYLoc() + 10));
+			cars.add(this.setCar(allStrips[i][0].getYLoc()));//+10 tolto ma serviva?
 		}
 	}
 	public void trainOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> trains, int i) {
 		if (allStrips[i][0].getFileName().equals("Tracks.png")) {
-			trains.add(this.setTrain(allStrips[i][0].getYLoc() + 10));
+			trains.add(this.setTrain(allStrips[i][0].getYLoc() ));//+10 tolto ma serviva?
+			
 		}
 	}
 
