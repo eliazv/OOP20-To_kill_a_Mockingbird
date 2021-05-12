@@ -25,8 +25,8 @@ public class InGameMenuViewImpl implements InGameMenuView {
 	
 	final JFrame frame = new JFrame();
 	JLabel lblBackground;
-	JButton resumeButton, controlsButton;
-	Rectangle rResumeButton, rControlsButton, rLblBackground;
+	JButton resumeButton, controlsButton, exitButton;
+	Rectangle rResumeButton, rControlsButton, rLblBackground, rExitButton;
 	
 	public InGameMenuViewImpl(final InGameMenuController controller) {
 		
@@ -54,16 +54,19 @@ public class InGameMenuViewImpl implements InGameMenuView {
 			//CAMBIARE NOMI IMMAGINI
 			
 			rLblBackground = new Rectangle(0,0,400,500);
-			ImageIcon background = new ImageIcon(new ImageIcon("resources/MainMenu.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
+			ImageIcon background = new ImageIcon(new ImageIcon("resources/InGameMenu.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
 
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
-			ImageIcon resumeImage = new ImageIcon (new ImageIcon("resources/startButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			ImageIcon controlsImage = new ImageIcon (new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			rResumeButton = new Rectangle(MENU_WIDTH/2-80, 150, 150, 70);
-			rControlsButton = new Rectangle(MENU_WIDTH/2-80, 150, 150, 70);
-			
+			ImageIcon resumeImage = new ImageIcon (new ImageIcon("resources/resumeButton.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
+			ImageIcon controlsImage = new ImageIcon (new ImageIcon("resources/controlsButton2.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
+			ImageIcon exitImage = new ImageIcon (new ImageIcon("resources/exitButton.png").getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+
+			rResumeButton = new Rectangle(MENU_WIDTH/2-80, 250, 150, 30);
+			rControlsButton = new Rectangle(MENU_WIDTH/2-80, 300, 150, 30);
+			rExitButton = new Rectangle(MENU_WIDTH-80, 400, 30, 30);
+
 			//Create button component, set image, remove borders.
 			resumeButton = new JButton ("", resumeImage);
 			resumeButton.setBounds(rResumeButton);
@@ -76,10 +79,19 @@ public class InGameMenuViewImpl implements InGameMenuView {
 			controlsButton.setBounds(rControlsButton);
 			lblBackground.add(controlsButton);
 			
+			exitButton = new JButton("", exitImage);
+			exitButton.setBorder(BorderFactory.createEmptyBorder());
+			exitButton.setBounds(rExitButton);
+			lblBackground.add(exitButton);
+			
 			resumeButton.addActionListener(e -> {
 				controller.resume();
 			});
 
+			exitButton.addActionListener(e -> {
+				controller.exit();
+			});
+			
 			controlsButton.addActionListener(e -> {
 				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the frog." +
 						"\nCtrl:  Activates 3 seconds of invincibility once per game." +

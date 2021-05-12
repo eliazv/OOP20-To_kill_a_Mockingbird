@@ -23,8 +23,8 @@ public class GUI extends JFrame {
 
 		new GUI();
 		
-		MainMenuController controller = new MainMenuControllerImpl();
-		controller.setup();
+		//MainMenuController controller = new MainMenuControllerImpl();
+		//controller.setup();
 		
 		//InGameMenuController contr = new InGameMenuControllerImpl();
 		//contr.setup();

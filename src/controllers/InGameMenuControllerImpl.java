@@ -16,8 +16,7 @@ public class InGameMenuControllerImpl implements InGameMenuController {
 	
 	@Override
 	public void exit() {
-		// TODO Auto-generated method stub
-		//chiudere tutto
+		System.exit(0);
 	}
 
 	@Override
