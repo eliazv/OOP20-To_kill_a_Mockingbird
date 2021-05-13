@@ -85,7 +85,7 @@ public class VehicleImpl implements Vehicle{
 		}
 	}
 	public void trainOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> trains, int i) {
-		if (allStrips[i][0].getFileName().equals("Tracks.png")) {
+		if (allStrips[i][0].getFileName().equals("Rail.png")) {
 			trains.add(this.setTrain(allStrips[i][0].getYLoc() ));//+10 tolto ma serviva?
 			
 		}

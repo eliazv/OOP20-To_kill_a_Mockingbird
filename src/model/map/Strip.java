@@ -25,7 +25,7 @@ public class Strip {
 		//riempie la striscia con box di ferrovia
 		case 1:
 			for (int i = 0; i < boxStrip.length; i++) {
-				BoxImpl strip = new BoxImpl("Tracks.png", i, riga);
+				BoxImpl strip = new BoxImpl("Rail.png", i, riga);
 				boxStrip[i] = strip;
 			}
 			break;
@@ -33,7 +33,7 @@ public class Strip {
 		// riempie la striscia con box di erba e alberi
 		case 2:
 			for (int i = 0; i < boxStrip.length; i++) {				
-				boxStrip[i] = setObstacles("Grass.png", "Tree_One.png", i, riga);    
+				boxStrip[i] = setObstacles("Grass.png", "Tree.png", i, riga);    
 			}
 			break;
 		}
