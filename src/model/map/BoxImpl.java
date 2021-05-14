@@ -9,7 +9,7 @@ public class BoxImpl implements Box{
 
 	private BufferedImage img ;
 	private String filename = null;
-	private double xloc, yloc; // locazione delle immagini all'doubleerno della gui
+	private double xloc, yloc;
 	private double xdir, ydir;
 	
 
@@ -45,6 +45,14 @@ public class BoxImpl implements Box{
 			img = null;
 		}
 	}
+	
+	public int getImgWidth() {
+		return img.getWidth();
+	}
+	
+	public int getImgHeight() {
+		return img.getHeight();
+	}
 
 	
 	public String getFileName() {
@@ -55,6 +63,7 @@ public class BoxImpl implements Box{
 	public double getXLoc() {
 		return this.xloc;
 	}
+	
 	public void setXLoc(double xloc) {
 		this.xloc = xloc;
 	}
@@ -63,6 +72,7 @@ public class BoxImpl implements Box{
 	public double getYLoc() {
 		return  this.yloc;
 	}
+	
 	public void setYLoc(double yloc) {
 		this.yloc = yloc;
 	}
@@ -85,13 +95,7 @@ public class BoxImpl implements Box{
 		this.yloc += this.ydir;
 	}
 	
-	public int getImgWidth() {
-		return img.getWidth();
-	}
-	
-	public int getImgHeight() {
-		return img.getHeight();
-	}
+
 	
 	//stampa blocco
 	public void paint(Graphics g, JPanel panel) {

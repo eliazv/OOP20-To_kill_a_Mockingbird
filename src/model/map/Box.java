@@ -10,19 +10,19 @@ public interface Box {
 	
 	String getFileName();
 
-	public double getXLoc();
+	double getXLoc();
 	
-	public void setXLoc(double xloc);
+	void setXLoc(double xloc);
 	
-	public double getYLoc();
+	double getYLoc();
 	
-	public void setYLoc(double yloc);
+	void setYLoc(double yloc);
 	
-	public void setYDir(double ydir);
+	void setYDir(double ydir);
 	
-	public void setXDir(double xdir);
+	void setXDir(double xdir);
 	
-	public void move();
+	void move();
 
-	public void paint(Graphics g, JPanel panel);
+	void paint(Graphics g, JPanel panel);
 }

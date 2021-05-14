@@ -11,7 +11,7 @@ import javax.swing.Timer;
 
 import model.enemy.VehicleImpl;
 import model.map.BoxImpl;
-import model.map.Strip;
+import model.map.StripImpl;
 import model.player.Player;
 import model.player.PlayerImpl;
 
@@ -23,8 +23,9 @@ public class GameControllerImpl extends JPanel implements GameController, Action
 	protected int iriga = 11;
 	protected int BOXFORSTRIP = 8;
 	protected int TIMER_DELAY = 10;
+	protected int SPAWN_CHARACTER_LINE = 4;
 
-	private Strip striscia = new Strip();
+	private StripImpl striscia = new StripImpl();
 	private BoxImpl[][] allStrips = new BoxImpl[NSTRIP][BOXFORSTRIP];
 	private Timer timer;
 
@@ -105,11 +106,25 @@ public class GameControllerImpl extends JPanel implements GameController, Action
 		this.generateMap();
 	}
 
+	 /**
+     * Set the initial landscape without vehicles
+     */
 	public void SetInitialPosition() {
-
+		
 		for (int i = 0; i < NSTRIP; i++) {
-			allStrips[i] = striscia.setRndStrip(i);
-			vehicleManager.checkOnRoad(allStrips, cars, trains, i);
+			
+			/**
+		     * Set the line where the character will be spawn and the next one without any obstacles 
+		     */
+			if(i==SPAWN_CHARACTER_LINE|| i == SPAWN_CHARACTER_LINE + 1) {
+				allStrips[i] = striscia.getSpecificStrip("Grass.png", i);
+			}
+			
+			else {
+				allStrips[i] = striscia.getSpecificStrip("Grass.png", "Tree.png", i);
+				vehicleManager.checkOnRoad(allStrips, cars, trains, i);
+			}
+			
 		}
 	}
 
