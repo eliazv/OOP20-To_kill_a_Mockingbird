@@ -3,7 +3,6 @@ package controllers;
 import view.GameViewImpl;
 import view.InGameMenuView;
 import view.InGameMenuViewImpl;
-import view.MainMenuView;
 
 public class InGameMenuControllerImpl implements InGameMenuController {
 
