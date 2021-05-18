@@ -3,6 +3,8 @@ package view;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -10,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import controllers.GameControllerImpl;
+import controllers.PlayerController;
+import controllers.PlayerControllerImpl;
 import model.enemy.VehicleImpl;
 import model.map.BoxImpl;
 import model.map.Strip;
@@ -17,17 +21,20 @@ import model.map.StripImpl;
 import model.player.Player;
 import model.player.PlayerImpl;
 
-public class GameViewImpl implements GameView {
+public class GameViewImpl implements GameView,KeyListener {
 
 	private final int SIZE = 800;
 	private final JFrame frame;
 	private panelGame panelGame;
+	private PlayerController controller = new PlayerControllerImpl();
 
 	public GameViewImpl() {
 		
 		this.panelGame = new panelGame();
 		
 		this.frame = new JFrame();
+		
+		this.frame.addKeyListener(this);
 		
 		this.frame.getContentPane().add(panelGame);
 		
@@ -142,5 +149,29 @@ public class GameViewImpl implements GameView {
 			this.gameController.actionPerformed(this.allStrips, this.vehicleManager, this.cars, this.trains);
 			
 		}
+	}
+
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		this.controller.keyCatch(e);
+		
+	}
+
+
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

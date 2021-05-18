@@ -14,6 +14,7 @@ public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 	public void goUp() {
 		this.setYPos(this.getYPos()+10);
 		System.out.println(this.getYPos());
+		
 	
 		
 	}
@@ -22,17 +23,20 @@ public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 	public void goDown() {
 		this.setYPos(this.getYPos()-10);
 		
+		
 	}
 
 	@Override
 	public void goleft() {
 		this.setXPos(this.getXPos()-10);
 		
+		
 	}
 
 	@Override
 	public void goRight() {
 		this.setXPos(this.getXPos()+10);
+		
 		
 	}
 }

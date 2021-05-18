@@ -33,6 +33,10 @@ public class InputImpl implements Input{
 			break;
 		}
 		
+		if (KeyEvent.VK_ESCAPE == e.getKeyCode()) {
+			
+		}
+		
 		
 	}
 

@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import model.map.BoxImpl;
 
 public class PlayerImpl implements Player{
-	
+		
 	//Player location
 	private double xPos,yPos;
 	
@@ -27,7 +27,10 @@ public class PlayerImpl implements Player{
 	//Player visibility
 	private boolean show;
 	
-	//Location Methods
+	private Graphics g;
+	
+	private JPanel p;
+	
 	/**
 	 * 
 	 * @param filename
@@ -40,6 +43,8 @@ public class PlayerImpl implements Player{
 		this.yPos = yPos;
 	}
 
+	//Location Methods
+	
 	@Override
 	public double getXPos() {
 		// TODO Auto-generated method stub
@@ -114,15 +119,26 @@ public class PlayerImpl implements Player{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	Graphics getGr() {
+		return this.g;
+	}
+	
+	JPanel getJp() {
+		return this.p;
+	}
 
 	@Override
 	public void paint(Graphics g, JPanel p) {
+		this.g=g;
+		this.p=p;
 		if (image == null) {
-			g.drawRect((int)this.xPos, (int)this.yPos, 100, 100);			
+			
+			this.g.drawRect((int)this.xPos, (int)this.yPos, 100, 100);			
 		}
 		
 		else {
-			g.drawImage(image, (int)this.xPos, (int)this.yPos, 100,100, null);
+			this.g.drawImage(image, (int)this.xPos, (int)this.yPos, 100,100, null);
 		}
 		
 	}
