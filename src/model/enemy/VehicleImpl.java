@@ -11,6 +11,7 @@ public class VehicleImpl implements Vehicle {
 	public int HIGHER_LIMIT = 900;
 	public int INFERIOR_LIMIT = -100;
 	protected int SPEED_MOLTIPLICATOR = 30;
+	protected int ADJUST_ON_ROAD = 10;
 	// private static final double SCREEN_WIDTH =
 	// Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	// private static final double SCREEN_HEIGHT =
@@ -55,7 +56,14 @@ public class VehicleImpl implements Vehicle {
 		BoxImpl car = new BoxImpl();
 		car.setYDir(1);
 		car.setYLoc(stripYLoc);
-		this.setRndDir(car, 2, "Car_Left.png", "Car_Right.png");
+		
+		if (rand.nextInt(2) == 1) {
+			this.setRndDir(car, 2, "Car_Left.png", "Car_Right.png");
+		}
+		
+		else {
+			this.setRndDir(car, 1, "Camion_L.png", "Camion_R.png");
+		}
 		return car;
 	}
 
@@ -115,7 +123,7 @@ public class VehicleImpl implements Vehicle {
 	@Override
 	public void carOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> cars, int i) {
 		if (allStrips[i][0].getImage().getFileName().equals("Road.png")) {
-			cars.add(this.setCar(allStrips[i][0].getYLoc()));
+			cars.add(this.setCar(allStrips[i][0].getYLoc() + ADJUST_ON_ROAD));
 		}
 	}
 
@@ -125,7 +133,7 @@ public class VehicleImpl implements Vehicle {
 	@Override
 	public void trainOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> trains, int i) {
 		if (allStrips[i][0].getImage().getFileName().equals("Rail.png")) {
-			trains.add(this.setTrain(allStrips[i][0].getYLoc()));
+			trains.add(this.setTrain(allStrips[i][0].getYLoc() + ADJUST_ON_ROAD));
 
 		}
 	}
