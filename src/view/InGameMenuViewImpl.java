@@ -51,8 +51,6 @@ public class InGameMenuViewImpl implements InGameMenuView {
 
 		public InGameMenuPanel() {
 			
-			//CAMBIARE NOMI IMMAGINI
-			
 			rLblBackground = new Rectangle(0,0,400,500);
 			ImageIcon background = new ImageIcon(new ImageIcon("resources/InGameMenu.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
 

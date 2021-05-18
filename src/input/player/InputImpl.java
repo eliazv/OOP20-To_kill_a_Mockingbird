@@ -2,14 +2,16 @@ package input.player;
 
 import java.awt.event.KeyEvent;
 
+import controllers.InGameMenuController;
+import controllers.InGameMenuControllerImpl;
 import model.player.Player;
 import model.player.PlayerMovement;
 import model.player.PlayerMovementImpl;
 
 public class InputImpl implements Input{
 
-	private PlayerMovement moves ;
-	
+	private PlayerMovement moves;
+	private InGameMenuController controllerMenu = new InGameMenuControllerImpl();
 	public InputImpl(Player player) {
 		this.moves = new PlayerMovementImpl(player.getImage(), player.getXPos(), player.getYPos());
 	}
@@ -34,7 +36,7 @@ public class InputImpl implements Input{
 		}
 		
 		if (KeyEvent.VK_ESCAPE == e.getKeyCode()) {
-			
+			controllerMenu.setup();
 		}
 		
 		
