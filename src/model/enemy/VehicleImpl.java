@@ -2,6 +2,7 @@ package model.enemy;
 
 import java.util.ArrayList;
 import java.util.Random;
+
 import model.map.BoxImpl;
 
 public class VehicleImpl implements Vehicle {
@@ -29,12 +30,13 @@ public class VehicleImpl implements Vehicle {
 	@Override
 	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay) {
 		for (BoxImpl s : vehicles) {
-			if (s.getXLoc() > (HIGHER_LIMIT + s.getImgWidth())
+			
+			if (s.getXLoc() > (HIGHER_LIMIT + s.getImage().getImgWidth())
 					&& s.getXDir() > 0) {
 				s.setXLoc(-(s.getXDir()) * SPEED_MOLTIPLICATOR - delay / 2);//togli il /2
 			}
 
-			else if (s.getXLoc() < (INFERIOR_LIMIT - s.getImgWidth())
+			else if (s.getXLoc() < (INFERIOR_LIMIT - s.getImage().getImgWidth())
 					&& s.getXDir() < 0) {
 				s.setXLoc((s.getXDir()) * SPEED_MOLTIPLICATOR + delay);
 			}
@@ -112,7 +114,7 @@ public class VehicleImpl implements Vehicle {
 	 */
 	@Override
 	public void carOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> cars, int i) {
-		if (allStrips[i][0].getFileName().equals("Road.png")) {
+		if (allStrips[i][0].getImage().getFileName().equals("Road.png")) {
 			cars.add(this.setCar(allStrips[i][0].getYLoc()));
 		}
 	}
@@ -122,7 +124,7 @@ public class VehicleImpl implements Vehicle {
 	 */
 	@Override
 	public void trainOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> trains, int i) {
-		if (allStrips[i][0].getFileName().equals("Rail.png")) {
+		if (allStrips[i][0].getImage().getFileName().equals("Rail.png")) {
 			trains.add(this.setTrain(allStrips[i][0].getYLoc()));
 
 		}

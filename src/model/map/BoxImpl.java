@@ -5,16 +5,17 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import view.ImageLoader;
+
 public class BoxImpl implements Box{
 
-	private BufferedImage img ;
-	private String filename = null;
+
+	private ImageLoader imgLoader ;
 	private double xloc, yloc;
 	private double xdir, ydir;
 	
 
 	public BoxImpl() {
-		this.img = null;
 		this.xloc = 0;
 		this.yloc = 0;
 		this.xdir = 0;
@@ -32,33 +33,13 @@ public class BoxImpl implements Box{
 		this.yloc = 800 - yloc*100;   //stampare le righe dal basso verso l'altro 
 	}
 
-
-	
-	// set the image 
 	public void setImage(String filename) {
-		this.filename = filename;
-
-		try {
-			 img = ImageIO.read(BoxImpl.class.getClassLoader().getResourceAsStream(filename));
-			
-		} catch (Exception e) {
-			img = null;
-		}
+		imgLoader= new ImageLoader(filename);
 	}
 	
-	public int getImgWidth() {
-		return img.getWidth();
+	public ImageLoader getImage() {
+		return imgLoader;
 	}
-	
-	public int getImgHeight() {
-		return img.getHeight();
-	}
-
-	
-	public String getFileName() {
-		return filename;
-	}
-
 	
 	public double getXLoc() {
 		return this.xloc;
@@ -100,12 +81,12 @@ public class BoxImpl implements Box{
 	//stampa blocco
 	public void paint(Graphics g, JPanel panel) {
 		//se non c'è l'immagine stampa un quadrato 
-		if (img == null) {
+		if (imgLoader == null) {
 			g.drawRect( (int)xloc, (int)yloc, 100, 100);			
 		}
 
 		else {
-			g.drawImage(img, (int)xloc, (int)yloc, img.getWidth(), img.getHeight(), null);
+			g.drawImage(imgLoader.getImage(), (int)xloc, (int)yloc, imgLoader.getImgWidth(), imgLoader.getImgHeight(), null);
 		}
 			
 	}

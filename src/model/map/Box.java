@@ -6,9 +6,9 @@ import javax.swing.JPanel;
 
 public interface Box {
 
-	void setImage(String filename);
+	//void setImage(String filename);
 	
-	String getFileName();
+	//String getFileName();
 
 	double getXLoc();
 	
