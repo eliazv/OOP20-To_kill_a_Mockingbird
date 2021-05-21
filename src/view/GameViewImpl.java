@@ -14,6 +14,7 @@ import javax.swing.Timer;
 import controllers.GameControllerImpl;
 import controllers.PlayerController;
 import controllers.PlayerControllerImpl;
+import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.BoxImpl;
 import model.map.Strip;

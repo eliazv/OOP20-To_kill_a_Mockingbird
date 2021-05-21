@@ -7,15 +7,24 @@ import model.map.BoxImpl;
 
 public class VehicleImpl implements Vehicle {
 
+	private static final double VEHICLE_SCROLL = 1;
+	private static final int HIGHER_LIMIT = 900;
+	private static final int INFERIOR_LIMIT = -100;
+	private static final int SPEED_MOLTIPLICATOR = 30;
+	private static final int ADJUST_ON_ROAD = 10;
+	private static final int CAR_SPEED = 2;
+	private static final int CAMION_SPEED = 1;
+	private static final int TRAIN_SPEED = 10;
 	private Random rand = new Random();
-	public int HIGHER_LIMIT = 900;
-	public int INFERIOR_LIMIT = -100;
-	protected int SPEED_MOLTIPLICATOR = 30;
-	protected int ADJUST_ON_ROAD = 10;
+	
 	// private static final double SCREEN_WIDTH =
 	// Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	// private static final double SCREEN_HEIGHT =
 	// Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+
+	private int vehicleSpeed = 0;
+	private int vehicleXLocSpawn;
+	BoxImpl vehicle;
 
 	/**
 	 * {@inheritDoc}
@@ -32,13 +41,11 @@ public class VehicleImpl implements Vehicle {
 	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay) {
 		for (BoxImpl s : vehicles) {
 			
-			if (s.getXLoc() > (HIGHER_LIMIT + s.getImage().getImgWidth())
-					&& s.getXDir() > 0) {
+			if (s.getXLoc() > (HIGHER_LIMIT + s.getImage().getImgWidth()) && s.getXDir() > 0) {
 				s.setXLoc(-(s.getXDir()) * SPEED_MOLTIPLICATOR - delay / 2);//togli il /2
 			}
 
-			else if (s.getXLoc() < (INFERIOR_LIMIT - s.getImage().getImgWidth())
-					&& s.getXDir() < 0) {
+			else if (s.getXLoc() < (INFERIOR_LIMIT - s.getImage().getImgWidth()) && s.getXDir() < 0) {
 				s.setXLoc((s.getXDir()) * SPEED_MOLTIPLICATOR + delay);
 			}
 
@@ -53,18 +60,18 @@ public class VehicleImpl implements Vehicle {
 	@Override
 	public BoxImpl setCar(double stripYLoc) {
 
-		BoxImpl car = new BoxImpl();
-		car.setYDir(1);
-		car.setYLoc(stripYLoc);
+		vehicle = new BoxImpl();
+		vehicle.setYDir(VEHICLE_SCROLL);
+		vehicle.setYLoc(stripYLoc);
 		
 		if (rand.nextInt(2) == 1) {
-			this.setRndDir(car, 2, "Car_Left.png", "Car_Right.png");
+			this.setRndDir(vehicle, CAR_SPEED, "Car_Left.png", "Car_Right.png");
 		}
 		
 		else {
-			this.setRndDir(car, 1, "Camion_L.png", "Camion_R.png");
+			this.setRndDir(vehicle, CAMION_SPEED, "Camion_L.png", "Camion_R.png");
 		}
-		return car;
+		return vehicle;
 	}
 
 	/**
@@ -74,12 +81,12 @@ public class VehicleImpl implements Vehicle {
 	// TODO il treno dovrebbe essere piu box cosecutivi
 	public BoxImpl setTrain(double stripYLoc) {
 
-		BoxImpl train = new BoxImpl();
-		train.setYDir(1);
-		train.setYLoc(stripYLoc);
-		this.setRndDir(train, 10, "Train.png", "Train.png"); // TODO togliere le
+		vehicle = new BoxImpl();
+		vehicle.setYDir(VEHICLE_SCROLL);
+		vehicle.setYLoc(stripYLoc);
+		this.setRndDir(vehicle, TRAIN_SPEED, "Train.png", "Train.png"); // TODO togliere le
 																// immagini
-		return train;
+		return vehicle;
 	}
 
 	/**
@@ -90,24 +97,40 @@ public class VehicleImpl implements Vehicle {
 	public void setRndDir(BoxImpl vehicle, int speed, String imgR,
 			String imgL) {
 
+    	vehicleSpeed = rand.nextInt(10) + speed;
+    	vehicleXLocSpawn = rand.nextInt(1500) * speed;
+    	
     	/**
          * Sets the direction from right to left.
          */
 		if (rand.nextInt(2) == 1) {
-			vehicle.setXLoc((rand.nextInt(1500) * speed) + HIGHER_LIMIT);
-			vehicle.setXDir(-(rand.nextInt(10) + speed));
+			vehicle.setXLoc(vehicleXLocSpawn + HIGHER_LIMIT);
+			vehicle.setXDir(-(vehicleSpeed));
 			vehicle.setImage(imgR);
 			
 		/**
          * Sets the direction from left to right.
          */
 		} else {
-			vehicle.setXLoc((-(rand.nextInt(1500) * speed) - INFERIOR_LIMIT));
-			vehicle.setXDir((rand.nextInt(10) + speed));
+			vehicle.setXLoc((-vehicleXLocSpawn - INFERIOR_LIMIT));
+			vehicle.setXDir((vehicleSpeed));
 			vehicle.setImage(imgL);
 		}
 	}
 
+    
+    //da fare test
+    public int getSpeed() {
+    	return vehicleSpeed;
+    }
+    
+    
+    //dovrebbe essere pair
+    public BoxImpl getVehicle() {
+    	return vehicle;
+    }
+    
+    
 	/**
 	 * {@inheritDoc}
 	 */

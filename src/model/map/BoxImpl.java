@@ -1,8 +1,6 @@
 package model.map;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import view.ImageLoader;
@@ -69,6 +67,9 @@ public class BoxImpl implements Box{
 
 	public double getXDir() {
 		return  this.xdir;
+	}
+	public double getYDir() {
+		return  this.ydir;
 	}
 	
 	public void move() {
