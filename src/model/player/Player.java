@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import model.map.BoxImpl;
+
 public interface Player {
 	double getXPos();
 	double getYPos();
@@ -22,4 +24,5 @@ public interface Player {
 	int getHeight();
 	void paint(Graphics g,JPanel p); //da aggiungere la dimensione della finestra come parametro 
 									// per decidere la posizione dello spawn
+	BoxImpl setPlayer(double stripXLoc,double stripYLoc);
 }

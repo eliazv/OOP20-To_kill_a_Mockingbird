@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import model.map.BoxImpl;
 
 public class PlayerImpl implements Player{
+	
+	BoxImpl playerBox;
 		
 	//Player location
 	private double xPos,yPos;
@@ -148,6 +150,16 @@ public class PlayerImpl implements Player{
 		// TODO Auto-generated method stub
 		return this.filename;
 	}
+	
+	public BoxImpl setPlayer(double stripXLoc,double stripYLoc) {
+
+		playerBox = new BoxImpl();
+		playerBox.setXLoc(stripXLoc);
+		playerBox.setYLoc(stripYLoc);
+		
+		return playerBox;
+	}
+
 	
 	
 	
