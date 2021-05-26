@@ -2,11 +2,13 @@ package controllers;
 
 import view.EndGameView;
 import view.EndGameViewImpl;
+import view.GameViewImpl;
 
 public class EndGameControllerImpl implements EndGameController {
 
 	private EndGameView view;
-
+	GameViewImpl gameV ;
+	
 	public EndGameControllerImpl() {
 		this.view = new EndGameViewImpl(this);
 	}
@@ -18,8 +20,8 @@ public class EndGameControllerImpl implements EndGameController {
 
 	@Override
 	public void restart() {
-		// TODO Auto-generated method stub
-		
+		this.view.hide();
+        gameV = new GameViewImpl();		
 	}
 	
 	@Override

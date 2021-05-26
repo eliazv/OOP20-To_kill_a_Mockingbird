@@ -6,11 +6,11 @@ import view.InGameMenuViewImpl;
 
 public class InGameMenuControllerImpl implements InGameMenuController {
 
-	private final InGameMenuView view;
+	private InGameMenuView view;
 	GameViewImpl gameV;
 	
 	public InGameMenuControllerImpl() {
-		this.view = new InGameMenuViewImpl(this);
+		
 	}
 	
 	@Override
@@ -20,13 +20,12 @@ public class InGameMenuControllerImpl implements InGameMenuController {
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
 		this.view.hide();
 	}
 
 	@Override
 	public void setup() {
-		// TODO Auto-generated method stub
+		this.view = new InGameMenuViewImpl(this);
 		this.view.show();
 	}
 
