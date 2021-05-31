@@ -3,14 +3,14 @@ package model.map;
 public interface Strip {
 	
 	
-	BoxImpl[] setRndStrip(int riga);
+	Box[] setRndStrip(int riga);
 	 
 	 
-	BoxImpl setObstacles(String background, String specialBlock, int x, int y);
+	Box setObstacles(String background, String specialBlock, int x, int y);
 	
 	
-	BoxImpl[] getSpecificStrip(String background, int riga);
+	Box[] getSpecificStrip(String background, int riga);
 	
 	
-	BoxImpl[] getSpecificStrip(String background, String specialBlock, int riga);
+	Box[] getSpecificStrip(String background, String specialBlock, int riga);
 }

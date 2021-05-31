@@ -68,6 +68,7 @@ public class BoxImpl implements Box{
 	public double getXDir() {
 		return  this.xdir;
 	}
+	
 	public double getYDir() {
 		return  this.ydir;
 	}
@@ -78,7 +79,6 @@ public class BoxImpl implements Box{
 	}
 	
 
-	
 	//stampa blocco
 	public void paint(Graphics g, JPanel panel) {
 		//se non c'è l'immagine stampa un quadrato 

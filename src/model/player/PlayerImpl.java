@@ -2,6 +2,7 @@ package model.player;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -43,6 +44,7 @@ public class PlayerImpl implements Player{
 		setImage(filename);
 		this.xPos = xPos;
 		this.yPos = yPos;
+		this.yDir=1;
 	}
 
 	//Location Methods
@@ -110,6 +112,16 @@ public class PlayerImpl implements Player{
 		
 	}
 
+	public void move() {
+		this.xPos += this.xDir;
+		this.yPos += this.yDir;
+	}
+	
+	public void movePlayer(PlayerImpl player) {
+		player.move();
+	}
+
+	
 	@Override
 	public int getWidth() {
 		// TODO Auto-generated method stub
@@ -156,6 +168,9 @@ public class PlayerImpl implements Player{
 		playerBox = new BoxImpl();
 		playerBox.setXLoc(stripXLoc);
 		playerBox.setYLoc(stripYLoc);
+		
+		//playerBox.setImage(filename);
+		playerBox.setYDir(1);
 		
 		return playerBox;
 	}

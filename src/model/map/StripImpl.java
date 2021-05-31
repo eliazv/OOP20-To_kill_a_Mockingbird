@@ -6,9 +6,9 @@ public class StripImpl implements Strip{
 
 	
 	//restituisce una striscia casuale
-	public BoxImpl[] setRndStrip(int riga) {
+	public Box[] setRndStrip(int riga) {
 
-		BoxImpl[] boxStrip = new BoxImpl[8];
+		Box[] boxStrip = new BoxImpl[8];
 		Random gen = new Random();
 		int env = gen.nextInt(3); 
 
@@ -17,7 +17,7 @@ public class StripImpl implements Strip{
 		// riempie la striscia con box di strada
 		case 0:
 			for (int i = 0; i < boxStrip.length; i++) {
-				BoxImpl strip = new BoxImpl("Road.png", i, riga);
+				Box strip = new BoxImpl("Road.png", i, riga);
 				boxStrip[i] = strip;
 			}
 			break;
@@ -25,7 +25,7 @@ public class StripImpl implements Strip{
 		//riempie la striscia con box di ferrovia
 		case 1:
 			for (int i = 0; i < boxStrip.length; i++) {
-				BoxImpl strip = new BoxImpl("Rail.png", i, riga);
+				Box strip = new BoxImpl("Rail.png", i, riga);
 				boxStrip[i] = strip;
 			}
 			break;
@@ -42,9 +42,9 @@ public class StripImpl implements Strip{
 	}
 	
 	//retituisce un box che può essere un ostacolo una volta su quattro
-	public BoxImpl setObstacles(String background, String specialBlock, int x, int y) {
+	public Box setObstacles(String background, String specialBlock, int x, int y) {
 
-		BoxImpl oneBlock;
+		Box oneBlock;
 		Random gen = new Random();
 		int rand = gen.nextInt(4);
 		
@@ -60,12 +60,12 @@ public class StripImpl implements Strip{
 	
 	
 
-	public BoxImpl[] getSpecificStrip(String background, int riga) {
+	public Box[] getSpecificStrip(String background, int riga) {
 
-		BoxImpl[] boxStrip = new BoxImpl[8];
+		Box[] boxStrip = new BoxImpl[8];
 		
 		for (int i = 0; i < boxStrip.length; i++) {
-			BoxImpl strip = new BoxImpl(background, i, riga);
+			Box strip = new BoxImpl(background, i, riga);
 			boxStrip[i] = strip;
 		}
 		
@@ -74,9 +74,9 @@ public class StripImpl implements Strip{
 	
 	
 	//restituisce una striscia specifica con ostacoli
-	public BoxImpl[] getSpecificStrip(String background, String specialBlock, int riga) {
+	public Box[] getSpecificStrip(String background, String specialBlock, int riga) {
 
-		BoxImpl[] boxStrip = new BoxImpl[8];
+		Box[] boxStrip = new BoxImpl[8];
 
 		for (int i = 0; i < boxStrip.length; i++) {
 			boxStrip[i] = setObstacles( background, specialBlock, i , riga);

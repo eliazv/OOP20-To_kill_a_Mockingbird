@@ -3,11 +3,12 @@ package model.enemy;
 import java.util.ArrayList;
 import java.util.Random;
 
+import model.map.Box;
 import model.map.BoxImpl;
 
 public class VehicleImpl implements Vehicle {
 
-	private static final double VEHICLE_SCROLL = 1;
+	private static final double MAP_SCROLL = 1;
 	private static final int HIGHER_LIMIT = 900;
 	private static final int INFERIOR_LIMIT = -100;
 	private static final int SPEED_MOLTIPLICATOR = 30;
@@ -16,11 +17,6 @@ public class VehicleImpl implements Vehicle {
 	private static final int CAMION_SPEED = 1;
 	private static final int TRAIN_SPEED = 10;
 	private Random rand = new Random();
-	
-	// private static final double SCREEN_WIDTH =
-	// Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-	// private static final double SCREEN_HEIGHT =
-	// Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
 	private int vehicleSpeed = 0;
 	private int vehicleXLocSpawn;
@@ -30,7 +26,7 @@ public class VehicleImpl implements Vehicle {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void moveVehicle(ArrayList<BoxImpl> vehicles) {
+	public void moveVehicle(ArrayList<Box> vehicles) {
 		vehicles.forEach(v -> v.move());
 	}
 
@@ -38,8 +34,8 @@ public class VehicleImpl implements Vehicle {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void restartVehicle(ArrayList<BoxImpl> vehicles, int delay) {
-		for (BoxImpl s : vehicles) {
+	public void restartVehicle(ArrayList<Box> vehicles, int delay) {
+		for (Box s : vehicles) {
 			
 			if (s.getXLoc() > (HIGHER_LIMIT + s.getImage().getImgWidth()) && s.getXDir() > 0) {
 				s.setXLoc(-(s.getXDir()) * SPEED_MOLTIPLICATOR - delay / 2);//togli il /2
@@ -58,10 +54,10 @@ public class VehicleImpl implements Vehicle {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public BoxImpl setCar(double stripYLoc) {
+	public Box setCar(double stripYLoc) {
 
 		vehicle = new BoxImpl();
-		vehicle.setYDir(VEHICLE_SCROLL);
+		vehicle.setYDir(MAP_SCROLL);
 		vehicle.setYLoc(stripYLoc);
 		
 		if (rand.nextInt(2) == 1) {
@@ -79,10 +75,10 @@ public class VehicleImpl implements Vehicle {
 	 */
 	@Override
 	// TODO il treno dovrebbe essere piu box cosecutivi
-	public BoxImpl setTrain(double stripYLoc) {
+	public Box setTrain(double stripYLoc) {
 
 		vehicle = new BoxImpl();
-		vehicle.setYDir(VEHICLE_SCROLL);
+		vehicle.setYDir(MAP_SCROLL);
 		vehicle.setYLoc(stripYLoc);
 		this.setRndDir(vehicle, TRAIN_SPEED, "Train.png", "Train.png"); // TODO togliere le
 																// immagini
@@ -94,7 +90,7 @@ public class VehicleImpl implements Vehicle {
      */
     @Override
 	//TODO settare le immagini da un'altra parte, non qui
-	public void setRndDir(BoxImpl vehicle, int speed, String imgR,
+	public void setRndDir(Box vehicle, int speed, String imgR,
 			String imgL) {
 
     	vehicleSpeed = rand.nextInt(10) + speed;
@@ -126,7 +122,7 @@ public class VehicleImpl implements Vehicle {
     
     
     //dovrebbe essere pair
-    public BoxImpl getVehicle() {
+    public Box getVehicle() {
     	return vehicle;
     }
     
@@ -135,16 +131,16 @@ public class VehicleImpl implements Vehicle {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void checkOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> cars, ArrayList<BoxImpl> trains, int i) {
+	public void checkOnRoad(Box[][] allStrips, ArrayList<Box> cars, ArrayList<Box> trains, int i) {
 		this.carOnRoad(allStrips, cars, i);
-		this.trainOnRoad(allStrips, trains, i);
+		this.trainOnRail(allStrips, trains, i);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void carOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> cars, int i) {
+	public void carOnRoad(Box[][] allStrips, ArrayList<Box> cars, int i) {
 		if (allStrips[i][0].getImage().getFileName().equals("Road.png")) {
 			cars.add(this.setCar(allStrips[i][0].getYLoc() + ADJUST_ON_ROAD));
 		}
@@ -154,7 +150,7 @@ public class VehicleImpl implements Vehicle {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void trainOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> trains, int i) {
+	public void trainOnRail(Box[][] allStrips, ArrayList<Box> trains, int i) {
 		if (allStrips[i][0].getImage().getFileName().equals("Rail.png")) {
 			trains.add(this.setTrain(allStrips[i][0].getYLoc() + ADJUST_ON_ROAD));
 

@@ -4,17 +4,23 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import view.ImageLoader;
+
 public interface Box {
 
-	//void setImage(String filename);
+	void setImage(String filename);
 	
-	//String getFileName();
+	public ImageLoader getImage();
 
 	double getXLoc();
 	
 	void setXLoc(double xloc);
 	
 	double getYLoc();
+	
+	double getYDir();
+	
+	double getXDir();
 	
 	void setYLoc(double yloc);
 	

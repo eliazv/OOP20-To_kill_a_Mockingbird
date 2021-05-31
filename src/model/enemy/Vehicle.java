@@ -2,7 +2,8 @@ package model.enemy;
 
 import java.util.ArrayList;
 
-import model.map.BoxImpl;
+import model.map.Box;
+
 
 public interface Vehicle {
 	
@@ -10,28 +11,28 @@ public interface Vehicle {
      * Call move method for the vehicles.
      * @param vehicles containing all vehicles
      */
-	void moveVehicle(ArrayList<BoxImpl> vehicles);
+	void moveVehicle(ArrayList<Box> vehicles);
 	
     /**
      * Restart the vehicles out of the map
      * @param vehicles containing all vehicles
      * @param delay vehicles delay
      */
-	void restartVehicle(ArrayList<BoxImpl> vehicles, int delay);
+	void restartVehicle(ArrayList<Box> vehicles, int delay);
 	
     /**
      * Call the methods sets the position and direction of the car.
      * @param stripYLoc contains the line where the car will be printed
      * @return get the car
      */
-	BoxImpl setCar(double stripYLoc);
+	Box setCar(double stripYLoc);
 	
     /**
      * Call the methods for sets the position and direction of the train.
      * @param stripYLoc contains the line where the train will be printed
      * @return get the train
      */
-	BoxImpl setTrain(double stripYLoc);
+	Box setTrain(double stripYLoc);
 	
     /**
      * Sets the position and direction of the vehicles.
@@ -40,7 +41,7 @@ public interface Vehicle {
      * @param imgR right sprite of the vehicle.
      * @param imgL left sprite of the vehicle.
      */
-	void setRndDir(BoxImpl vehicle, int speed, String imgR, String imgL);
+	void setRndDir(Box vehicle, int speed, String imgR, String imgL);
 
 	/**
 	 * Call the methods that set vehicles on the map.
@@ -49,7 +50,7 @@ public interface Vehicle {
 	 * @param trains contains all trains on the map.
 	 * @param i is the line you want to check on.
 	 */
-	void checkOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> cars, ArrayList<BoxImpl> trains, int i);
+	void checkOnRoad(Box[][] allStrips, ArrayList<Box> cars, ArrayList<Box> trains, int i);
 
 	/**
 	 * Set cars on the road.
@@ -57,7 +58,7 @@ public interface Vehicle {
 	 * @param cars contains all cars on the map.
 	 * @param i is the line you want to check on.
 	 */
-	void carOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> cars, int i);
+	void carOnRoad(Box[][] allStrips, ArrayList<Box> cars, int i);
 
 	/**
 	 * Set train on the rail
@@ -65,6 +66,6 @@ public interface Vehicle {
 	 * @param trains contains all trains on the map.
 	 * @param i is the line you want to check on.
 	 */
-	void trainOnRoad(BoxImpl[][] allStrips, ArrayList<BoxImpl> trains, int i);
+	void trainOnRail(Box[][] allStrips, ArrayList<Box> trains, int i);
 
 }

@@ -16,6 +16,7 @@ import controllers.PlayerController;
 import controllers.PlayerControllerImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
+import model.map.Box;
 import model.map.BoxImpl;
 import model.map.Strip;
 import model.map.StripImpl;
@@ -65,12 +66,12 @@ public class GameViewImpl implements GameView,KeyListener {
 		protected int SPAWN_CHARACTER_LINE = 4;
 
 		private Strip striscia = new StripImpl();
-		private BoxImpl[][] allStrips = new BoxImpl[NSTRIP][BOXFORSTRIP];
+		private Box[][] allStrips = new BoxImpl[NSTRIP][BOXFORSTRIP];
 		private Player player = new PlayerImpl("bird.png",400,600);
 
-		private ArrayList<BoxImpl> cars = new ArrayList<>();
-		private ArrayList<BoxImpl> trains = new ArrayList<>();
-		private VehicleImpl vehicleManager = new VehicleImpl();
+		private ArrayList<Box> cars = new ArrayList<>();
+		private ArrayList<Box> trains = new ArrayList<>();
+		private Vehicle vehicleManager = new VehicleImpl();
 		private Timer timer;
 		
 		private GameControllerImpl gameController;
@@ -99,10 +100,10 @@ public class GameViewImpl implements GameView,KeyListener {
 				}
 			}
 
-			for (BoxImpl s : cars) // da fare un metodo ma problemi con paint
+			for (Box s : cars) // da fare un metodo ma problemi con paint
 				s.paint(g, this);
 
-			for (BoxImpl s : trains)
+			for (Box s : trains)
 				s.paint(g, this);
 
 			
@@ -115,6 +116,7 @@ public class GameViewImpl implements GameView,KeyListener {
 	 	 */
 	    public void SetInitialPosition() {
 
+	    	
 	        for (int i = 0; i < NSTRIP; i++) {
 
 	        	
