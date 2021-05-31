@@ -14,22 +14,28 @@ public class GameControllerImpl implements GameController {
 	public static final int MAP_SCROLL = 1;
 	private Player player = new PlayerImpl("bird.png",400,600);
 
-
-	private void startVehicle(Vehicle vehicleManager,
-			ArrayList<Box> vehicles, int delay) {
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public void startVehicle(Vehicle vehicleManager, ArrayList<Box> vehicles, int delay) {
 		vehicleManager.moveVehicle(vehicles);
 		vehicleManager.restartVehicle(vehicles, delay);
 	}
-
-	private void scroolScren(Box[][] allStrips) {
+	
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public void scroolScren(Box[][] allStrips) {
 		for (int y = 0; y < NSTRIP; y++) {
-
 			for (int x = 0; x < BOXFORSTRIP; x++) {
 				allStrips[y][x].setYDir(MAP_SCROLL);
 			}
 		}
 	}
 
+	
 	public void actionPerformed(Box[][] allStrips, Vehicle vehicleManager, ArrayList<Box> cars, ArrayList<Box> trains) {
 
 		for (int i = 0; i < NSTRIP; i++) {

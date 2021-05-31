@@ -15,9 +15,6 @@ public class TestEnemy {
 	/**
      * This test verify the correct creation and working of the car.
      */
-	//se e su strada
-	//velocita compresa tra
-	// dimensioni 
     @org.junit.Test
     public void testCar() {
     	VehicleImpl vehicle = new VehicleImpl();

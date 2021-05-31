@@ -4,36 +4,45 @@ import java.util.Random;
 
 public class StripImpl implements Strip{
 
+	Box[] boxStrip;
+	Random gen = new Random();
 	
-	//restituisce una striscia casuale
-	public Box[] setRndStrip(int riga) {
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Box[] getRndStrip(int y) {
 
-		Box[] boxStrip = new BoxImpl[8];
-		Random gen = new Random();
+		boxStrip = new BoxImpl[8];
 		int env = gen.nextInt(3); 
 
-		// select landscape.
 		switch (env) {
-		// riempie la striscia con box di strada
+		/**
+		 * fills the array with street environment
+		 */
 		case 0:
 			for (int i = 0; i < boxStrip.length; i++) {
-				Box strip = new BoxImpl("Road.png", i, riga);
+				Box strip = new BoxImpl("Road.png", i, y);
 				boxStrip[i] = strip;
 			}
 			break;
 
-		//riempie la striscia con box di ferrovia
+		/**
+		 * fills the array with rail environment
+		 */
 		case 1:
 			for (int i = 0; i < boxStrip.length; i++) {
-				Box strip = new BoxImpl("Rail.png", i, riga);
+				Box strip = new BoxImpl("Rail.png", i, y);
 				boxStrip[i] = strip;
 			}
 			break;
 
-		// riempie la striscia con box di erba e alberi
+		/**
+		 * fills the array with nature environment
+		 */
 		case 2:
 			for (int i = 0; i < boxStrip.length; i++) {				
-				boxStrip[i] = setObstacles("Grass.png", "Tree.png", i, riga);    
+				boxStrip[i] = getBoxObstacles("Grass.png", "Tree.png", i, y);    
 			}
 			break;
 		}
@@ -41,14 +50,15 @@ public class StripImpl implements Strip{
 		return boxStrip;
 	}
 	
-	//retituisce un box che può essere un ostacolo una volta su quattro
-	public Box setObstacles(String background, String specialBlock, int x, int y) {
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Box getBoxObstacles(String background, String specialBlock, int x, int y) {
 
 		Box oneBlock;
-		Random gen = new Random();
 		int rand = gen.nextInt(4);
 		
-		// una possibilità su 4 di mettere un ostacolo  (es albero)
 		if (rand == 3) { 	
 			 oneBlock = new BoxImpl(specialBlock, x, y);
 		} else {
@@ -58,28 +68,32 @@ public class StripImpl implements Strip{
 		return oneBlock;
 	}
 	
-	
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Box[] getSpecificStrip(String background, int y) {
 
-	public Box[] getSpecificStrip(String background, int riga) {
-
-		Box[] boxStrip = new BoxImpl[8];
+	    boxStrip = new BoxImpl[8];
 		
 		for (int i = 0; i < boxStrip.length; i++) {
-			Box strip = new BoxImpl(background, i, riga);
+			Box strip = new BoxImpl(background, i, y);
 			boxStrip[i] = strip;
 		}
 		
 		return boxStrip;
 	}
 	
-	
-	//restituisce una striscia specifica con ostacoli
-	public Box[] getSpecificStrip(String background, String specialBlock, int riga) {
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Box[] getSpecificStrip(String background, String specialBlock, int y) {
 
-		Box[] boxStrip = new BoxImpl[8];
+		boxStrip = new BoxImpl[8];
 
 		for (int i = 0; i < boxStrip.length; i++) {
-			boxStrip[i] = setObstacles( background, specialBlock, i , riga);
+			boxStrip[i] = getBoxObstacles( background, specialBlock, i , y);
 		}
 		return boxStrip;
 	}

@@ -16,11 +16,13 @@ public class VehicleImpl implements Vehicle {
 	private static final int CAR_SPEED = 2;
 	private static final int CAMION_SPEED = 1;
 	private static final int TRAIN_SPEED = 10;
-	private Random rand = new Random();
 
+
+	private Random rand = new Random();
 	private int vehicleSpeed = 0;
 	private int vehicleXLocSpawn;
 	BoxImpl vehicle;
+
 
 	/**
 	 * {@inheritDoc}
@@ -56,6 +58,7 @@ public class VehicleImpl implements Vehicle {
 	@Override
 	public Box setCar(double stripYLoc) {
 
+		
 		vehicle = new BoxImpl();
 		vehicle.setYDir(MAP_SCROLL);
 		vehicle.setYLoc(stripYLoc);
@@ -80,8 +83,8 @@ public class VehicleImpl implements Vehicle {
 		vehicle = new BoxImpl();
 		vehicle.setYDir(MAP_SCROLL);
 		vehicle.setYLoc(stripYLoc);
-		this.setRndDir(vehicle, TRAIN_SPEED, "Train.png", "Train.png"); // TODO togliere le
-																// immagini
+		this.setRndDir(vehicle, TRAIN_SPEED, "Train.png", "Train.png"); 
+																
 		return vehicle;
 	}
 

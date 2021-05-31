@@ -141,7 +141,7 @@ public class GameViewImpl implements GameView,KeyListener {
 
 			for (int i = 0; i < NSTRIP; i++) {
 				if (allStrips[i][0].getYLoc() > 800) {
-					allStrips[i] = striscia.setRndStrip(iriga);
+					allStrips[i] = striscia.getRndStrip(iriga);
 					vehicleManager.checkOnRoad(allStrips, cars, trains, i);
 				}
 			}

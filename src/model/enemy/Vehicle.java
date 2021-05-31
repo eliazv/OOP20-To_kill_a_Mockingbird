@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.map.Box;
 
 
-public interface Vehicle {
+public interface Vehicle { //extends Box
 	
     /**
      * Call move method for the vehicles.
