@@ -69,8 +69,8 @@ public class GameViewImpl implements GameView,KeyListener {
 		private Box[][] allStrips = new BoxImpl[NSTRIP][BOXFORSTRIP];
 		private Player player = new PlayerImpl("bird.png",400,600);
 
-		private ArrayList<Box> cars = new ArrayList<>();
-		private ArrayList<Box> trains = new ArrayList<>();
+		private ArrayList<Vehicle> cars = new ArrayList<>();
+		private ArrayList<Vehicle> trains = new ArrayList<>();
 		private Vehicle vehicleManager = new VehicleImpl();
 		private Timer timer;
 		
@@ -130,7 +130,7 @@ public class GameViewImpl implements GameView,KeyListener {
 
 	            else {
 	                allStrips[i] = striscia.getSpecificStrip("Grass.png", "Tree.png", i);
-	                vehicleManager.checkOnRoad(allStrips, cars, trains, i);
+	                gameController.checkOnRoad(allStrips, cars, trains, i);
 	            }
 
 	        }
@@ -142,7 +142,7 @@ public class GameViewImpl implements GameView,KeyListener {
 			for (int i = 0; i < NSTRIP; i++) {
 				if (allStrips[i][0].getYLoc() > 800) {
 					allStrips[i] = striscia.getRndStrip(iriga);
-					vehicleManager.checkOnRoad(allStrips, cars, trains, i);
+					gameController.checkOnRoad(allStrips, cars, trains, i);
 				}
 			}
 		}

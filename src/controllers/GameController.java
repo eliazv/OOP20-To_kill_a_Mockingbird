@@ -7,18 +7,59 @@ import model.map.Box;
 
 public interface GameController {
 
+	
+    /**
+     * Call move method for the vehicles.
+     * @param vehicles containing all vehicles
+     */
+	void moveVehicle(ArrayList<Vehicle> vehicles);
+	
 	/**
 	 * moves vehicles on the map and restart them when they are out of bounds
 	 * @param vehicleManager 
 	 * @param vehicles box of the vehicles
 	 * @param delay delay in the departure of vehicles
 	 */
-	void startVehicle(Vehicle vehicleManager, ArrayList<Box> vehicles, int delay);
+	void startVehicle(Vehicle vehicleManager, ArrayList<Vehicle> vehicles, int delay);
+	
+    /**
+     * Restart the vehicles out of the map
+     * @param vehicles containing all vehicles
+     * @param delay vehicles delay
+     */
+	void restartVehicle(ArrayList<Vehicle> vehicles, int delay);
 
 	/**
 	 * assigns each box of the map the speed and direction of scrolling of the map
 	 * @param allStrips contains all the strips that make up the map.
 	 */
 	void scroolScren(Box[][] allStrips);
+	
+	/**
+	 * Call the methods that set vehicles on the map.
+	 * @param allStrips contains all the strips that make up the map.
+	 * @param cars contains all cars on the map.
+	 * @param trains contains all trains on the map.
+	 * @param i is the line you want to check on.
+	 */
+	void checkOnRoad(Box[][] allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i);
+
+	/**
+	 * Set cars on the road.
+	 * @param allStrips contains all the strips that make up the map.
+	 * @param cars contains all cars on the map.
+	 * @param i is the line you want to check on.
+	 */
+	void carOnRoad(Box[][] allStrips, ArrayList<Vehicle> cars, int i);
+
+	/**
+	 * Set train on the rail
+	 * @param allStrips contains all the strips that make up the map.
+	 * @param trains contains all trains on the map.
+	 * @param i is the line you want to check on.
+	 */
+	void trainOnRail(Box[][] allStrips, ArrayList<Vehicle> trains, int i);
+
+
 
 }
