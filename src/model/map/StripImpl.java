@@ -98,4 +98,20 @@ public class StripImpl implements Strip{
 		return boxStrip;
 	}
 	
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Box[] getStrip() {
+		return boxStrip;
+	}
+	
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Box getBoxOfStrip(int x) {
+		return boxStrip[x];
+	}
+	
 }

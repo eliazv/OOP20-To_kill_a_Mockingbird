@@ -39,11 +39,5 @@ public class TestEnemy {
     }
     
 
-	/**
-     * This test verify the correct creation and working of the tree.
-     */
-    @org.junit.Test
-    public void testTree() {
-    	
-    }
+
 }

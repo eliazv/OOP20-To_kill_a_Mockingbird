@@ -7,7 +7,7 @@ public interface Strip {
      * @param y contains the line where the array will be printed
      * @return get an array of 8 box
      */
-	Box[] getRndStrip(int riga);
+	Box[] getRndStrip(int y);
 	 
 	/**
      * returns a box that can be an obstacle once in four
@@ -37,4 +37,19 @@ public interface Strip {
      * @return get an array of 8 box
      */
 	Box[] getSpecificStrip(String background, String specialBlock, int y);
+	
+	
+	/**
+     * returns the generated strip 
+     * @return get an array of 8 box
+     */
+	Box[] getStrip();
+	
+	
+	/**
+     * returns the box of the strip specified by the index
+     * @param x strip vector index
+     * @return get a box
+     */
+	Box getBoxOfStrip(int x);
 }

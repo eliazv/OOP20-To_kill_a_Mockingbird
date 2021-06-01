@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import controllers.EndGameController;
-import controllers.EndGameControllerImpl;
 import controllers.MainMenuController;
 import controllers.MainMenuControllerImpl;
 
