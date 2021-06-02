@@ -89,6 +89,9 @@ public class GameViewImpl implements GameView,KeyListener {
 			this.timer.start();
 		}
 		
+		/**
+		 * 
+		 */
 		public void paintComponent(Graphics g) {
 
 			super.paintComponent(g); // Erases the previous screen.
@@ -116,11 +119,7 @@ public class GameViewImpl implements GameView,KeyListener {
 	 	 */
 	    public void SetInitialPosition() {
 
-	    	
-	        for (int i = 0; i < NSTRIP; i++) {
-
-	        	
-	        	
+	        for (int i = 0; i < NSTRIP; i++) {	        	
 	            /**
 	             * Set the line where the character will be spawn and the next one without any obstacles 
 	             */
@@ -132,11 +131,12 @@ public class GameViewImpl implements GameView,KeyListener {
 	                allStrips[i] = striscia.getSpecificStrip("Grass.png", "Tree.png", i);
 	                gameController.checkOnRoad(allStrips, cars, trains, i);
 	            }
-
 	        }
-	        
 	    }
 		
+	    /**
+	     * 
+	     */
 		public void generateMap() {
 
 			for (int i = 0; i < NSTRIP; i++) {

@@ -34,5 +34,21 @@ public interface Vehicle extends Box{
      */
 	Vehicle getVehicle();
 
-
+    /**
+     * return the vehicle type
+     * @return get the vehicle type
+     */
+	VehicleType getVehicleType();
+	
+	/**
+	 * return the vehicle speed
+	 * @return the speed of the vehicle
+	 */
+	int getVehicleSpeed();
+	 
+	 /**
+	  * return the vehicle's X spawn position 
+	  * @return the vehicle's X spawn position 
+	  */
+	int getVehicleXLocSpawn();
 }
