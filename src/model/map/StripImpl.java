@@ -1,29 +1,36 @@
 package model.map;
 
+import java.util.ArrayList;
 import java.util.Random;
+
 
 public class StripImpl implements Strip{
 
-	Box[] boxStrip;
+	private static final int STRIP_LENGTH = 8;
+	
+	ArrayList<Box> boxesStrip;
 	Random gen = new Random();
+	StripEnvironment env;
 	
     /**
      * {@inheritDoc}
      */
 	@Override
-	public Box[] getRndStrip(int y) {
+	public ArrayList<Box> getRndStrip(int y) {
 
-		boxStrip = new BoxImpl[8];
-		int env = gen.nextInt(3); 
+		boxesStrip = new ArrayList<>();
+		int rnd_env = gen.nextInt(3); 
 
-		switch (env) {
+		switch (rnd_env) {
+			
 		/**
 		 * fills the array with street environment
 		 */
 		case 0:
-			for (int i = 0; i < boxStrip.length; i++) {
-				Box strip = new BoxImpl("Road.png", i, y);
-				boxStrip[i] = strip;
+			env=StripEnvironment.ROAD;
+			for (int i = 0; i < STRIP_LENGTH; i++) {
+				boxesStrip.add(new BoxImpl("Road.png", i, y));
+				
 			}
 			break;
 
@@ -31,9 +38,9 @@ public class StripImpl implements Strip{
 		 * fills the array with rail environment
 		 */
 		case 1:
-			for (int i = 0; i < boxStrip.length; i++) {
-				Box strip = new BoxImpl("Rail.png", i, y);
-				boxStrip[i] = strip;
+			env=StripEnvironment.RAIL;
+			for (int i = 0; i < STRIP_LENGTH; i++) {
+				boxesStrip.add(new BoxImpl("Rail.png", i, y));
 			}
 			break;
 
@@ -41,13 +48,14 @@ public class StripImpl implements Strip{
 		 * fills the array with nature environment
 		 */
 		case 2:
-			for (int i = 0; i < boxStrip.length; i++) {				
-				boxStrip[i] = getBoxObstacles("Grass.png", "Tree.png", i, y);    
+			env=StripEnvironment.GRASS;
+			for (int i = 0; i < STRIP_LENGTH; i++) {				
+				boxesStrip.add(getBoxObstacles("Grass.png", "Tree.png", i, y));    
 			}
 			break;
 		}
 
-		return boxStrip;
+		return boxesStrip;
 	}
 	
     /**
@@ -68,50 +76,89 @@ public class StripImpl implements Strip{
 		return oneBlock;
 	}
 	
-    /**
-     * {@inheritDoc}
-     */
-	@Override
-	public Box[] getSpecificStrip(String background, int y) {
-
-	    boxStrip = new BoxImpl[8];
-		
-		for (int i = 0; i < boxStrip.length; i++) {
-			Box strip = new BoxImpl(background, i, y);
-			boxStrip[i] = strip;
-		}
-		
-		return boxStrip;
-	}
 	
     /**
      * {@inheritDoc}
      */
 	@Override
-	public Box[] getSpecificStrip(String background, String specialBlock, int y) {
-
-		boxStrip = new BoxImpl[8];
-
-		for (int i = 0; i < boxStrip.length; i++) {
-			boxStrip[i] = getBoxObstacles( background, specialBlock, i , y);
+	public void setStripEnvironment(String background) {
+		switch (background) {
+			case "Road.png":
+				env=StripEnvironment.ROAD;
+				break;
+			case "Rail.png":
+				env=StripEnvironment.RAIL;
+				break;
+			case "Grass.png":
+				env=StripEnvironment.GRASS;
+				break;
 		}
-		return boxStrip;
 	}
+	
 	
     /**
      * {@inheritDoc}
      */
 	@Override
-	public Box[] getStrip() {
-		return boxStrip;
+	public StripEnvironment getStripEnvironment() {
+		return env;
 	}
+	
+	
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public ArrayList<Box> getSpecificStrip(String background, int y) {
+
+		boxesStrip = new ArrayList<>();
+	    this.setStripEnvironment(background);
+		for (int i = 0; i < STRIP_LENGTH; i++) {
+			boxesStrip.add(new BoxImpl(background, i, y));
+		}
+		
+		return boxesStrip;
+	}
+	
+	
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public ArrayList<Box> getSpecificStrip(String background, String specialBlock, int y) {
+
+		boxesStrip = new ArrayList<>();
+		this.setStripEnvironment(background);
+		for (int i = 0; i < STRIP_LENGTH; i++) {
+			boxesStrip.add( getBoxObstacles( background, specialBlock, i , y));
+		}
+		return boxesStrip;
+	}
+	
+	
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public ArrayList<Box> getStrip() {
+		return boxesStrip;
+	}
+	
 	
     /**
      * {@inheritDoc}
      */
 	@Override
 	public Box getBoxOfStrip(int x) {
-		return boxStrip[x];
+		return boxesStrip.get(x);
 	}
 	
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public int getTreeNumber() {
+		return (int) boxesStrip.stream().filter(o -> o.getImage().getFileName() == "Tree.png").count();
+	}
+
 }

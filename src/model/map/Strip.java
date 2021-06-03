@@ -1,5 +1,7 @@
 package model.map;
 
+import java.util.ArrayList;
+
 public interface Strip {
 	
 	/**
@@ -7,7 +9,7 @@ public interface Strip {
      * @param y contains the line where the array will be printed
      * @return get an array of 8 box
      */
-	Box[] getRndStrip(int y);
+	ArrayList<Box> getRndStrip(int y);
 	 
 	/**
      * returns a box that can be an obstacle once in four
@@ -21,29 +23,29 @@ public interface Strip {
 	
 	
 	/**
-     * returns a specific environment strip 
+     * returns a specific environment strip
      * @param background contains the environment of the desired strip
      * @param y contains the line where the array will be printed
      * @return get an array of 8 box
      */
-	Box[] getSpecificStrip(String background, int y);
+	ArrayList<Box> getSpecificStrip(String background, int y);
 	
 	
 	/**
-     * returns a specific environment strip with specific obstacles
+     * returns a specific environment strip with specific obstacles. useful for creating the initial area
      * @param background contains the environment of the desired strip
      * @param specialBlock contains the obstacle of the desired strip
      * @param y contains the line where the array will be printed
      * @return get an array of 8 box
      */
-	Box[] getSpecificStrip(String background, String specialBlock, int y);
+	ArrayList<Box> getSpecificStrip(String background, String specialBlock, int y);
 	
 	
 	/**
      * returns the generated strip 
      * @return get an array of 8 box
      */
-	Box[] getStrip();
+	ArrayList<Box> getStrip();
 	
 	
 	/**
@@ -52,4 +54,24 @@ public interface Strip {
      * @return get a box
      */
 	Box getBoxOfStrip(int x);
+	
+	/**
+     * returns the environment type of the Strip
+     * @return get the environment type of the Strip
+     */
+	StripEnvironment getStripEnvironment();
+	
+	
+	/**
+     * set the environment type of the Strip
+     * @param background strip background 
+     */
+	void setStripEnvironment(String background);
+	
+	
+	/**
+     * returns the number of trees in a strip 
+     * @return get number of trees
+     */
+	int getTreeNumber();
 }

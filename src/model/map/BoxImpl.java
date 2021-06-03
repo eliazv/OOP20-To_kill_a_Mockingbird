@@ -28,11 +28,15 @@ public class BoxImpl implements Box{
 	public BoxImpl(String filename, double xloc, double yloc) {
 		setImage(filename);
 		this.xloc= xloc*100;
-		this.yloc = 800 - yloc*100;   //stampare le righe dal basso verso l'altro 
+		
+		/**
+		 * to print the lines from bottom to top
+		 */
+		this.yloc = 800 - yloc*100;  
 	}
 
 	public void setImage(String filename) {
-		imgLoader= new ImageLoader(filename);
+		imgLoader = new ImageLoader(filename);
 	}
 	
 	public ImageLoader getImage() {
@@ -79,9 +83,13 @@ public class BoxImpl implements Box{
 	}
 	
 
-	//stampa blocco
+	/**
+	 * 
+	 */
 	public void paint(Graphics g, JPanel panel) {
-		//se non c'è l'immagine stampa un quadrato 
+		/**
+		 * 
+		 */
 		if (imgLoader == null) {
 			g.drawRect( (int)xloc, (int)yloc, 100, 100);			
 		}

@@ -33,7 +33,7 @@ public interface GameController {
 	 * assigns each box of the map the speed and direction of scrolling of the map
 	 * @param allStrips contains all the strips that make up the map.
 	 */
-	void scroolScren(Box[][] allStrips);
+	void scroolScren(ArrayList<ArrayList<Box>> allStrips);
 	
 	/**
 	 * Call the methods that set vehicles on the map.
@@ -42,7 +42,7 @@ public interface GameController {
 	 * @param trains contains all trains on the map.
 	 * @param i is the line you want to check on.
 	 */
-	void checkOnRoad(Box[][] allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i);
+	void checkOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i);
 
 	/**
 	 * Set cars on the road.
@@ -50,7 +50,7 @@ public interface GameController {
 	 * @param cars contains all cars on the map.
 	 * @param i is the line you want to check on.
 	 */
-	void carOnRoad(Box[][] allStrips, ArrayList<Vehicle> cars, int i);
+	void carOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, int i);
 
 	/**
 	 * Set train on the rail
@@ -58,7 +58,7 @@ public interface GameController {
 	 * @param trains contains all trains on the map.
 	 * @param i is the line you want to check on.
 	 */
-	void trainOnRail(Box[][] allStrips, ArrayList<Vehicle> trains, int i);
+	void trainOnRail(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> trains, int i);
 
 
 

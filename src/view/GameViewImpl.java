@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -17,7 +16,6 @@ import controllers.PlayerControllerImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.Box;
-import model.map.BoxImpl;
 import model.map.Strip;
 import model.map.StripImpl;
 import model.player.Player;
@@ -66,10 +64,11 @@ public class GameViewImpl implements GameView,KeyListener {
 		protected int SPAWN_CHARACTER_LINE = 4;
 
 		private Strip striscia = new StripImpl();
-		private Box[][] allStrips = new BoxImpl[NSTRIP][BOXFORSTRIP];
+		//private Box[][] allStrips = new BoxImpl[NSTRIP][BOXFORSTRIP];
+		private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
 		private Player player = new PlayerImpl("bird.png",400,600);
 
-		private ArrayList<Vehicle> cars = new ArrayList<>();
+		private ArrayList<Vehicle> VehiclesOnRaodnRaod = new ArrayList<>();
 		private ArrayList<Vehicle> trains = new ArrayList<>();
 		private Vehicle vehicleManager = new VehicleImpl();
 		private Timer timer;
@@ -94,21 +93,28 @@ public class GameViewImpl implements GameView,KeyListener {
 		 */
 		public void paintComponent(Graphics g) {
 
-			super.paintComponent(g); // Erases the previous screen.
+			/**
+			 *  Erases the previous screen.
+			 */
+			super.paintComponent(g); 
 
-			// Draws strips.
+			
+			/**
+			 *  Draws strips.
+			 */
 			for (int i = 0; i < NSTRIP; i++) {
 				for (int x = 0; x < BOXFORSTRIP; x++) {
-					allStrips[i][x].paint(g, this);
+					allStrip.get(i).get(x).paint(g, this); //o set?
+					//allStrips[i][x].paint(g, this);
 				}
 			}
 
-			for (Box s : cars) // da fare un metodo ma problemi con paint
-				s.paint(g, this);
-
-			for (Box s : trains)
-				s.paint(g, this);
-
+			/**
+			 *  Draws vehicles.
+			 */
+			VehiclesOnRaodnRaod.forEach(v -> v.paint(g, this));
+			trains.forEach(v -> v.paint(g, this));
+			
 			
 			this.player.paint(g, this);
 		}
@@ -124,12 +130,12 @@ public class GameViewImpl implements GameView,KeyListener {
 	             * Set the line where the character will be spawn and the next one without any obstacles 
 	             */
 	            if(i==SPAWN_CHARACTER_LINE|| i == SPAWN_CHARACTER_LINE + 1) {
-	                allStrips[i] = striscia.getSpecificStrip("Grass.png", i);
+	            	allStrip.add(striscia.getSpecificStrip("Grass.png", i));
 	            }
 
 	            else {
-	                allStrips[i] = striscia.getSpecificStrip("Grass.png", "Tree.png", i);
-	                gameController.checkOnRoad(allStrips, cars, trains, i);
+	            	allStrip.add(striscia.getSpecificStrip("Grass.png" , "Tree.png", i));
+	                gameController.checkOnRoad(allStrip, VehiclesOnRaodnRaod, trains, i);
 	            }
 	        }
 	    }
@@ -140,9 +146,9 @@ public class GameViewImpl implements GameView,KeyListener {
 		public void generateMap() {
 
 			for (int i = 0; i < NSTRIP; i++) {
-				if (allStrips[i][0].getYLoc() > 800) {
-					allStrips[i] = striscia.getRndStrip(iriga);
-					gameController.checkOnRoad(allStrips, cars, trains, i);
+				if (allStrip.get(i).get(0).getYLoc() > 800) {
+					allStrip.set(i,  striscia.getRndStrip(iriga));
+					gameController.checkOnRoad(allStrip, VehiclesOnRaodnRaod, trains, i);
 				}
 			}
 		}
@@ -152,7 +158,7 @@ public class GameViewImpl implements GameView,KeyListener {
 			
 			this.repaint();
 			this.generateMap();
-			this.gameController.actionPerformed(this.allStrips, this.vehicleManager, this.cars, this.trains);
+			this.gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRaodnRaod, this.trains);
 			
 		}
 	}
