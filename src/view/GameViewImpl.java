@@ -64,11 +64,10 @@ public class GameViewImpl implements GameView,KeyListener {
 		protected int SPAWN_CHARACTER_LINE = 4;
 
 		private Strip striscia = new StripImpl();
-		//private Box[][] allStrips = new BoxImpl[NSTRIP][BOXFORSTRIP];
 		private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
 		private Player player = new PlayerImpl("bird.png",400,600);
 
-		private ArrayList<Vehicle> VehiclesOnRaodnRaod = new ArrayList<>();
+		private ArrayList<Vehicle> VehiclesOnRaod = new ArrayList<>();
 		private ArrayList<Vehicle> trains = new ArrayList<>();
 		private Vehicle vehicleManager = new VehicleImpl();
 		private Timer timer;
@@ -104,15 +103,14 @@ public class GameViewImpl implements GameView,KeyListener {
 			 */
 			for (int i = 0; i < NSTRIP; i++) {
 				for (int x = 0; x < BOXFORSTRIP; x++) {
-					allStrip.get(i).get(x).paint(g, this); //o set?
-					//allStrips[i][x].paint(g, this);
+					allStrip.get(i).get(x).paint(g, this); 
 				}
 			}
 
 			/**
 			 *  Draws vehicles.
 			 */
-			VehiclesOnRaodnRaod.forEach(v -> v.paint(g, this));
+			VehiclesOnRaod.forEach(v -> v.paint(g, this));
 			trains.forEach(v -> v.paint(g, this));
 			
 			
@@ -135,7 +133,7 @@ public class GameViewImpl implements GameView,KeyListener {
 
 	            else {
 	            	allStrip.add(striscia.getSpecificStrip("Grass.png" , "Tree.png", i));
-	                gameController.checkOnRoad(allStrip, VehiclesOnRaodnRaod, trains, i);
+	                gameController.checkOnRoad(allStrip, VehiclesOnRaod, trains, i);
 	            }
 	        }
 	    }
@@ -148,7 +146,7 @@ public class GameViewImpl implements GameView,KeyListener {
 			for (int i = 0; i < NSTRIP; i++) {
 				if (allStrip.get(i).get(0).getYLoc() > 800) {
 					allStrip.set(i,  striscia.getRndStrip(iriga));
-					gameController.checkOnRoad(allStrip, VehiclesOnRaodnRaod, trains, i);
+					gameController.checkOnRoad(allStrip, VehiclesOnRaod, trains, i);
 				}
 			}
 		}
@@ -158,7 +156,7 @@ public class GameViewImpl implements GameView,KeyListener {
 			
 			this.repaint();
 			this.generateMap();
-			this.gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRaodnRaod, this.trains);
+			this.gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRaod, this.trains);
 			
 		}
 	}

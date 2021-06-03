@@ -70,7 +70,7 @@ public interface Strip {
 	
 	
 	/**
-     * returns the number of trees in a strip 
+     * returns the number of trees in a strip. Useful for test
      * @return get number of trees
      */
 	int getTreeNumber();
