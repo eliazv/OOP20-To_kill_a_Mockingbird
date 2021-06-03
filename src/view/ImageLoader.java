@@ -10,10 +10,6 @@ public class ImageLoader {
 	private BufferedImage img ;
 	private String filename = null;
 	
-	public ImageLoader() {
-	
-	}
-	
 	public ImageLoader(String filename) {
 		this.filename = filename;
 		

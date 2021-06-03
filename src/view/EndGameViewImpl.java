@@ -10,11 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 
 import controllers.EndGameController;
-import controllers.InGameMenuController;
-import view.InGameMenuViewImpl.InGameMenuPanel;
 
 public class EndGameViewImpl implements EndGameView {
 	private static final int MENU_WIDTH = 400;
