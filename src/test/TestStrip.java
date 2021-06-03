@@ -1,14 +1,13 @@
 package test;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import model.map.Strip;
+import model.map.StripEnvironment;
 import model.map.StripImpl;
 
-public class TestStrip {
-
-	
-	
+public class TestStrip {	
 	
 	/**
      * This test verify the correct creation and working of the Strip.
@@ -16,17 +15,21 @@ public class TestStrip {
     @org.junit.Test
     public void testStrip() {
     	
-    	Strip striscia = new StripImpl();
+    	Strip strip = new StripImpl();
     	
-    	striscia.getRndStrip(6);
-    	assertEquals(8, striscia.getStrip().length);
+    	strip.getRndStrip(6);
+    	assertEquals(8, strip.getStrip().size());
     	
-    	striscia.getSpecificStrip("Grass.png", "Tree.png", 2);
-    	assertEquals(8, striscia.getStrip().length);
+    	strip.getSpecificStrip("Grass.png", "Tree.png", 2);
+    	assertEquals(8, strip.getStrip().size());
+    	assertEquals(StripEnvironment.GRASS, strip.getStripEnvironment());
+    	assertTrue(strip.getTreeNumber() <= 8 && strip.getTreeNumber() >= 0 );
     	
-    	striscia.getSpecificStrip("Rail.png", 5);
-    	assertEquals(8, striscia.getStrip().length);
-    	assertEquals("Rail.png", striscia.getBoxOfStrip(2).getImage().getFileName());
+    	strip.getSpecificStrip("Rail.png", 5);
+    	assertEquals(8, strip.getStrip().size());
+    	assertEquals("Rail.png", strip.getBoxOfStrip(2).getImage().getFileName());
+    	assertEquals(StripEnvironment.RAIL, strip.getStripEnvironment());
+    	
     	
     } 
       

@@ -60,20 +60,20 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
 	@Override
-	public void scroolScren(Box[][] allStrips) {
+	public void scroolScren(ArrayList<ArrayList<Box>> allStrips) {
 		for (int y = 0; y < NSTRIP; y++) {
 			for (int x = 0; x < BOXFORSTRIP; x++) {
-				allStrips[y][x].setYDir(MAP_SCROLL);
+				allStrips.get(y).get(x).setYDir(MAP_SCROLL);
 			}
 		}
 	}
 
 	
-	public void actionPerformed(Box[][] allStrips, Vehicle vehicleManager, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains) {
+	public void actionPerformed(ArrayList<ArrayList<Box>> allStrips, Vehicle vehicleManager, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains) {
 
 		for (int i = 0; i < NSTRIP; i++) {
 			for (int x = 0; x < BOXFORSTRIP; x++) {
-				allStrips[i][x].move();
+				allStrips.get(i).get(x).move();
 			}
 		}
 		this.scroolScren(allStrips);
@@ -87,7 +87,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
 	@Override
-	public void checkOnRoad(Box[][] allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i) {
+	public void checkOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i) {
 		this.carOnRoad(allStrips, cars, i);
 		this.trainOnRail(allStrips, trains, i);
 	}
@@ -97,9 +97,9 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
 	@Override
-	public void carOnRoad(Box[][] allStrips, ArrayList<Vehicle> cars, int i) {
-		if (allStrips[i][0].getImage().getFileName().equals("Road.png")) {
-			cars.add(new VehicleImpl().setCar(allStrips[i][0].getYLoc() + ADJUST_ON_ROAD));
+	public void carOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, int i) {
+		if (allStrips.get(i).get(0).getImage().getFileName().equals("Road.png")) {
+			cars.add(new VehicleImpl().setCar(allStrips.get(i).get(0).getYLoc() + ADJUST_ON_ROAD));
 		}
 	}
 	
@@ -107,9 +107,9 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
 	@Override
-	public void trainOnRail(Box[][] allStrips, ArrayList<Vehicle> trains, int i) {
-		if (allStrips[i][0].getImage().getFileName().equals("Rail.png")) {
-			trains.add(new VehicleImpl().setTrain(allStrips[i][0].getYLoc() + ADJUST_ON_ROAD));
+	public void trainOnRail(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> trains, int i) {
+		if (allStrips.get(i).get(0).getImage().getFileName().equals("Rail.png")) {
+			trains.add(new VehicleImpl().setTrain(allStrips.get(i).get(0).getYLoc() + ADJUST_ON_ROAD));
 
 		}
 	}
