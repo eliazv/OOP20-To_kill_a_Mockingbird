@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.enemy.Vehicle;
 import model.map.Box;
+import model.score.Coin;
 
 public interface GameController {
 
@@ -13,6 +14,12 @@ public interface GameController {
      * @param vehicles containing all vehicles
      */
 	void moveVehicle(ArrayList<Vehicle> vehicles);
+	
+	/**
+	 * moves all coins downward
+	 * @param coins contains all coins
+	 */
+	void moveMoney(ArrayList<Coin> coins);
 	
 	/**
 	 * moves vehicles on the map and restart them when they are out of bounds
@@ -29,6 +36,7 @@ public interface GameController {
      */
 	void restartVehicle(ArrayList<Vehicle> vehicles, int delay);
 
+	
 	/**
 	 * assigns each box of the map the speed and direction of scrolling of the map
 	 * @param allStrips contains all the strips that make up the map.
@@ -59,6 +67,16 @@ public interface GameController {
 	 * @param i is the line you want to check on.
 	 */
 	void trainOnRail(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> trains, int i);
+	
+
+	/**
+	 * Set coins in the map, except where there is a tree
+	 * @param allStrips contains all the strips that make up the map.
+	 * @param coins contains all coins.
+	 * @param i is the line you want to check on.
+	 * @param j is the column you want to check on.
+	 */
+	void spawnCoin(ArrayList<ArrayList<Box>> allStrips, ArrayList<Coin> coins, int i, int j);
 
 
 

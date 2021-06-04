@@ -1,10 +1,9 @@
 package model.score;
 
-import model.map.BoxImpl;
+import model.map.Box;
 
-public interface Coin {
+public interface Coin extends Box {
 	
-	BoxImpl initializeCoin(double XLoc, double YLoc);
-	
-	
+	Coin initializeCoin(double XLoc, double YLoc);
+
 }

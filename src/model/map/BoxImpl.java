@@ -7,12 +7,11 @@ import view.ImageLoader;
 
 public class BoxImpl implements Box{
 
-
+	//local variables
 	private ImageLoader imgLoader ;
 	private double xloc, yloc;
 	private double xdir, ydir;
 	
-
 	public BoxImpl() {
 		this.xloc = 0;
 		this.yloc = 0;
@@ -21,22 +20,18 @@ public class BoxImpl implements Box{
 	}
 	
 	public BoxImpl(String filename) {
-		setImage(filename);
+		this.setImage(filename);
 	}
 	
 	
 	public BoxImpl(String filename, double xloc, double yloc) {
-		setImage(filename);
-		this.xloc= xloc*100;
-		
-		/**
-		 * to print the lines from bottom to top
-		 */
-		this.yloc = 800 - yloc*100;  
+		this.setImage(filename);
+		this.xloc= xloc*100; 
+		this.yloc = 800 - yloc*100;   //print the lines from the bottom to the top 
 	}
 
 	public void setImage(String filename) {
-		imgLoader = new ImageLoader(filename);
+		imgLoader= new ImageLoader(filename);
 	}
 	
 	public ImageLoader getImage() {
@@ -83,17 +78,12 @@ public class BoxImpl implements Box{
 	}
 	
 
-	/**
-	 * 
-	 */
 	public void paint(Graphics g, JPanel panel) {
-		/**
-		 * 
-		 */
+		//if no image has been uploaded, will be drawn an empy square
 		if (imgLoader == null) {
 			g.drawRect( (int)xloc, (int)yloc, 100, 100);			
 		}
-
+		//if imgLoader in not null, will be drawn a square filled with the image 
 		else {
 			g.drawImage(imgLoader.getImage(), (int)xloc, (int)yloc, imgLoader.getImgWidth(), imgLoader.getImgHeight(), null);
 		}
