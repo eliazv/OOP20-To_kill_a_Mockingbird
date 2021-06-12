@@ -63,7 +63,7 @@ public class GameViewImpl implements GameView, KeyListener {
 		protected int BOXFORSTRIP = 8;
 		protected int TIMER_DELAY = 10;
 		protected int SPAWN_CHARACTER_LINE = 4;
-		protected int COIN_SPAWN_PROB = 3;
+		protected int COIN_SPAWN_PROB = 2;
 
 		private Strip striscia = new StripImpl();
 		private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();

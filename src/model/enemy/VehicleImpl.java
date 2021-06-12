@@ -6,6 +6,7 @@ import model.map.BoxImpl;
 
 public class VehicleImpl extends BoxImpl implements Vehicle {
 
+	//local variables
 	private static final int MAP_SCROLL = 1;
 	private static final int HIGHER_LIMIT = 900;
 	private static final int INFERIOR_LIMIT = -100;

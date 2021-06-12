@@ -3,8 +3,9 @@ package model.score;
 import model.map.BoxImpl;
 
 public class CoinImpl extends BoxImpl implements Coin {
-
-	private double YDIR = 1.0;
+	
+	//local variables
+	private double YDIR = 1.0; // y direction allows to coin to move downward when the move method is called
 	
 	public Coin initializeCoin(double XLoc, double YLoc) {
 		this.setXLoc(XLoc);

@@ -18,7 +18,7 @@ public class StripImpl implements Strip{
 	@Override
 	public ArrayList<Box> getRndStrip(int y) {
 
-		boxesStrip = new ArrayList<>();
+		this.boxesStrip = new ArrayList<>();
 		int rnd_env = gen.nextInt(3); 
 
 		switch (rnd_env) {
@@ -29,7 +29,7 @@ public class StripImpl implements Strip{
 		case 0:
 			env=StripEnvironment.ROAD;
 			for (int i = 0; i < STRIP_LENGTH; i++) {
-				boxesStrip.add(new BoxImpl("Road.png", i, y));
+				this.boxesStrip.add(new BoxImpl("Road.png", i, y));
 				
 			}
 			break;
@@ -40,7 +40,7 @@ public class StripImpl implements Strip{
 		case 1:
 			env=StripEnvironment.RAIL;
 			for (int i = 0; i < STRIP_LENGTH; i++) {
-				boxesStrip.add(new BoxImpl("Rail.png", i, y));
+				this.boxesStrip.add(new BoxImpl("Rail.png", i, y));
 			}
 			break;
 
@@ -50,12 +50,12 @@ public class StripImpl implements Strip{
 		case 2:
 			env=StripEnvironment.GRASS;
 			for (int i = 0; i < STRIP_LENGTH; i++) {				
-				boxesStrip.add(getBoxObstacles("Grass.png", "Tree.png", i, y));    
+				this.boxesStrip.add(getBoxObstacles("Grass.png", "Tree.png", i, y));    
 			}
 			break;
 		}
 
-		return boxesStrip;
+		return this.boxesStrip;
 	}
 	
     /**
@@ -111,13 +111,13 @@ public class StripImpl implements Strip{
 	@Override
 	public ArrayList<Box> getSpecificStrip(String background, int y) {
 
-		boxesStrip = new ArrayList<>();
+		this.boxesStrip = new ArrayList<>();
 	    this.setStripEnvironment(background);
 		for (int i = 0; i < STRIP_LENGTH; i++) {
-			boxesStrip.add(new BoxImpl(background, i, y));
+			this.boxesStrip.add(new BoxImpl(background, i, y));
 		}
 		
-		return boxesStrip;
+		return this.boxesStrip;
 	}
 	
 	
@@ -127,12 +127,12 @@ public class StripImpl implements Strip{
 	@Override
 	public ArrayList<Box> getSpecificStrip(String background, String specialBlock, int y) {
 
-		boxesStrip = new ArrayList<>();
+		this.boxesStrip = new ArrayList<>();
 		this.setStripEnvironment(background);
 		for (int i = 0; i < STRIP_LENGTH; i++) {
-			boxesStrip.add( getBoxObstacles( background, specialBlock, i , y));
+			this.boxesStrip.add( getBoxObstacles( background, specialBlock, i , y));
 		}
-		return boxesStrip;
+		return this.boxesStrip;
 	}
 	
 	
@@ -141,7 +141,7 @@ public class StripImpl implements Strip{
      */
 	@Override
 	public ArrayList<Box> getStrip() {
-		return boxesStrip;
+		return this.boxesStrip;
 	}
 	
 	
@@ -150,7 +150,7 @@ public class StripImpl implements Strip{
      */
 	@Override
 	public Box getBoxOfStrip(int x) {
-		return boxesStrip.get(x);
+		return this.boxesStrip.get(x);
 	}
 	
     /**
@@ -158,7 +158,7 @@ public class StripImpl implements Strip{
      */
 	@Override
 	public int getTreeNumber() {
-		return (int) boxesStrip.stream().filter(o -> o.getImage().getFileName() == "Tree.png").count();
+		return (int) this.boxesStrip.stream().filter(o -> o.getImage().getFileName() == "Tree.png").count();
 	}
 
 }
