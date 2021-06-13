@@ -1,6 +1,9 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -9,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -65,6 +69,8 @@ public class GameViewImpl implements GameView, KeyListener {
 		protected int SPAWN_CHARACTER_LINE = 4;
 		protected int COIN_SPAWN_PROB = 2;
 
+	    private final Rectangle rlblCoinCounter;
+	    private final JLabel lblCoinCounter = new JLabel();
 		private Strip striscia = new StripImpl();
 		private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
 		private Player player = new PlayerImpl("bird.png", 400, 600);
@@ -89,6 +95,13 @@ public class GameViewImpl implements GameView, KeyListener {
 
 			this.repaint();
 
+			this.add(lblCoinCounter);
+			lblCoinCounter.setText("Score: 0");
+		    lblCoinCounter.setForeground(Color.white);
+		    lblCoinCounter.setFont(new Font("Helvetica", Font.ITALIC, 40));
+		    rlblCoinCounter = new Rectangle(10,10,30,30);
+		    lblCoinCounter.setBounds(rlblCoinCounter);
+		    
 			this.timer.start();
 		}
 
@@ -163,6 +176,17 @@ public class GameViewImpl implements GameView, KeyListener {
 			}
 		}
 
+		public void increaseScore(int score) {
+			score++;
+			this.lblCoinCounter.setText("Score: "+ score);
+		}
+		
+		public void decreaseScore(int score) {
+			score--;
+			this.lblCoinCounter.setText("Score: "+ score);
+		}
+		
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
@@ -174,6 +198,7 @@ public class GameViewImpl implements GameView, KeyListener {
 		}
 	}
 
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		this.controller.keyCatch(e);

@@ -32,7 +32,7 @@ public class EndGameViewImpl implements EndGameView {
 		this.frame.setTitle("To Kill a Mockingbird");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
-		//this.frame.setLocation();
+		this.frame.setLocation(450,100);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menu);
 		this.frame.setBackground(BACKGROUND_COLOR);
