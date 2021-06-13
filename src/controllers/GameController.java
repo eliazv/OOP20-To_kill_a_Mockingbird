@@ -78,6 +78,9 @@ public interface GameController {
 	 */
 	void spawnCoin(ArrayList<ArrayList<Box>> allStrips, ArrayList<Coin> coins, int i, int j);
 
-
+	
+	int getScore();
+	
+	void setScore(int score);
 
 }

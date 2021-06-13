@@ -2,6 +2,8 @@ package input.player;
 
 import java.awt.event.KeyEvent;
 
+import controllers.GameController;
+import controllers.GameControllerImpl;
 import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
 import model.player.Player;
@@ -12,6 +14,7 @@ public class InputImpl implements Input{
 
 	private PlayerMovement moves;
 	private InGameMenuController controllerMenu = new InGameMenuControllerImpl();
+	private GameController gameController = new GameControllerImpl();
 	public InputImpl(Player player) {
 		this.moves = new PlayerMovementImpl(player.getImage(), player.getXPos(), player.getYPos());
 	}
@@ -21,9 +24,13 @@ public class InputImpl implements Input{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: 
 			this.moves.goUp();
+			gameController.setScore(gameController.getScore()+1);
+			System.out.println("score: " + gameController.getScore());
+
 			break;
 		case KeyEvent.VK_DOWN:
 			this.moves.goDown();
+			gameController.setScore(gameController.getScore()-1);
 			break;
 		case KeyEvent.VK_LEFT:
 			this.moves.goleft();

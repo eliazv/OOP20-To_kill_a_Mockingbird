@@ -21,7 +21,8 @@ public class GameControllerImpl implements GameController {
 	private static final int SPEED_MOLTIPLICATOR = 30;
 	private static final int ADJUST_ON_ROAD = 10;
 	private Player player = new PlayerImpl("bird.png", 400, 600);
-
+	private int score = 0;
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -149,8 +150,12 @@ public class GameControllerImpl implements GameController {
 	public Player getPlayer() {
 		return this.player;
 	}
-
+		
+	public int getScore() {
+		return this.score;
+	}
 	
-
-
+	public void setScore(int score) {
+		this.score = score;
+	}
 }

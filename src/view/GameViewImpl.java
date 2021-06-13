@@ -133,6 +133,9 @@ public class GameViewImpl implements GameView, KeyListener {
 			
 
 			this.player.paint(g, this);
+			System.out.println(gameController.getScore());
+			lblCoinCounter.setText("Score: " + gameController.getScore());
+
 		}
 
 		/**
@@ -174,18 +177,8 @@ public class GameViewImpl implements GameView, KeyListener {
 					
 				}
 			}
-		}
 
-		public void increaseScore(int score) {
-			score++;
-			this.lblCoinCounter.setText("Score: "+ score);
 		}
-		
-		public void decreaseScore(int score) {
-			score--;
-			this.lblCoinCounter.setText("Score: "+ score);
-		}
-		
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -194,6 +187,7 @@ public class GameViewImpl implements GameView, KeyListener {
 			this.generateMap();
 			this.gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRaod, this.coins,
 					this.trains);
+			
 
 		}
 	}
@@ -202,6 +196,7 @@ public class GameViewImpl implements GameView, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		this.controller.keyCatch(e);
+		
 
 	}
 
