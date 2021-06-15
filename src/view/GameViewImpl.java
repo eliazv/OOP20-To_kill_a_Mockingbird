@@ -17,15 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import controllers.GameControllerImpl;
-import controllers.PlayerController;
-import controllers.PlayerControllerImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.Box;
 import model.map.Strip;
 import model.map.StripImpl;
-import model.player.Player;
-import model.player.PlayerImpl;
 import model.score.Coin;
 
 public class GameViewImpl implements GameView, KeyListener {
@@ -33,7 +29,7 @@ public class GameViewImpl implements GameView, KeyListener {
 	private final int SIZE = 800;
 	private final JFrame frame;
 	private panelGame panelGame;
-	private PlayerController controller = new PlayerControllerImpl();
+	
 
 	public GameViewImpl() {
 
@@ -73,7 +69,7 @@ public class GameViewImpl implements GameView, KeyListener {
 	    private final JLabel lblCoinCounter = new JLabel();
 		private Strip striscia = new StripImpl();
 		private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
-		private Player player = new PlayerImpl("bird.png", 400, 600);
+		
 
 		private ArrayList<Vehicle> VehiclesOnRaod = new ArrayList<>();
 		private ArrayList<Vehicle> trains = new ArrayList<>();
@@ -132,7 +128,8 @@ public class GameViewImpl implements GameView, KeyListener {
 			this.trains.forEach(v -> v.paint(g, this));
 			
 
-			this.player.paint(g, this);
+			this.gameController.getPlayer().paint(g, this);
+			this.gameController.getPlayer().move();
 			System.out.println(gameController.getScore());
 			lblCoinCounter.setText("Score: " + gameController.getScore());
 
@@ -177,6 +174,8 @@ public class GameViewImpl implements GameView, KeyListener {
 					
 				}
 			}
+			
+			
 
 		}
 		
@@ -190,12 +189,16 @@ public class GameViewImpl implements GameView, KeyListener {
 			
 
 		}
+		
+		public GameControllerImpl getGameController() {
+			return this.gameController;
+		} 
 	}
 
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		this.controller.keyCatch(e);
+		panelGame.getGameController().keyCatch(e);
 		
 
 	}

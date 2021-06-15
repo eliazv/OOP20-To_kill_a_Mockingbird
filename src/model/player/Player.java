@@ -24,5 +24,10 @@ public interface Player {
 	int getHeight();
 	void paint(Graphics g,JPanel p); //da aggiungere la dimensione della finestra come parametro 
 									// per decidere la posizione dello spawn
+	void move();
 	BoxImpl setPlayer(double stripXLoc,double stripYLoc);
+	void goUp();
+	void goDown();
+	void goleft();
+	void goRight();
 }

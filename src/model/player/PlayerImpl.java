@@ -174,6 +174,37 @@ public class PlayerImpl implements Player{
 		
 		return playerBox;
 	}
+	
+	
+	@Override
+	public void goUp() {
+		this.setYPos(this.getYPos()-101);
+		System.out.println(this.getYPos());
+		
+	
+		
+	}
+
+	@Override
+	public void goDown() {
+		this.setYPos(this.getYPos()+99);
+		
+		
+	}
+
+	@Override
+	public void goleft() {
+		this.setXPos(this.getXPos()-100);
+		
+		
+	}
+
+	@Override
+	public void goRight() {
+		this.setXPos(this.getXPos()+100);
+		
+		
+	}
 
 	
 	

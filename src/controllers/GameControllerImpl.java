@@ -1,7 +1,10 @@
 package controllers;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import input.player.Input;
+import input.player.InputImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.Box;
@@ -12,6 +15,8 @@ import model.score.CoinImpl;
 
 public class GameControllerImpl implements GameController {
 
+	
+	private static final long serialVersionUID = -2866484581455331098L;
 	//local variables
 	public static final int NSTRIP = 11;
 	public static final int BOXFORSTRIP = 8;
@@ -20,7 +25,9 @@ public class GameControllerImpl implements GameController {
 	private static final int INFERIOR_LIMIT = -100;
 	private static final int SPEED_MOLTIPLICATOR = 30;
 	private static final int ADJUST_ON_ROAD = 10;
-	private Player player = new PlayerImpl("bird.png", 400, 600);
+	
+	private Player player= new PlayerImpl("bird.png",400,600);
+	private Input input = new InputImpl(this.getPlayer(),this); 
 	private int score = 0;
 	
 	/**
@@ -141,6 +148,11 @@ public class GameControllerImpl implements GameController {
 			coins.add(new CoinImpl().initializeCoin(allStrips.get(i).get(j).getXLoc(),
 					allStrips.get(i).get(j).getYLoc() ));
 		}
+	}
+	
+	public void keyCatch(KeyEvent e) {
+		System.out.println("sono qui");
+		this.input.keyInput(e);	
 	}
 
 	/**
