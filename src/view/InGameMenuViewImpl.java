@@ -91,11 +91,9 @@ public class InGameMenuViewImpl implements InGameMenuView {
 			});
 			
 			controlsButton.addActionListener(e -> {
-				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the frog." +
-						"\nCtrl:  Activates 3 seconds of invincibility once per game." +
-						"\n         (Makes frog pass through any object)" +
-						"\nShift:  Pause / Resume the game." +
-						"\nEnter:  Start game / Restart game while paused.");
+				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the character." +
+						"\nEsc:  Pause / Resume the game." +
+						"\n");
 			});
 		}
 	}

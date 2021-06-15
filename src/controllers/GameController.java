@@ -82,5 +82,10 @@ public interface GameController {
 	int getScore();
 	
 	void setScore(int score);
+	
+	Boolean getPause();
+
+	void setPause();
+
 
 }

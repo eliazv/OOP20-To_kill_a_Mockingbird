@@ -42,7 +42,12 @@ public class InputImpl implements Input{
 		}
 		
 		if (KeyEvent.VK_ESCAPE == e.getKeyCode()) {
-			controllerMenu.setup();
+
+			gameController.setPause();
+			if (gameController.getPause()) {
+				controllerMenu.setup();
+			}
+				
 		}
 		
 		

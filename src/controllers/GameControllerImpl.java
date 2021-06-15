@@ -16,7 +16,6 @@ import model.score.CoinImpl;
 public class GameControllerImpl implements GameController {
 
 	
-	private static final long serialVersionUID = -2866484581455331098L;
 	//local variables
 	public static final int NSTRIP = 11;
 	public static final int BOXFORSTRIP = 8;
@@ -29,7 +28,16 @@ public class GameControllerImpl implements GameController {
 	private Player player= new PlayerImpl("bird.png",400,600);
 	private Input input = new InputImpl(this.getPlayer(),this); 
 	private int score = 0;
+	private Boolean pause = false;
 	
+	public Boolean getPause() {
+		return pause;
+	}
+
+	public void setPause() {
+		this.pause = !this.pause;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -95,22 +103,23 @@ public class GameControllerImpl implements GameController {
 	 * @param coins contains all coins
 	 * @param trains contains all trains
 	 */
-	public void actionPerformed(ArrayList<ArrayList<Box>> allStrips, Vehicle vehicleManager, ArrayList<Vehicle> cars, ArrayList<Coin> coins,
-			ArrayList<Vehicle> trains) {
-
-		for (int i = 0; i < NSTRIP; i++) {
-			for (int x = 0; x < BOXFORSTRIP; x++) {
-				if (!allStrips.get(i).get(x).getImage().getFileName().equals("coin.png")) {
-					allStrips.get(i).get(x).move();
+	public void actionPerformed(ArrayList<ArrayList<Box>> allStrips, Vehicle vehicleManager, ArrayList<Vehicle> cars, ArrayList<Coin> coins,ArrayList<Vehicle> trains) {
+		if(!pause) {
+			for (int i = 0; i < NSTRIP; i++) {
+				for (int x = 0; x < BOXFORSTRIP; x++) {
+					if (!allStrips.get(i).get(x).getImage().getFileName().equals("coin.png")) {
+						allStrips.get(i).get(x).move();
+					}
 				}
 			}
+			this.scroolScren(allStrips);
+			this.startVehicle(vehicleManager, cars, 1500);
+			this.startVehicle(vehicleManager, trains, 5000);
+			this.moveMoney(coins);
+			this.player.move();
+			
 		}
-		this.scroolScren(allStrips);
-		this.startVehicle(vehicleManager, cars, 1500);
-		this.startVehicle(vehicleManager, trains, 5000);
-		this.moveMoney(coins);
-		this.player.move();
-		
+
 	}
 
 	/**

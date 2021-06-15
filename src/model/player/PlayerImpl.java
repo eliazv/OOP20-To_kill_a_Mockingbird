@@ -178,7 +178,7 @@ public class PlayerImpl implements Player{
 	
 	@Override
 	public void goUp() {
-		this.setYPos(this.getYPos()-101);
+		this.setYPos(this.getYPos()-100);
 		System.out.println(this.getYPos());
 		
 	
@@ -187,7 +187,7 @@ public class PlayerImpl implements Player{
 
 	@Override
 	public void goDown() {
-		this.setYPos(this.getYPos()+99);
+		this.setYPos(this.getYPos()+100);
 		
 		
 	}
@@ -206,12 +206,5 @@ public class PlayerImpl implements Player{
 		
 	}
 
-	
-	
-	
-
-	
-	
-	
 
 }

@@ -1,13 +1,12 @@
 package controllers;
 
-import view.GameViewImpl;
 import view.InGameMenuView;
 import view.InGameMenuViewImpl;
 
 public class InGameMenuControllerImpl implements InGameMenuController {
 
 	private InGameMenuView view;
-	GameViewImpl gameV;
+
 	
 	public InGameMenuControllerImpl() {
 		
