@@ -105,5 +105,6 @@ public class InGameMenuViewImpl implements InGameMenuView {
 	@Override
 	public void hide() {
 		this.frame.dispose();
+		JOptionPane.showMessageDialog(null, "Press ESC to resume");
 	}
 }
