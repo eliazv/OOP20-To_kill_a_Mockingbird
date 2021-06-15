@@ -129,7 +129,7 @@ public class GameViewImpl implements GameView, KeyListener {
 			
 
 			this.gameController.getPlayer().paint(g, this);
-			this.gameController.getPlayer().move();
+		
 			System.out.println(gameController.getScore());
 			lblCoinCounter.setText("Score: " + gameController.getScore());
 
