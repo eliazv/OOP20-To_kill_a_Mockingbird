@@ -10,6 +10,8 @@ import model.enemy.VehicleImpl;
 import model.map.Box;
 import model.player.Player;
 import model.player.PlayerImpl;
+import model.player.PlayerMovement;
+import model.player.PlayerMovementImpl;
 import model.score.Coin;
 import model.score.CoinImpl;
 
@@ -25,7 +27,7 @@ public class GameControllerImpl implements GameController {
 	private static final int SPEED_MOLTIPLICATOR = 30;
 	private static final int ADJUST_ON_ROAD = 10;
 	
-	private Player player= new PlayerImpl("bird.png",400,600);
+	private PlayerMovement player= new PlayerMovementImpl("bird.png",400,600);
 	private Input input = new InputImpl(this.getPlayer(),this); 
 	private int score = 0;
 	private Boolean pause = false;
@@ -116,7 +118,7 @@ public class GameControllerImpl implements GameController {
 			this.startVehicle(vehicleManager, cars, 1500);
 			this.startVehicle(vehicleManager, trains, 5000);
 			this.moveMoney(coins);
-			this.player.move();
+			((Box) this.player).move();
 			
 		}
 
@@ -170,7 +172,7 @@ public class GameControllerImpl implements GameController {
 	 * 
 	 * @return player
 	 */
-	public Player getPlayer() {
+	public PlayerMovement getPlayer() {
 		return this.player;
 	}
 		

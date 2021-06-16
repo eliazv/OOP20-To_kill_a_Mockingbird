@@ -7,19 +7,19 @@ import controllers.GameControllerImpl;
 import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
 import model.player.Player;
+import model.player.PlayerMovement;
 
 public class InputImpl implements Input{
 
-	private Player player;
+	private PlayerMovement player;
 	private InGameMenuController controllerMenu = new InGameMenuControllerImpl();
 	private GameController gameController;
-	public InputImpl(Player player, GameControllerImpl gameController) {
+	public InputImpl(PlayerMovement player, GameControllerImpl gameController) {
 		this.player = player;
 		this.gameController=gameController;
 	}
 	@Override
 	public void keyInput(KeyEvent e) {
-	//#System.out.println("sono quiiiiiiiiii");
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: 
 			this.player.goUp();
@@ -32,7 +32,7 @@ public class InputImpl implements Input{
 			gameController.setScore(gameController.getScore()-1);
 			break;
 		case KeyEvent.VK_LEFT:
-			this.player.goleft();
+			this.player.goLeft();
 			break;
 		case KeyEvent.VK_RIGHT:
 			this.player.goRight();
