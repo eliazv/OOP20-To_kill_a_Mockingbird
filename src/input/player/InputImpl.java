@@ -2,41 +2,52 @@ package input.player;
 
 import java.awt.event.KeyEvent;
 
+import controllers.GameController;
+import controllers.GameControllerImpl;
 import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
 import model.player.Player;
 import model.player.PlayerMovement;
-import model.player.PlayerMovementImpl;
 
 public class InputImpl implements Input{
 
-	private PlayerMovement moves;
+	private PlayerMovement player;
 	private InGameMenuController controllerMenu = new InGameMenuControllerImpl();
-	public InputImpl(Player player) {
-		this.moves = new PlayerMovementImpl(player.getImage(), player.getXPos(), player.getYPos());
+	private GameController gameController;
+	public InputImpl(PlayerMovement player, GameControllerImpl gameController) {
+		this.player = player;
+		this.gameController=gameController;
 	}
 	@Override
 	public void keyInput(KeyEvent e) {
-		System.out.println("sono quiiiiiiiiii");
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: 
-			this.moves.goUp();
+			this.player.goUp();
+			gameController.setScore(gameController.getScore()+1);
+			System.out.println("score: " + gameController.getScore());
+
 			break;
 		case KeyEvent.VK_DOWN:
-			this.moves.goDown();
+			this.player.goDown();
+			gameController.setScore(gameController.getScore()-1);
 			break;
 		case KeyEvent.VK_LEFT:
-			this.moves.goleft();
+			this.player.goLeft();
 			break;
 		case KeyEvent.VK_RIGHT:
-			this.moves.goRight();
+			this.player.goRight();
 			break;
 		default:
 			break;
 		}
 		
 		if (KeyEvent.VK_ESCAPE == e.getKeyCode()) {
-			controllerMenu.setup();
+
+			gameController.setPause();
+			if (gameController.getPause()) {
+				controllerMenu.setup();
+			}
+				
 		}
 		
 		

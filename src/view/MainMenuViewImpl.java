@@ -33,6 +33,7 @@ public class MainMenuViewImpl implements MainMenuView {
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
 		//this.frame.setLocation();
+		this.frame.setLocation(350,10);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menuPanel);
 		this.frame.setBackground(BACKGROUND_COLOR);

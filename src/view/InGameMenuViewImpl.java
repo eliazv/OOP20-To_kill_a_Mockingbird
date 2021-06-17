@@ -35,7 +35,7 @@ public class InGameMenuViewImpl implements InGameMenuView {
 		this.frame.setTitle("To Kill a Mockingbird");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
-		//this.frame.setLocation();
+		this.frame.setLocation(450,100);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menu);
 		this.frame.setBackground(BACKGROUND_COLOR);
@@ -91,11 +91,9 @@ public class InGameMenuViewImpl implements InGameMenuView {
 			});
 			
 			controlsButton.addActionListener(e -> {
-				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the frog." +
-						"\nCtrl:  Activates 3 seconds of invincibility once per game." +
-						"\n         (Makes frog pass through any object)" +
-						"\nShift:  Pause / Resume the game." +
-						"\nEnter:  Start game / Restart game while paused.");
+				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the character." +
+						"\nEsc:  Pause / Resume the game." +
+						"\n");
 			});
 		}
 	}
@@ -107,5 +105,6 @@ public class InGameMenuViewImpl implements InGameMenuView {
 	@Override
 	public void hide() {
 		this.frame.dispose();
+		JOptionPane.showMessageDialog(null, "Press ESC to resume");
 	}
 }

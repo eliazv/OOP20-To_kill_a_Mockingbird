@@ -1,17 +1,23 @@
 package controllers;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import input.player.Input;
+import input.player.InputImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.Box;
 import model.player.Player;
 import model.player.PlayerImpl;
+import model.player.PlayerMovement;
+import model.player.PlayerMovementImpl;
 import model.score.Coin;
 import model.score.CoinImpl;
 
 public class GameControllerImpl implements GameController {
 
+	
 	//local variables
 	public static final int NSTRIP = 11;
 	public static final int BOXFORSTRIP = 8;
@@ -20,7 +26,19 @@ public class GameControllerImpl implements GameController {
 	private static final int INFERIOR_LIMIT = -100;
 	private static final int SPEED_MOLTIPLICATOR = 30;
 	private static final int ADJUST_ON_ROAD = 10;
-	private Player player = new PlayerImpl("bird.png", 400, 600);
+	
+	private PlayerMovement player= new PlayerMovementImpl("bird.png",400,600);
+	private Input input = new InputImpl(this.getPlayer(),this); 
+	private int score = 0;
+	private Boolean pause = false;
+	
+	public Boolean getPause() {
+		return pause;
+	}
+
+	public void setPause() {
+		this.pause = !this.pause;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -87,20 +105,23 @@ public class GameControllerImpl implements GameController {
 	 * @param coins contains all coins
 	 * @param trains contains all trains
 	 */
-	public void actionPerformed(ArrayList<ArrayList<Box>> allStrips, Vehicle vehicleManager, ArrayList<Vehicle> cars, ArrayList<Coin> coins,
-			ArrayList<Vehicle> trains) {
-
-		for (int i = 0; i < NSTRIP; i++) {
-			for (int x = 0; x < BOXFORSTRIP; x++) {
-				if (!allStrips.get(i).get(x).getImage().getFileName().equals("coin.png")) {
-					allStrips.get(i).get(x).move();
+	public void actionPerformed(ArrayList<ArrayList<Box>> allStrips, Vehicle vehicleManager, ArrayList<Vehicle> cars, ArrayList<Coin> coins,ArrayList<Vehicle> trains) {
+		if(!pause) {
+			for (int i = 0; i < NSTRIP; i++) {
+				for (int x = 0; x < BOXFORSTRIP; x++) {
+					if (!allStrips.get(i).get(x).getImage().getFileName().equals("coin.png")) {
+						allStrips.get(i).get(x).move();
+					}
 				}
 			}
+			this.scroolScren(allStrips);
+			this.startVehicle(vehicleManager, cars, 1500);
+			this.startVehicle(vehicleManager, trains, 5000);
+			this.moveMoney(coins);
+			((Box) this.player).move();
+			
 		}
-		this.scroolScren(allStrips);
-		this.startVehicle(vehicleManager, cars, 1500);
-		this.startVehicle(vehicleManager, trains, 5000);
-		this.moveMoney(coins);
+
 	}
 
 	/**
@@ -141,16 +162,25 @@ public class GameControllerImpl implements GameController {
 					allStrips.get(i).get(j).getYLoc() ));
 		}
 	}
+	
+	public void keyCatch(KeyEvent e) {
+		System.out.println("sono qui");
+		this.input.keyInput(e);	
+	}
 
 	/**
 	 * 
 	 * @return player
 	 */
-	public Player getPlayer() {
+	public PlayerMovement getPlayer() {
 		return this.player;
 	}
-
+		
+	public int getScore() {
+		return this.score;
+	}
 	
-
-
+	public void setScore(int score) {
+		this.score = score;
+	}
 }

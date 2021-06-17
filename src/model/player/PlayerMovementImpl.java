@@ -2,41 +2,36 @@ package model.player;
 
 public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 
-	
-	public PlayerMovementImpl(String filename, double x, double y) {
-		super(filename, x, y);
-		// TODO Auto-generated constructor stub
+	public PlayerMovementImpl(String filename, double xPos, double yPos) {
+		super(filename, xPos, yPos);
 	}
-
-
 
 	@Override
 	public void goUp() {
-		this.setYPos(this.getYPos()+10);
-		System.out.println(this.getYPos());
 		
-	
+		this.setYLoc(this.getYLoc()-100.2);
 		
 	}
 
 	@Override
 	public void goDown() {
-		this.setYPos(this.getYPos()-10);
 		
+		this.setYLoc(this.getYLoc()+100.2);
 		
 	}
 
 	@Override
-	public void goleft() {
-		this.setXPos(this.getXPos()-10);
+	public void goLeft() {
 		
+		this.setXLoc(this.getXLoc()-100);
 		
 	}
 
 	@Override
 	public void goRight() {
-		this.setXPos(this.getXPos()+10);
 		
+		this.setXLoc(this.getXLoc()+100);
 		
 	}
+	
 }
