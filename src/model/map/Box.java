@@ -19,6 +19,12 @@ public interface Box {
      * @return an imageLoader
      */
 	ImageLoader getImage();
+	
+	/**
+     * returns the name of the specified box
+     * @return a string
+     */
+	String getName();
 
 	/**
      * returns the X location of the specified box
