@@ -6,7 +6,7 @@ import model.map.Box;
 import model.map.BoxImpl;
 
 
-public class TestBoxes {
+public class TestBox {
 
 	private String imagePath = new String("grass.png");
 	private int xloc = 5;

@@ -20,7 +20,6 @@ public class TestCoin {
 
 		assertEquals(1, coin.getYDir());
 		assertEquals(11, coin.getYLoc());
-		assertEquals("coin.png", coin.getImage().getFileName());
 	}
 	
 }
