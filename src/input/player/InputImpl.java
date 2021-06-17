@@ -24,8 +24,6 @@ public class InputImpl implements Input{
 		case KeyEvent.VK_UP: 
 			this.player.goUp();
 			gameController.setScore(gameController.getScore()+1);
-			System.out.println("score: " + gameController.getScore());
-
 			break;
 		case KeyEvent.VK_DOWN:
 			this.player.goDown();
@@ -47,10 +45,7 @@ public class InputImpl implements Input{
 			if (gameController.getPause()) {
 				controllerMenu.setup();
 			}
-				
 		}
-		
-		
 	}
-
 }
+

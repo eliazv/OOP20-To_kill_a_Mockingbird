@@ -34,4 +34,12 @@ public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 		
 	}
 	
+	public double getX() {
+		return this.getXLoc();
+	}
+	
+	public double getY() {
+		return this.getYLoc();
+	}
+	
 }

@@ -20,4 +20,14 @@ public interface PlayerMovement {
 	 * move one box right
 	 */
 	void goRight();
+	
+	/**
+	 * returns x coordinate
+	 */
+	double getX();
+	
+	/**
+	 * returns y coordinate
+	 */
+	double getY();
 }

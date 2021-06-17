@@ -41,7 +41,7 @@ public interface GameController {
 	 * assigns each box of the map the speed and direction of scrolling of the map
 	 * @param allStrips contains all the strips that make up the map.
 	 */
-	void scroolScren(ArrayList<ArrayList<Box>> allStrips);
+	void scrollScren(ArrayList<ArrayList<Box>> allStrips);
 	
 	/**
 	 * Call the methods that set vehicles on the map.

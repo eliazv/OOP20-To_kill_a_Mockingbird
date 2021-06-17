@@ -89,7 +89,7 @@ public class GameControllerImpl implements GameController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void scroolScren(ArrayList<ArrayList<Box>> allStrips) {
+	public void scrollScren(ArrayList<ArrayList<Box>> allStrips) {
 		for (int y = 0; y < NSTRIP; y++) {
 			for (int x = 0; x < BOXFORSTRIP; x++) {
 				allStrips.get(y).get(x).setYDir(MAP_SCROLL);
@@ -114,7 +114,7 @@ public class GameControllerImpl implements GameController {
 					}
 				}
 			}
-			this.scroolScren(allStrips);
+			this.scrollScren(allStrips);
 			this.startVehicle(vehicleManager, cars, 1500);
 			this.startVehicle(vehicleManager, trains, 5000);
 			this.moveMoney(coins);
@@ -164,7 +164,6 @@ public class GameControllerImpl implements GameController {
 	}
 	
 	public void keyCatch(KeyEvent e) {
-		System.out.println("sono qui");
 		this.input.keyInput(e);	
 	}
 
