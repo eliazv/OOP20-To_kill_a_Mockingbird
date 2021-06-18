@@ -2,39 +2,56 @@ package input.player;
 
 import java.awt.event.KeyEvent;
 
+import controllers.CollisionController;
 import controllers.GameController;
 import controllers.GameControllerImpl;
 import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
-import model.player.Player;
 import model.player.PlayerMovement;
 
-public class InputImpl implements Input{
+import controllers.CollisionController.Directions;
 
+public class InputImpl implements Input{
+	
 	private PlayerMovement player;
 	private InGameMenuController controllerMenu = new InGameMenuControllerImpl();
 	private GameController gameController;
-	public InputImpl(PlayerMovement player, GameControllerImpl gameController) {
-		this.player = player;
-		this.gameController=gameController;
+	private CollisionController collisionController;
+	
+	public InputImpl(GameControllerImpl gameController) {
+		this.player = gameController.getPlayer();
+		this.gameController = gameController;
+		this.collisionController = gameController.getCollisionController();
 	}
 	@Override
 	public void keyInput(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: 
-			this.player.goUp();
-			gameController.setScore(gameController.getScore()+1);
+			if (collisionController.checkDir(Directions.UP)) {
+				this.player.goUp();
+				gameController.setScore(gameController.getRealScore()+1);
+			}
 			break;
+			
 		case KeyEvent.VK_DOWN:
-			this.player.goDown();
-			gameController.setScore(gameController.getScore()-1);
+			if (collisionController.checkDir(Directions.DOWN)) {
+				this.player.goDown();
+				gameController.setScore(gameController.getRealScore()-1);
+			}
 			break;
+			
 		case KeyEvent.VK_LEFT:
-			this.player.goLeft();
+			if (collisionController.checkDir(Directions.LEFT)) {
+				this.player.goLeft();
+			}
 			break;
+			
 		case KeyEvent.VK_RIGHT:
-			this.player.goRight();
+			if (collisionController.checkDir(Directions.RIGHT)) {
+				this.player.goRight();
+			}
 			break;
+			
 		default:
 			break;
 		}

@@ -8,8 +8,6 @@ import input.player.InputImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.Box;
-import model.player.Player;
-import model.player.PlayerImpl;
 import model.player.PlayerMovement;
 import model.player.PlayerMovementImpl;
 import model.score.Coin;
@@ -27,9 +25,11 @@ public class GameControllerImpl implements GameController {
 	private static final int SPEED_MOLTIPLICATOR = 30;
 	private static final int ADJUST_ON_ROAD = 10;
 	
-	private PlayerMovement player= new PlayerMovementImpl("bird.png",400,600);
-	private Input input = new InputImpl(this.getPlayer(),this); 
+	private PlayerMovement player = new PlayerMovementImpl("bird.png",400,600);
+	private CollisionController collisionController = new CollisionControllerImpl(this);
+	private Input input = new InputImpl(this); 
 	private int score = 0;
+	private int realScore = 0;
 	private Boolean pause = false;
 	
 	public Boolean getPause() {
@@ -174,12 +174,23 @@ public class GameControllerImpl implements GameController {
 	public PlayerMovement getPlayer() {
 		return this.player;
 	}
+	
+	public CollisionController getCollisionController() {
+		return this.collisionController;
+	}
 		
 	public int getScore() {
-		return this.score;
+		return Math.max(this.score, this.realScore);
 	}
 	
 	public void setScore(int score) {
-		this.score = score;
+		if (score >= this.score) {
+			this.score = score;
+		}
+		this.realScore = score;
+	}
+	
+	public int getRealScore() {
+		return this.realScore;
 	}
 }

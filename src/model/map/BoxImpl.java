@@ -85,7 +85,10 @@ public class BoxImpl implements Box{
 		this.yloc += this.ydir;
 	}
 	
-
+	public int getWidth() {
+		return imgLoader.getImgWidth();
+	}
+	
 	public void paint(Graphics g, JPanel panel) {
 		//if no image has been uploaded, will be drawn an empy square
 		if (imgLoader == null) {

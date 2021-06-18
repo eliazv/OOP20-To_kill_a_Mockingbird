@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import controllers.CollisionController;
 import controllers.GameControllerImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
@@ -29,7 +30,6 @@ public class GameViewImpl implements GameView, KeyListener {
 	private final int SIZE = 800;
 	private final JFrame frame;
 	private panelGame panelGame;
-	
 
 	public GameViewImpl() {
 
@@ -62,7 +62,7 @@ public class GameViewImpl implements GameView, KeyListener {
 		protected int iriga = 11;
 		protected int BOXFORSTRIP = 8;
 		protected int TIMER_DELAY = 10;
-		protected int SPAWN_CHARACTER_LINE = 4;
+		protected int SPAWN_CHARACTER_LINE = 2;
 		protected int COIN_SPAWN_PROB = 2;
 
 	    private final Rectangle rlblCoinCounter;
@@ -80,10 +80,15 @@ public class GameViewImpl implements GameView, KeyListener {
 		private Timer timer;
 
 		private GameControllerImpl gameController;
-
+		
+		private CollisionController collisionController;
+		
+		
 		public panelGame() {
-
+			
 			this.gameController = new GameControllerImpl();
+			
+			this.collisionController = gameController.getCollisionController();
 
 			this.timer = new Timer(this.TIMER_DELAY, this);
 
@@ -101,9 +106,7 @@ public class GameViewImpl implements GameView, KeyListener {
 			this.timer.start();
 		}
 
-		/**
-		 * 
-		 */
+		
 		public void paintComponent(Graphics g) {
 
 			/**
@@ -129,9 +132,36 @@ public class GameViewImpl implements GameView, KeyListener {
 			
 
 			((Box) this.gameController.getPlayer()).paint(g, this);
-		
-			System.out.println(gameController.getScore());
 			lblCoinCounter.setText("Score: " + gameController.getScore());
+			
+			collisionController.unBlockAll();
+			
+			VehiclesOnRaod.forEach( x -> {
+				if (collisionController.collideWithVehicles(x)) System.exit(1);
+			});
+			
+			trains.forEach( x ->{
+				if (collisionController.collideWithVehicles(x)) System.exit(1);
+			});
+			
+			for (int i=0; i<coins.size(); i++) {
+				Coin x=coins.get(i);
+				if (collisionController.collideWithCoins(x)) { 
+					coins.remove(x); 
+					System.out.println("moneta raccolta");
+					//gameController.setScore(gameController.getRealScore()+2);
+				}
+			}
+			
+			allStrip.forEach(x ->{
+				x.forEach(z ->{
+					if (z.getName() == "Tree.png") {
+						collisionController.checkTrees(z);
+					}
+				});
+			});
+			
+			collisionController.checkBorders();
 
 		}
 
@@ -174,9 +204,6 @@ public class GameViewImpl implements GameView, KeyListener {
 					
 				}
 			}
-			
-			
-
 		}
 		
 		@Override
@@ -186,21 +213,17 @@ public class GameViewImpl implements GameView, KeyListener {
 			this.generateMap();
 			this.gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRaod, this.coins,
 					this.trains);
-			
-
 		}
 		
 		public GameControllerImpl getGameController() {
 			return this.gameController;
-		} 
+		}
 	}
 
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		panelGame.getGameController().keyCatch(e);
-		
-
 	}
 
 	@Override

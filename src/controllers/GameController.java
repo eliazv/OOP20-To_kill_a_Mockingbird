@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.enemy.Vehicle;
 import model.map.Box;
+import model.player.PlayerMovement;
 import model.score.Coin;
 
 public interface GameController {
@@ -81,7 +82,13 @@ public interface GameController {
 	
 	int getScore();
 	
+	int getRealScore();
+	
 	void setScore(int score);
+	
+	PlayerMovement getPlayer();
+	
+	public CollisionController getCollisionController();
 	
 	Boolean getPause();
 

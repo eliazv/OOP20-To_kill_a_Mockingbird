@@ -78,6 +78,11 @@ public interface Box {
      * method that allows the boxes to move, adding the direction to their position 
      */
 	void move();
+	
+	/*
+	 * method that return the width of the image
+	 */
+	public int getWidth();
 
 	/**
      * method that paints the boxes in the japnel
