@@ -11,6 +11,7 @@ public class BoxImpl implements Box{
 	private ImageLoader imgLoader ;
 	private double xloc, yloc;
 	private double xdir, ydir;
+	private String name;
 	
 	public BoxImpl() {
 		this.xloc = 0;
@@ -21,6 +22,7 @@ public class BoxImpl implements Box{
 	
 	public BoxImpl(String filename) {
 		this.setImage(filename);
+		this.name = filename;
 	}
 	
 	
@@ -28,14 +30,20 @@ public class BoxImpl implements Box{
 		this.setImage(filename);
 		this.xloc= xloc*100; 
 		this.yloc = 800 - yloc*100;   //print the lines from the bottom to the top 
+		this.name = filename;
 	}
 
 	public void setImage(String filename) {
 		imgLoader= new ImageLoader(filename);
+		this.name = filename;
 	}
 	
 	public ImageLoader getImage() {
 		return imgLoader;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 	
 	public double getXLoc() {
@@ -77,7 +85,10 @@ public class BoxImpl implements Box{
 		this.yloc += this.ydir;
 	}
 	
-
+	public int getWidth() {
+		return imgLoader.getImgWidth();
+	}
+	
 	public void paint(Graphics g, JPanel panel) {
 		//if no image has been uploaded, will be drawn an empy square
 		if (imgLoader == null) {

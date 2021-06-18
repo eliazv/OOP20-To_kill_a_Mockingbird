@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.enemy.Vehicle;
 import model.map.Box;
+import model.player.PlayerMovement;
 import model.score.Coin;
 
 public interface GameController {
@@ -41,7 +42,7 @@ public interface GameController {
 	 * assigns each box of the map the speed and direction of scrolling of the map
 	 * @param allStrips contains all the strips that make up the map.
 	 */
-	void scroolScren(ArrayList<ArrayList<Box>> allStrips);
+	void scrollScren(ArrayList<ArrayList<Box>> allStrips);
 	
 	/**
 	 * Call the methods that set vehicles on the map.
@@ -81,7 +82,13 @@ public interface GameController {
 	
 	int getScore();
 	
+	int getRealScore();
+	
 	void setScore(int score);
+	
+	PlayerMovement getPlayer();
+	
+	public CollisionController getCollisionController();
 	
 	Boolean getPause();
 

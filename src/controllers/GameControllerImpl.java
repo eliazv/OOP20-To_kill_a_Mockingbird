@@ -25,9 +25,11 @@ public class GameControllerImpl implements GameController {
 	private static final int SPEED_MOLTIPLICATOR = 30;
 	private static final int ADJUST_ON_ROAD = 10;
 	
-	private PlayerMovement player= new PlayerMovementImpl("bird.png",400,600);
-	private Input input = new InputImpl(this.getPlayer(),this); 
+	private PlayerMovement player = new PlayerMovementImpl("bird.png",400,600);
+	private CollisionController collisionController = new CollisionControllerImpl(this);
+	private Input input = new InputImpl(this); 
 	private int score = 0;
+	private int realScore = 0;
 	private Boolean pause = false;
 	
 	public Boolean getPause() {
@@ -87,7 +89,7 @@ public class GameControllerImpl implements GameController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void scroolScren(ArrayList<ArrayList<Box>> allStrips) {
+	public void scrollScren(ArrayList<ArrayList<Box>> allStrips) {
 		for (int y = 0; y < NSTRIP; y++) {
 			for (int x = 0; x < BOXFORSTRIP; x++) {
 				allStrips.get(y).get(x).setYDir(MAP_SCROLL);
@@ -112,7 +114,7 @@ public class GameControllerImpl implements GameController {
 					}
 				}
 			}
-			this.scroolScren(allStrips);
+			this.scrollScren(allStrips);
 			this.startVehicle(vehicleManager, cars, 1500);
 			this.startVehicle(vehicleManager, trains, 5000);
 			this.moveMoney(coins);
@@ -162,7 +164,6 @@ public class GameControllerImpl implements GameController {
 	}
 	
 	public void keyCatch(KeyEvent e) {
-		System.out.println("sono qui");
 		this.input.keyInput(e);	
 	}
 
@@ -173,12 +174,23 @@ public class GameControllerImpl implements GameController {
 	public PlayerMovement getPlayer() {
 		return this.player;
 	}
+	
+	public CollisionController getCollisionController() {
+		return this.collisionController;
+	}
 		
 	public int getScore() {
-		return this.score;
+		return Math.max(this.score, this.realScore);
 	}
 	
 	public void setScore(int score) {
-		this.score = score;
+		if (score >= this.score) {
+			this.score = score;
+		}
+		this.realScore = score;
+	}
+	
+	public int getRealScore() {
+		return this.realScore;
 	}
 }

@@ -19,6 +19,12 @@ public interface Box {
      * @return an imageLoader
      */
 	ImageLoader getImage();
+	
+	/**
+     * returns the name of the specified box
+     * @return a string
+     */
+	String getName();
 
 	/**
      * returns the X location of the specified box
@@ -72,6 +78,11 @@ public interface Box {
      * method that allows the boxes to move, adding the direction to their position 
      */
 	void move();
+	
+	/*
+	 * method that return the width of the image
+	 */
+	public int getWidth();
 
 	/**
      * method that paints the boxes in the japnel
