@@ -6,7 +6,6 @@ import controllers.GameController;
 import controllers.GameControllerImpl;
 import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
-import model.player.Player;
 import model.player.PlayerMovement;
 
 public class InputImpl implements Input{

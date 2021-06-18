@@ -8,8 +8,6 @@ import input.player.InputImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.Box;
-import model.player.Player;
-import model.player.PlayerImpl;
 import model.player.PlayerMovement;
 import model.player.PlayerMovementImpl;
 import model.score.Coin;
