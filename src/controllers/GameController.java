@@ -79,16 +79,19 @@ public interface GameController {
 	 */
 	void spawnCoin(ArrayList<ArrayList<Box>> allStrips, ArrayList<Coin> coins, int i, int j);
 
-	
+	/*
+	 * return the score that should be displayed
+	 */
 	int getScore();
 	
+	/*
+	 * return the score that should be used internally
+	 */
 	int getRealScore();
 	
 	void setScore(int score);
 	
 	PlayerMovement getPlayer();
-	
-	public CollisionController getCollisionController();
 	
 	Boolean getPause();
 

@@ -71,8 +71,8 @@ public class GameViewImpl implements GameView, KeyListener {
 		private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
 		
 
-		private ArrayList<Vehicle> VehiclesOnRaod = new ArrayList<>();
-		private ArrayList<Vehicle> trains = new ArrayList<>();
+		private ArrayList<Vehicle> VehiclesOnRoad = new ArrayList<>();
+		private ArrayList<Vehicle> Trains = new ArrayList<>();
 		private Vehicle vehicleManager = new VehicleImpl();
 
 		private ArrayList<Coin> coins = new ArrayList<>();
@@ -81,14 +81,10 @@ public class GameViewImpl implements GameView, KeyListener {
 
 		private GameControllerImpl gameController;
 		
-		private CollisionController collisionController;
-		
 		
 		public panelGame() {
 			
 			this.gameController = new GameControllerImpl();
-			
-			this.collisionController = gameController.getCollisionController();
 
 			this.timer = new Timer(this.TIMER_DELAY, this);
 
@@ -127,42 +123,12 @@ public class GameViewImpl implements GameView, KeyListener {
 			 * Draws vehicles.
 			 */
 			this.coins.forEach(v -> v.paint(g, this));
-			this.VehiclesOnRaod.forEach(v -> v.paint(g, this));
-			this.trains.forEach(v -> v.paint(g, this));
+			this.VehiclesOnRoad.forEach(v -> v.paint(g, this));
+			this.Trains.forEach(v -> v.paint(g, this));
 			
 
 			((Box) this.gameController.getPlayer()).paint(g, this);
 			lblCoinCounter.setText("Score: " + gameController.getScore());
-			
-			collisionController.unBlockAll();
-			
-			VehiclesOnRaod.forEach( x -> {
-				if (collisionController.collideWithVehicles(x)) System.exit(1);
-			});
-			
-			trains.forEach( x ->{
-				if (collisionController.collideWithVehicles(x)) System.exit(1);
-			});
-			
-			for (int i=0; i<coins.size(); i++) {
-				Coin x=coins.get(i);
-				if (collisionController.collideWithCoins(x)) { 
-					coins.remove(x); 
-					System.out.println("moneta raccolta");
-					//gameController.setScore(gameController.getRealScore()+2);
-				}
-			}
-			
-			allStrip.forEach(x ->{
-				x.forEach(z ->{
-					if (z.getName() == "Tree.png") {
-						collisionController.checkTrees(z);
-					}
-				});
-			});
-			
-			collisionController.checkBorders();
-
 		}
 
 		/**
@@ -180,7 +146,7 @@ public class GameViewImpl implements GameView, KeyListener {
 
 				else {
 					this.allStrip.add(this.striscia.getSpecificStrip("Grass.png", "Tree.png", i));
-					this.gameController.checkOnRoad(this.allStrip, this.VehiclesOnRaod, this.trains, i);
+					this.gameController.checkOnRoad(this.allStrip, this.VehiclesOnRoad, this.Trains, i);
 				}
 			}
 		}
@@ -196,7 +162,7 @@ public class GameViewImpl implements GameView, KeyListener {
 					coinSpawn = rndYLoc.nextInt(this.COIN_SPAWN_PROB + 1);
 					
 					this.allStrip.set(i, this.striscia.getRndStrip(this.iriga));
-					this.gameController.checkOnRoad(this.allStrip, this.VehiclesOnRaod, this.trains, i);
+					this.gameController.checkOnRoad(this.allStrip, this.VehiclesOnRoad, this.Trains, i);
 					
 					if (coinSpawn == this.COIN_SPAWN_PROB) {
 						this.gameController.spawnCoin(this.allStrip, this.coins, i, rndYLoc.nextInt(this.BOXFORSTRIP));
@@ -211,8 +177,8 @@ public class GameViewImpl implements GameView, KeyListener {
 
 			this.repaint();
 			this.generateMap();
-			this.gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRaod, this.coins,
-					this.trains);
+			this.gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRoad, this.coins,
+					this.Trains);
 		}
 		
 		public GameControllerImpl getGameController() {

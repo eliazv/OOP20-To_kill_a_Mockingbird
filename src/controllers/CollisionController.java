@@ -15,7 +15,7 @@ public interface CollisionController {
 	 * method that checks the collision with the vehicle v.
 	 * @return true if colliding, false if not.
 	 */
-	public boolean collideWithVehicles(Vehicle v) ;
+	public void collideWithVehicles(Vehicle v) ;
 	
 	/*
 	 * method that checks the collision with coins.

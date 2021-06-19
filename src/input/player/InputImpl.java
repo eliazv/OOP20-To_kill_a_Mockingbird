@@ -18,36 +18,37 @@ public class InputImpl implements Input{
 	private GameController gameController;
 	private CollisionController collisionController;
 	
-	public InputImpl(GameControllerImpl gameController) {
+	public InputImpl(GameControllerImpl gameController, CollisionController cc) {
 		this.player = gameController.getPlayer();
 		this.gameController = gameController;
-		this.collisionController = gameController.getCollisionController();
+		this.collisionController = cc;
 	}
+	
 	@Override
 	public void keyInput(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: 
-			if (collisionController.checkDir(Directions.UP)) {
+			if (collisionController.checkDir(Directions.UP) && !gameController.getPause()) {
 				this.player.goUp();
 				gameController.setScore(gameController.getRealScore()+1);
 			}
 			break;
 			
 		case KeyEvent.VK_DOWN:
-			if (collisionController.checkDir(Directions.DOWN)) {
+			if (collisionController.checkDir(Directions.DOWN) && !gameController.getPause()) {
 				this.player.goDown();
 				gameController.setScore(gameController.getRealScore()-1);
 			}
 			break;
 			
 		case KeyEvent.VK_LEFT:
-			if (collisionController.checkDir(Directions.LEFT)) {
+			if (collisionController.checkDir(Directions.LEFT) && !gameController.getPause()) {
 				this.player.goLeft();
 			}
 			break;
 			
 		case KeyEvent.VK_RIGHT:
-			if (collisionController.checkDir(Directions.RIGHT)) {
+			if (collisionController.checkDir(Directions.RIGHT) && !gameController.getPause()) {
 				this.player.goRight();
 			}
 			break;

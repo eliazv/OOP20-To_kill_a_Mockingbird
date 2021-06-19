@@ -27,7 +27,7 @@ public class GameControllerImpl implements GameController {
 	
 	private PlayerMovement player = new PlayerMovementImpl("bird.png",400,600);
 	private CollisionController collisionController = new CollisionControllerImpl(this);
-	private Input input = new InputImpl(this); 
+	private Input input = new InputImpl(this, collisionController); 
 	private int score = 0;
 	private int realScore = 0;
 	private Boolean pause = false;
@@ -120,8 +120,30 @@ public class GameControllerImpl implements GameController {
 			this.moveMoney(coins);
 			((Box) this.player).move();
 			
+			collisionController.unBlockAll();
+			
+			cars.forEach( x -> collisionController.collideWithVehicles(x));
+			trains.forEach( x -> collisionController.collideWithVehicles(x));
+			
+			for (int i=0; i<coins.size(); i++) {
+				Coin x=coins.get(i);
+				if (collisionController.collideWithCoins(x)) { 
+					coins.remove(x); 
+					System.out.println("moneta raccolta");
+					//gameController.setScore(gameController.getRealScore()+2);
+				}
+			}
+			
+			allStrips.forEach(x ->{
+				x.forEach(z ->{
+					if (z.getName() == "Tree.png") {
+						collisionController.checkTrees(z);
+					}
+				});
+			});
+			
+			collisionController.checkBorders();
 		}
-
 	}
 
 	/**
@@ -167,18 +189,10 @@ public class GameControllerImpl implements GameController {
 		this.input.keyInput(e);	
 	}
 
-	/**
-	 * 
-	 * @return player
-	 */
 	public PlayerMovement getPlayer() {
 		return this.player;
 	}
 	
-	public CollisionController getCollisionController() {
-		return this.collisionController;
-	}
-		
 	public int getScore() {
 		return Math.max(this.score, this.realScore);
 	}
