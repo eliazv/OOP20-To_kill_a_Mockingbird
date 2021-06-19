@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import controllers.CollisionController;
 import controllers.GameControllerImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
@@ -36,23 +35,14 @@ public class GameViewImpl implements GameView, KeyListener {
 		this.panelGame = new panelGame();
 
 		this.frame = new JFrame();
-
 		this.frame.addKeyListener(this);
-
 		this.frame.getContentPane().add(panelGame);
-
 		this.frame.setTitle("Mockingbird");
-
 		this.frame.setSize(this.SIZE, this.SIZE);
-
 		this.frame.setLocationRelativeTo(null);
-
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		this.frame.setResizable(false);
-
 		this.frame.setVisible(true);
-
 	}
 
 	public class panelGame extends JPanel implements ActionListener {
@@ -74,7 +64,6 @@ public class GameViewImpl implements GameView, KeyListener {
 		private ArrayList<Vehicle> VehiclesOnRoad = new ArrayList<>();
 		private ArrayList<Vehicle> Trains = new ArrayList<>();
 		private Vehicle vehicleManager = new VehicleImpl();
-
 		private ArrayList<Coin> coins = new ArrayList<>();
 
 		private Timer timer;
@@ -167,7 +156,6 @@ public class GameViewImpl implements GameView, KeyListener {
 					if (coinSpawn == this.COIN_SPAWN_PROB) {
 						this.gameController.spawnCoin(this.allStrip, this.coins, i, rndYLoc.nextInt(this.BOXFORSTRIP));
 					}
-					
 				}
 			}
 		}

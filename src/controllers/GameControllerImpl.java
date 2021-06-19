@@ -25,12 +25,19 @@ public class GameControllerImpl implements GameController {
 	private static final int SPEED_MOLTIPLICATOR = 30;
 	private static final int ADJUST_ON_ROAD = 10;
 	
-	private PlayerMovement player = new PlayerMovementImpl("bird.png",400,600);
-	private CollisionController collisionController = new CollisionControllerImpl(this);
-	private Input input = new InputImpl(this, collisionController); 
 	private int score = 0;
 	private int realScore = 0;
 	private Boolean pause = false;
+	
+	private PlayerMovement player;
+	private CollisionController collisionController;
+	private Input input;
+	
+	public GameControllerImpl() {
+		player = new PlayerMovementImpl("bird.png",400,600);
+		collisionController = new CollisionControllerImpl(this);
+		input = new InputImpl(this, collisionController); 
+	}
 	
 	public Boolean getPause() {
 		return pause;
@@ -73,7 +80,6 @@ public class GameControllerImpl implements GameController {
 		}
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -83,18 +89,15 @@ public class GameControllerImpl implements GameController {
 		this.restartVehicle(vehicles, delay);
 	}
 
-	
-	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void scrollScren(ArrayList<ArrayList<Box>> allStrips) {
-		for (int y = 0; y < NSTRIP; y++) {
-			for (int x = 0; x < BOXFORSTRIP; x++) {
-				allStrips.get(y).get(x).setYDir(MAP_SCROLL);
-			}
-		}
+	public void scrollScreen(ArrayList<ArrayList<Box>> allStrips) {
+		allStrips.forEach(strip -> strip.forEach(box ->{
+			box.setYDir(MAP_SCROLL);
+			if (!box.getName().equals("coin.png")) box.move();
+		}));
 	}
 
 	
@@ -105,16 +108,15 @@ public class GameControllerImpl implements GameController {
 	 * @param coins contains all coins
 	 * @param trains contains all trains
 	 */
-	public void actionPerformed(ArrayList<ArrayList<Box>> allStrips, Vehicle vehicleManager, ArrayList<Vehicle> cars, ArrayList<Coin> coins,ArrayList<Vehicle> trains) {
+	public void actionPerformed(ArrayList<ArrayList<Box>> allStrips, Vehicle vehicleManager, ArrayList<Vehicle> cars, 
+			ArrayList<Coin> coins,ArrayList<Vehicle> trains) {
 		if(!pause) {
-			for (int i = 0; i < NSTRIP; i++) {
-				for (int x = 0; x < BOXFORSTRIP; x++) {
-					if (!allStrips.get(i).get(x).getImage().getFileName().equals("coin.png")) {
-						allStrips.get(i).get(x).move();
-					}
-				}
-			}
-			this.scrollScren(allStrips);
+			
+			/*allStrips.forEach(strip -> strip.forEach( box ->{
+				if (!box.getName().equals("coin.png")) box.move();
+			}));*/
+			
+			this.scrollScreen(allStrips);
 			this.startVehicle(vehicleManager, cars, 1500);
 			this.startVehicle(vehicleManager, trains, 5000);
 			this.moveMoney(coins);
@@ -122,25 +124,21 @@ public class GameControllerImpl implements GameController {
 			
 			collisionController.unBlockAll();
 			
-			cars.forEach( x -> collisionController.collideWithVehicles(x));
-			trains.forEach( x -> collisionController.collideWithVehicles(x));
+			cars.forEach(x -> collisionController.collideWithVehicles(x));
+			trains.forEach(x -> collisionController.collideWithVehicles(x));
 			
-			for (int i=0; i<coins.size(); i++) {
-				Coin x=coins.get(i);
+			for (int i = 0; i < coins.size(); i++) {
+				Coin x = coins.get(i);
 				if (collisionController.collideWithCoins(x)) { 
 					coins.remove(x); 
 					System.out.println("moneta raccolta");
-					//gameController.setScore(gameController.getRealScore()+2);
+					//TODO implement coin counter/score
 				}
 			}
 			
-			allStrips.forEach(x ->{
-				x.forEach(z ->{
-					if (z.getName() == "Tree.png") {
-						collisionController.checkTrees(z);
-					}
-				});
-			});
+			allStrips.forEach(strip -> strip.forEach(box ->{
+				if (box.getName().equals("Tree.png")) collisionController.checkTrees(box);
+			}));
 			
 			collisionController.checkBorders();
 		}
@@ -150,8 +148,7 @@ public class GameControllerImpl implements GameController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void checkOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains,
-			int i) {
+	public void checkOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i) {
 		this.carOnRoad(allStrips, cars, i);
 		this.trainOnRail(allStrips, trains, i);
 	}
@@ -161,8 +158,9 @@ public class GameControllerImpl implements GameController {
 	 */
 	@Override
 	public void carOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, int i) {
-		if (allStrips.get(i).get(0).getImage().getFileName().equals("Road.png")) {
-			cars.add(new VehicleImpl().setCar(allStrips.get(i).get(0).getYLoc() + ADJUST_ON_ROAD));
+		Box tile = allStrips.get(i).get(0);
+		if (tile.getName().equals("Road.png")) {
+			cars.add(new VehicleImpl().setCar(tile.getYLoc() + ADJUST_ON_ROAD));
 		}
 	}
 
@@ -171,17 +169,17 @@ public class GameControllerImpl implements GameController {
 	 */
 	@Override
 	public void trainOnRail(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> trains, int i) {
-		if (allStrips.get(i).get(0).getImage().getFileName().equals("Rail.png")) {
-			trains.add(new VehicleImpl().setTrain(allStrips.get(i).get(0).getYLoc() + ADJUST_ON_ROAD));
-
+		Box tile = allStrips.get(i).get(0);
+		if (tile.getName().equals("Rail.png")) {
+			trains.add(new VehicleImpl().setTrain(tile.getYLoc() + ADJUST_ON_ROAD));
 		}
 	}
 
 	@Override
 	public void spawnCoin(ArrayList<ArrayList<Box>> allStrips, ArrayList<Coin> coins, int i, int j) {
-		if (!allStrips.get(i).get(j).getImage().getFileName().equals("Tree.png")) {
-			coins.add(new CoinImpl().initializeCoin(allStrips.get(i).get(j).getXLoc(),
-					allStrips.get(i).get(j).getYLoc() ));
+		Box tile = allStrips.get(i).get(j);
+		if (!tile.getName().equals("Tree.png")) {
+			coins.add(new CoinImpl().initializeCoin(tile.getXLoc(), tile.getYLoc()));
 		}
 	}
 	
@@ -198,9 +196,7 @@ public class GameControllerImpl implements GameController {
 	}
 	
 	public void setScore(int score) {
-		if (score >= this.score) {
-			this.score = score;
-		}
+		if (score >= this.score) this.score = score;
 		this.realScore = score;
 	}
 	
