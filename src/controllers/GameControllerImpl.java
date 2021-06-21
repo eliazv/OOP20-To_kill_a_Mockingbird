@@ -112,10 +112,6 @@ public class GameControllerImpl implements GameController {
 			ArrayList<Coin> coins,ArrayList<Vehicle> trains) {
 		if(!pause) {
 			
-			/*allStrips.forEach(strip -> strip.forEach( box ->{
-				if (!box.getName().equals("coin.png")) box.move();
-			}));*/
-			
 			this.scrollScreen(allStrips);
 			this.startVehicle(vehicleManager, cars, 1500);
 			this.startVehicle(vehicleManager, trains, 5000);

@@ -54,8 +54,8 @@ public class EndGameViewImpl implements EndGameView {
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
-			ImageIcon restartImage = new ImageIcon (new ImageIcon("resources/restartButton.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
-			ImageIcon exitImage = new ImageIcon (new ImageIcon("resources/exitButton2.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
+			ImageIcon restartImage = new ImageIcon (new ImageIcon("resources/RestartButton.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
+			ImageIcon exitImage = new ImageIcon (new ImageIcon("resources/ExitButton2.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
 
 			rRestartButton = new Rectangle(MENU_WIDTH/2-80, 150, 150, 30);
 			rExitButton = new Rectangle(MENU_WIDTH/2-80, 200, 150, 30);
