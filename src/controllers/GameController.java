@@ -79,22 +79,39 @@ public interface GameController {
 	 */
 	void spawnCoin(ArrayList<ArrayList<Box>> allStrips, ArrayList<Coin> coins, int i, int j);
 
-	/*
-	 * return the score that should be displayed
+	/**
+	 * 
+	 * @return return the score that should be displayed
 	 */
 	int getScore();
 	
-	/*
-	 * return the score that should be used internally
+	/**
+	 * 
+	 * @return return the score that should be used internally
 	 */
 	int getRealScore();
 	
+	/**
+	 * 
+	 * @param score
+	 */
 	void setScore(int score);
 	
+	/**
+	 * 
+	 * @return
+	 */
 	PlayerMovement getPlayer();
 	
+	/**
+	 * 
+	 * @return
+	 */
 	Boolean getPause();
 
+	/**
+	 * 
+	 */
 	void setPause();
 
 
