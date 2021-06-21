@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.Map;
 import model.enemy.Vehicle;
 import model.map.Box;
 import model.score.Coin;

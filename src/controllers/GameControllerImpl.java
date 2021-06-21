@@ -12,6 +12,7 @@ import model.player.PlayerMovement;
 import model.player.PlayerMovementImpl;
 import model.score.Coin;
 import model.score.CoinImpl;
+import view.GameView;
 
 public class GameControllerImpl implements GameController {
 
@@ -32,11 +33,13 @@ public class GameControllerImpl implements GameController {
 	private PlayerMovement player;
 	private CollisionController collisionController;
 	private Input input;
+	private GameView gameView; 
 	
-	public GameControllerImpl() {
+	public GameControllerImpl(GameView gv) {
 		player = new PlayerMovementImpl("bird.png",400,600);
-		collisionController = new CollisionControllerImpl(this);
-		input = new InputImpl(this, collisionController); 
+		this.gameView = gv;
+		this.collisionController = new CollisionControllerImpl(this, gameView);
+		this.input = new InputImpl(this, collisionController); 
 	}
 	
 	public Boolean getPause() {
@@ -47,9 +50,6 @@ public class GameControllerImpl implements GameController {
 		this.pause = !this.pause;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void moveVehicle(ArrayList<Vehicle> vehicles) {
 		vehicles.forEach(v -> v.move());
@@ -60,10 +60,6 @@ public class GameControllerImpl implements GameController {
 		coins.forEach(v -> v.move());
 	}
 	
-	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void restartVehicle(ArrayList<Vehicle> vehicles, int delay) {
 
@@ -80,18 +76,12 @@ public class GameControllerImpl implements GameController {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void startVehicle(Vehicle vehicleManager, ArrayList<Vehicle> vehicles, int delay) {
 		this.moveVehicle(vehicles);
 		this.restartVehicle(vehicles, delay);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void scrollScreen(ArrayList<ArrayList<Box>> allStrips) {
 		allStrips.forEach(strip -> strip.forEach(box ->{
@@ -100,7 +90,6 @@ public class GameControllerImpl implements GameController {
 		}));
 	}
 
-	
 	/** main method for the map movement
 	 * @param allStrips contains all the strips that make up the map.
 	 * @param vehicleManager
@@ -140,18 +129,12 @@ public class GameControllerImpl implements GameController {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void checkOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i) {
 		this.carOnRoad(allStrips, cars, i);
 		this.trainOnRail(allStrips, trains, i);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void carOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, int i) {
 		Box tile = allStrips.get(i).get(0);
@@ -160,9 +143,6 @@ public class GameControllerImpl implements GameController {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void trainOnRail(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> trains, int i) {
 		Box tile = allStrips.get(i).get(0);

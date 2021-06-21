@@ -8,6 +8,7 @@ import model.enemy.Vehicle;
 import model.map.Box;
 import model.player.PlayerMovement;
 import model.score.Coin;
+import view.GameView;
 
 public class CollisionControllerImpl implements CollisionController {
 	
@@ -15,13 +16,14 @@ public class CollisionControllerImpl implements CollisionController {
 	private PlayerMovement player;
 	private Map<Directions, Boolean> enabledDir = new HashMap<>();
 	private EndGameController egs;
+	private GameView gameView;
 	
 	private int ERROR = 20;
 	
-	public CollisionControllerImpl(GameController gc) {
+	public CollisionControllerImpl(GameController gc, GameView gv) {
 		this.gameController = gc;
+		this.gameView = gv;
 		this.player = gameController.getPlayer();
-		this.egs=new EndGameControllerImpl();
 		this.unBlockAll();
 	}
 	
@@ -84,8 +86,10 @@ public class CollisionControllerImpl implements CollisionController {
 	}
 	
 	public void gameOver() {
+		this.egs=new EndGameControllerImpl();
 		this.gameController.setPause();
-		egs.setup();
+		this.egs.setup();
+		this.gameView.hide();
 	}
 
 }

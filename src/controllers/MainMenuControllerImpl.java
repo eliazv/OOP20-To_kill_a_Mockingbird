@@ -9,7 +9,7 @@ public class MainMenuControllerImpl implements MainMenuController {
 
 	private final MainMenuView view;
 	
-	GameViewImpl gameV ;
+	GameViewImpl gameV;
 
     public MainMenuControllerImpl() {
         this.view = new MainMenuViewImpl(this);

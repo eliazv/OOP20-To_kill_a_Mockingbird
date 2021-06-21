@@ -29,11 +29,12 @@ public class GameViewImpl implements GameView, KeyListener {
 	private final int SIZE = 800;
 	private final JFrame frame;
 	private panelGame panelGame;
+	
+	private GameView gv = this;
 
 	public GameViewImpl() {
 
 		this.panelGame = new panelGame();
-
 		this.frame = new JFrame();
 		this.frame.addKeyListener(this);
 		this.frame.getContentPane().add(panelGame);
@@ -73,7 +74,7 @@ public class GameViewImpl implements GameView, KeyListener {
 		
 		public panelGame() {
 			
-			this.gameController = new GameControllerImpl();
+			gameController = new GameControllerImpl(gv);
 
 			this.timer = new Timer(this.TIMER_DELAY, this);
 
@@ -116,7 +117,7 @@ public class GameViewImpl implements GameView, KeyListener {
 			this.Trains.forEach(v -> v.paint(g, this));
 			
 
-			this.gameController.getPlayer().paint(g, this);
+			gameController.getPlayer().paint(g, this);
 			lblCoinCounter.setText("Score: " + gameController.getScore());
 		}
 
@@ -135,7 +136,7 @@ public class GameViewImpl implements GameView, KeyListener {
 
 				else {
 					this.allStrip.add(this.striscia.getSpecificStrip("Grass.png", "Tree.png", i));
-					this.gameController.checkOnRoad(this.allStrip, this.VehiclesOnRoad, this.Trains, i);
+					gameController.checkOnRoad(this.allStrip, this.VehiclesOnRoad, this.Trains, i);
 				}
 			}
 		}
@@ -151,10 +152,10 @@ public class GameViewImpl implements GameView, KeyListener {
 					coinSpawn = rndYLoc.nextInt(this.COIN_SPAWN_PROB + 1);
 					
 					this.allStrip.set(i, this.striscia.getRndStrip(this.iriga));
-					this.gameController.checkOnRoad(this.allStrip, this.VehiclesOnRoad, this.Trains, i);
+					gameController.checkOnRoad(this.allStrip, this.VehiclesOnRoad, this.Trains, i);
 					
 					if (coinSpawn == this.COIN_SPAWN_PROB) {
-						this.gameController.spawnCoin(this.allStrip, this.coins, i, rndYLoc.nextInt(this.BOXFORSTRIP));
+						gameController.spawnCoin(this.allStrip, this.coins, i, rndYLoc.nextInt(this.BOXFORSTRIP));
 					}
 				}
 			}
@@ -165,12 +166,12 @@ public class GameViewImpl implements GameView, KeyListener {
 
 			this.repaint();
 			this.generateMap();
-			this.gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRoad, this.coins,
+			gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRoad, this.coins,
 					this.Trains);
 		}
 		
 		public GameControllerImpl getGameController() {
-			return this.gameController;
+			return gameController;
 		}
 	}
 
@@ -190,6 +191,10 @@ public class GameViewImpl implements GameView, KeyListener {
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void hide() {
+		this.frame.dispose();
 	}
 
 }
