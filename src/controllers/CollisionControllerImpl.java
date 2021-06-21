@@ -14,12 +14,14 @@ public class CollisionControllerImpl implements CollisionController {
 	private GameController gameController;
 	private PlayerMovement player;
 	private Map<Directions, Boolean> enabledDir = new HashMap<>();
+	private EndGameController egs;
 	
 	private int ERROR = 20;
 	
 	public CollisionControllerImpl(GameController gc) {
 		this.gameController = gc;
 		this.player = gameController.getPlayer();
+		this.egs=new EndGameControllerImpl();
 		this.unBlockAll();
 	}
 	
@@ -82,7 +84,9 @@ public class CollisionControllerImpl implements CollisionController {
 	}
 	
 	public void gameOver() {
-		System.exit(1);
+		this.gameController.setPause();
+		egs.setup();
+		
 		//TODO add game over screen
 	}
 

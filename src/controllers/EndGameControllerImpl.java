@@ -11,6 +11,7 @@ public class EndGameControllerImpl implements EndGameController {
 	
 	public EndGameControllerImpl() {
 		this.view = new EndGameViewImpl(this);
+		this.view.hide();
 	}
 	
 	@Override
