@@ -7,7 +7,7 @@ import controllers.GameController;
 import controllers.GameControllerImpl;
 import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
-import model.player.PlayerMovement;
+import model.player.*;
 
 import controllers.CollisionController.Directions;
 
@@ -29,27 +29,27 @@ public class InputImpl implements Input{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: 
 			if (collisionController.checkDir(Directions.UP) && !gameController.getPause()) {
-				this.player.goUp();
+				this.player.moveDirection(Directions.UP);
 				gameController.setScore(gameController.getRealScore()+1);
 			}
 			break;
 			
 		case KeyEvent.VK_DOWN:
 			if (collisionController.checkDir(Directions.DOWN) && !gameController.getPause()) {
-				this.player.goDown();
+				this.player.moveDirection(Directions.DOWN);;
 				gameController.setScore(gameController.getRealScore()-1);
 			}
 			break;
 			
 		case KeyEvent.VK_LEFT:
 			if (collisionController.checkDir(Directions.LEFT) && !gameController.getPause()) {
-				this.player.goLeft();
+				this.player.moveDirection(Directions.LEFT);;
 			}
 			break;
 			
 		case KeyEvent.VK_RIGHT:
 			if (collisionController.checkDir(Directions.RIGHT) && !gameController.getPause()) {
-				this.player.goRight();
+				this.player.moveDirection(Directions.RIGHT);;
 			}
 			break;
 			

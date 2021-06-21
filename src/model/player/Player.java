@@ -8,12 +8,12 @@ public interface Player extends Box{
 	 * 
 	 * @return the number of coins
 	 */
-	public int getCoins();
+	int getCoins();
 	
 	/**
 	 * set the new number of coins
 	 * @param newCoins
 	 */
-	public void setCoins(int newCoins);
+	void setCoins(int numberOfCoins);
 	
 }

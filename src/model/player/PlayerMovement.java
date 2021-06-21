@@ -1,23 +1,12 @@
 package model.player;
 
+import controllers.CollisionController.Directions;
+
 public interface PlayerMovement extends Player {
-	/**
-	 * move one box up
-	 */
-	void goUp();
 	
 	/**
-	 * move one box down
+	 * move character in any direction
+	 * @param direction
 	 */
-	void goDown();
-	
-	/**
-	 * move one box left
-	 */
-	void goLeft();
-	
-	/**
-	 * move one box right
-	 */
-	void goRight();
+	void moveDirection(Directions direction);
 }
