@@ -120,7 +120,7 @@ public class GameControllerImpl implements GameController {
 			this.startVehicle(vehicleManager, cars, 1500);
 			this.startVehicle(vehicleManager, trains, 5000);
 			this.moveMoney(coins);
-			((Box) this.player).move();
+			this.player.move();
 			
 			collisionController.unBlockAll();
 			

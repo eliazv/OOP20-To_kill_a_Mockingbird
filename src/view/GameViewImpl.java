@@ -116,7 +116,7 @@ public class GameViewImpl implements GameView, KeyListener {
 			this.Trains.forEach(v -> v.paint(g, this));
 			
 
-			((Box) this.gameController.getPlayer()).paint(g, this);
+			this.gameController.getPlayer().paint(g, this);
 			lblCoinCounter.setText("Score: " + gameController.getScore());
 		}
 

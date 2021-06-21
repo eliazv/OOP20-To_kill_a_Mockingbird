@@ -32,14 +32,5 @@ public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 		
 		this.setXLoc(this.getXLoc()+100);
 		
-	}
-	
-	public double getX() {
-		return this.getXLoc();
-	}
-	
-	public double getY() {
-		return this.getYLoc();
-	}
-	
+	}	
 }

@@ -1,6 +1,8 @@
 package model.player;
 
-public interface Player {
+import model.map.Box;
+
+public interface Player extends Box{
 	
 	/**
 	 * 

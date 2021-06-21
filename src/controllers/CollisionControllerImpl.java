@@ -26,8 +26,8 @@ public class CollisionControllerImpl implements CollisionController {
 	}
 	
 	public void collideWithVehicles(Vehicle v) {
-		Rectangle borderVehicle = new Rectangle((int) v.getXLoc()-ERROR, (int)v.getYLoc()-ERROR, v.getWidth()-ERROR, 1);
-		Rectangle borderPlayer = new Rectangle((int) player.getX()-ERROR, (int) player.getY()-ERROR, 100-ERROR, 100-ERROR);
+		Rectangle borderVehicle = new Rectangle((int) v.getXLoc()-ERROR, (int) v.getYLoc()-ERROR, v.getWidth()-ERROR, 1);
+		Rectangle borderPlayer = new Rectangle((int) player.getXLoc()-ERROR, (int) player.getYLoc()-ERROR, 100-ERROR, 100-ERROR);
 		if (borderPlayer.intersects(borderVehicle)) {
 			System.out.println("Sei stato colpito da " + v.getName());
 			this.gameOver();
@@ -36,32 +36,32 @@ public class CollisionControllerImpl implements CollisionController {
 	
 	public boolean collideWithCoins(Coin c) {
 		Rectangle borderCoin = new Rectangle((int) c.getXLoc(), (int)c.getYLoc(), c.getWidth(), 50);
-		Rectangle borderPlayer = new Rectangle((int) player.getX(), (int) player.getY(), 100, 100);
+		Rectangle borderPlayer = new Rectangle((int) player.getXLoc(), (int) player.getYLoc(), 100, 100);
 		if (borderPlayer.intersects(borderCoin)) return true;
 		return false;
 	}
 	
 	public void checkTrees(Box tree) {
 		Rectangle borderTree = new Rectangle((int) tree.getXLoc(), (int) tree.getYLoc(), 60, 60);
-		if (borderTree.intersects(new Rectangle((int) player.getX()+100-ERROR, (int) player.getY()-ERROR, 100-ERROR, 100-ERROR))) {
+		if (borderTree.intersects(new Rectangle((int) player.getXLoc()+100-ERROR, (int) player.getYLoc()-ERROR, 100-ERROR, 100-ERROR))) {
 			enabledDir.put(Directions.RIGHT,false);
 		}
-		if (borderTree.intersects(new Rectangle((int) player.getX()-100-ERROR, (int) player.getY()-ERROR, 100-ERROR, 100-ERROR))) {
+		if (borderTree.intersects(new Rectangle((int) player.getXLoc()-100-ERROR, (int) player.getYLoc()-ERROR, 100-ERROR, 100-ERROR))) {
 			enabledDir.put(Directions.LEFT,false);
 		}
-		if (borderTree.intersects(new Rectangle((int) player.getX()-ERROR, (int) player.getY()+100-ERROR, 100-ERROR, 100-ERROR))) {
+		if (borderTree.intersects(new Rectangle((int) player.getXLoc()-ERROR, (int) player.getYLoc()+100-ERROR, 100-ERROR, 100-ERROR))) {
 			enabledDir.put(Directions.DOWN,false);
 		}
-		if (borderTree.intersects(new Rectangle((int) player.getX()-ERROR, (int) player.getY()-100-ERROR, 100-ERROR, 100-ERROR))) {
+		if (borderTree.intersects(new Rectangle((int) player.getXLoc()-ERROR, (int) player.getYLoc()-100-ERROR, 100-ERROR, 100-ERROR))) {
 			enabledDir.put(Directions.UP,false);
 		}
 	}
 	
 	public void checkBorders() {
-		if (player.getX() == 700.0) enabledDir.put(Directions.RIGHT, false);
-		if (player.getX() == 0.0) enabledDir.put(Directions.LEFT, false);
-		if (player.getY() <= 40.0) enabledDir.put(Directions.UP, false);
-		if (player.getY() >= 750.0) this.gameOver();
+		if (player.getXLoc() == 700.0) enabledDir.put(Directions.RIGHT, false);
+		if (player.getXLoc() == 0.0) enabledDir.put(Directions.LEFT, false);
+		if (player.getYLoc() <= 40.0) enabledDir.put(Directions.UP, false);
+		if (player.getYLoc() >= 750.0) this.gameOver();
 	}
 
 	public void block(Directions dir) {
@@ -86,8 +86,6 @@ public class CollisionControllerImpl implements CollisionController {
 	public void gameOver() {
 		this.gameController.setPause();
 		egs.setup();
-		
-		//TODO add game over screen
 	}
 
 }
