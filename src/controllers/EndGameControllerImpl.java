@@ -3,7 +3,6 @@ package controllers;
 import view.EndGameView;
 import view.EndGameViewImpl;
 import view.GameView;
-import view.GameViewImpl;
 
 public class EndGameControllerImpl implements EndGameController {
 
@@ -23,7 +22,7 @@ public class EndGameControllerImpl implements EndGameController {
 	@Override
 	public void restart() {
 		this.view.hide();
-        gameV = new GameViewImpl();
+        gameV = new GameView();
 	}
 	
 	@Override
