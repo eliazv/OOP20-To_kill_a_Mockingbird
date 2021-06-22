@@ -76,8 +76,9 @@ public interface Box extends Model{
 	void setXDir(double xdir);
 	
 	
-	/*
+	/**
 	 * method that return the width of the image
+	 * @return
 	 */
 	public int getWidth();
 

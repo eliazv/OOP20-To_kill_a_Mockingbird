@@ -163,7 +163,6 @@ public class StripImpl implements Strip{
 
 	@Override
 	public void move() {
-		
 	}
 
 }

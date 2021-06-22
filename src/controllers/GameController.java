@@ -113,6 +113,24 @@ public interface GameController extends Controller {
 	 * 
 	 */
 	void setPause();
+	
+	/**
+	 * 
+	 * @param allStrip
+	 * @param VehiclesOnRoad
+	 * @param Trains
+	 */
+	void SetInitialPosition(ArrayList<ArrayList<Box>> allStrip,  ArrayList<Vehicle> VehiclesOnRoad, ArrayList<Vehicle> Trains);
+	
+	/**
+	 * 
+	 * @param allStrip
+	 * @param VehiclesOnRoad
+	 * @param Trains
+	 * @param coins
+	 */
+	void generateMap(ArrayList<ArrayList<Box>> allStrip, ArrayList<Vehicle> VehiclesOnRoad, ArrayList<Vehicle> Trains, ArrayList<Coin> coins);
 
+	
 
 }

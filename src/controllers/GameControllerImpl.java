@@ -2,12 +2,15 @@ package controllers;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 import input.player.Input;
 import input.player.InputImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.Box;
+import model.map.Strip;
+import model.map.StripImpl;
 import model.player.PlayerMovement;
 import model.player.PlayerMovementImpl;
 import model.score.Coin;
@@ -21,11 +24,16 @@ public class GameControllerImpl implements GameController {
 	public static final int NSTRIP = 11;
 	public static final int BOXFORSTRIP = 8;
 	public static final int MAP_SCROLL = 1;
-	private static final int HIGHER_LIMIT = 900;
-	private static final int INFERIOR_LIMIT = -100;
+	private static final int MAP_HIGHER_LIMIT = 800;
+	private static final int VEHICLE_HIGHER_LIMIT = 900;
+	private static final int VEHICLE_INFERIOR_LIMIT = -100;
 	private static final int SPEED_MOLTIPLICATOR = 30;
 	private static final int ADJUST_ON_ROAD = 10;
-	
+	private static final int iriga = 11;
+	private static final int SPAWN_CHARACTER_LINE = 2;
+	private static final int COIN_SPAWN_PROB = 2;
+
+	private Strip striscia = new StripImpl();	
 	private int score = 0;
 	private int realScore = 0;
 	private Boolean pause = false;
@@ -69,15 +77,13 @@ public class GameControllerImpl implements GameController {
 	public void restartVehicle(ArrayList<Vehicle> vehicles, int delay) {
 
 		for (Vehicle s : vehicles) {
-			if (s.getXLoc() > (HIGHER_LIMIT + s.getImage().getImgWidth()) && s.getXDir() > 0) {
-				s.setXLoc(-(s.getXDir()) * SPEED_MOLTIPLICATOR - delay / 2);// togli il /2
+			if (s.getXLoc() > (VEHICLE_HIGHER_LIMIT + s.getImage().getImgWidth()) && s.getXDir() > 0) {
+				s.setXLoc(-(s.getXDir()) * SPEED_MOLTIPLICATOR - delay / 2);
 			}
 
-			else if (s.getXLoc() < (INFERIOR_LIMIT - s.getImage().getImgWidth()) && s.getXDir() < 0) {
+			else if (s.getXLoc() < (VEHICLE_INFERIOR_LIMIT - s.getImage().getImgWidth()) && s.getXDir() < 0) {
 				s.setXLoc((s.getXDir()) * SPEED_MOLTIPLICATOR + delay);
 			}
-
-			// TODO rimuovi se y >800 rimuovere veicoli fuori dalla mappa in basso
 		}
 	}
 
@@ -164,26 +170,66 @@ public class GameControllerImpl implements GameController {
 		}
 	}
 	
+	@Override
+	public void SetInitialPosition(ArrayList<ArrayList<Box>> allStrip,  ArrayList<Vehicle> VehiclesOnRoad, ArrayList<Vehicle> Trains) {
+		for (int i = 0; i < NSTRIP; i++) {
+			/**
+			 * Set the line where the character will be spawn and the next one without any
+			 * obstacles
+			 */
+			if (i == SPAWN_CHARACTER_LINE || i == SPAWN_CHARACTER_LINE + 1) {
+				allStrip.add(this.striscia.getSpecificStrip("Grass.png", i));
+			}
+
+			else {
+				allStrip.add(this.striscia.getSpecificStrip("Grass.png", "Tree.png", i));
+				this.checkOnRoad(allStrip, VehiclesOnRoad, Trains, i);
+			}
+		}
+	}
+
+	@Override
+	public void generateMap(ArrayList<ArrayList<Box>> allStrip, ArrayList<Vehicle> VehiclesOnRoad, ArrayList<Vehicle> Trains, ArrayList<Coin> coins) {
+		Random rndYLoc = new Random();
+		for (int i = 0; i < NSTRIP; i++) {
+			if (allStrip.get(i).get(0).getYLoc() > MAP_HIGHER_LIMIT) {
+				
+				allStrip.set(i, this.striscia.getRndStrip(GameControllerImpl.iriga));
+				this.checkOnRoad(allStrip, VehiclesOnRoad, Trains, i);
+				
+				if (rndYLoc.nextInt(COIN_SPAWN_PROB + 1) == COIN_SPAWN_PROB) {
+					this.spawnCoin(allStrip, coins, i, rndYLoc.nextInt(BOXFORSTRIP));
+				}
+			}
+		}
+	}
+	
+	
 	public void keyCatch(KeyEvent e) {
 		this.input.keyInput(e);	
 	}
 
+	@Override
 	public PlayerMovement getPlayer() {
 		return this.player;
 	}
 	
+	@Override
 	public int getScore() {
 		return Math.max(this.score, this.realScore);
 	}
 	
+	@Override
 	public void setScore(int score) {
 		if (score >= this.score) this.score = score;
 		this.realScore = score;
 	}
 	
+	@Override
 	public int getRealScore() {
 		return this.realScore;
 	}
 
+	
 
 }
