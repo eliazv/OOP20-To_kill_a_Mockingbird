@@ -1,6 +1,5 @@
 package model.player;
 
-import controllers.CollisionController.Directions;
 
 public interface PlayerMovement extends Player {
 	

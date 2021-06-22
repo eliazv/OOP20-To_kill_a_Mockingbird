@@ -1,6 +1,8 @@
 package controllers;
 
 import java.awt.Rectangle;
+import model.player.Directions;
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,6 +1,5 @@
 package model.player;
 
-import controllers.CollisionController.Directions;
 
 public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 

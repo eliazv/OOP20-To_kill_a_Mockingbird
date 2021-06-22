@@ -25,6 +25,11 @@ public class PlayerImpl extends BoxImpl implements Player{
 		
 		this.collectedCoins=numberOfCoins;
 
+	}
+
+	@Override
+	public void increaseCoins() {
+		this.collectedCoins++;
 		
 	}
 

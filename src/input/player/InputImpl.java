@@ -9,8 +9,6 @@ import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
 import model.player.*;
 
-import controllers.CollisionController.Directions;
-
 public class InputImpl implements Input{
 	
 	private PlayerMovement player;

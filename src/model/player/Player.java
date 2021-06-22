@@ -16,4 +16,9 @@ public interface Player extends Box{
 	 */
 	void setCoins(int numberOfCoins);
 	
+	/**
+	 * increase the number of coins
+	 */
+	void increaseCoins();
+	
 }
