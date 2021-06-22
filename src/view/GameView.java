@@ -24,15 +24,16 @@ import model.map.Strip;
 import model.map.StripImpl;
 import model.score.Coin;
 
-public class GameView implements  KeyListener {
+public class GameView  implements  KeyListener, View {
 
 	private final int SIZE = 800;
-	private final JFrame frame;
+	private JFrame frame;
 	private panelGame panelGame;
 	
 	private GameView gv = this;
-
-	public GameView() {
+	
+	@Override
+	public void setup() {
 
 		this.panelGame = new panelGame();
 		this.frame = new JFrame();
@@ -44,6 +45,7 @@ public class GameView implements  KeyListener {
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
 		this.frame.setVisible(true);
+		
 	}
 
 	public class panelGame extends JPanel implements ActionListener {
@@ -75,6 +77,8 @@ public class GameView implements  KeyListener {
 		public panelGame() {
 			
 			gameController = new GameControllerImpl(gv);
+			
+			gameController.setup();
 
 			this.timer = new Timer(this.TIMER_DELAY, this);
 
@@ -198,8 +202,10 @@ public class GameView implements  KeyListener {
 	/**
 	 * 
 	 */
-	public void hide() {
+	@Override
+	public void exit() {
 		this.frame.dispose();
 	}
+
 
 }

@@ -19,13 +19,13 @@ public class InGameMenuControllerImpl implements InGameMenuController {
 
 	@Override
 	public void resume() {
-		this.view.hide();
+		this.view.exit();
 	}
 
 	@Override
 	public void setup() {
 		this.view = new InGameMenuViewImpl(this);
-		this.view.show();
+		this.view.setup();
 	}
 
 }

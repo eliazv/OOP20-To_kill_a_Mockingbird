@@ -161,4 +161,9 @@ public class StripImpl implements Strip{
 		return (int) this.boxesStrip.stream().filter(o -> o.getImage().getFileName() == "Tree.png").count();
 	}
 
+	@Override
+	public void move() {
+		
+	}
+
 }

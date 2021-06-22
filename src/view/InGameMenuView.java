@@ -1,8 +1,5 @@
 package view;
 
-public interface InGameMenuView {
+public interface InGameMenuView extends View{
 
-	void show();
-
-	void hide();
 }

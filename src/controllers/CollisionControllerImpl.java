@@ -91,7 +91,7 @@ public class CollisionControllerImpl implements CollisionController {
 		this.egs=new EndGameControllerImpl();
 		this.gameController.setPause();
 		this.egs.setup();
-		this.gameView.hide();
+		this.gameView.exit();
 	}
 
 }

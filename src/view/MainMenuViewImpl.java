@@ -32,7 +32,6 @@ public class MainMenuViewImpl implements MainMenuView {
 		this.frame.setTitle("To Kill a Mockingbird");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
-		//this.frame.setLocation();
 		this.frame.setLocation(350,10);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menuPanel);
@@ -70,13 +69,6 @@ public class MainMenuViewImpl implements MainMenuView {
 			controlsButton.setBounds(rControlsButton);
 			lblBackground.add(controlsButton);
 			
-			
-			//this.add(imgLabel);
-			//this.add(startButton);
-			//this.add(controlsButton);
-
-			//startButton.setBounds(250, 175, 300, 200);
-			//controlsButton.setBounds(300, 390, 200, 100);
 
 			startButton.addActionListener(e -> {
 				controller.newGame();
@@ -94,13 +86,14 @@ public class MainMenuViewImpl implements MainMenuView {
 
 	}
 
-
-	public void hide() {
+	@Override
+	public void exit() {
 		this.frame.dispose();
 	}
 
-	public void show() {
-		//this.frame.pack();
+	@Override
+	public void setup() {
+
 		this.frame.setVisible(true);
 	}
 }

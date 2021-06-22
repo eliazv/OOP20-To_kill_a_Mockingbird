@@ -1,10 +1,5 @@
 package view;
 
-public interface MainMenuView 
-{
-
-	void hide();
-
-	void show();
+public interface MainMenuView extends View{
 
 }

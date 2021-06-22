@@ -1,8 +1,6 @@
 package controllers;
 
-public interface InGameMenuController {
-	
-	void setup();
+public interface InGameMenuController extends Controller{
 
 	void exit();
 	

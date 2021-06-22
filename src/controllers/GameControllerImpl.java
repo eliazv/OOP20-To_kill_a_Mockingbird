@@ -36,10 +36,15 @@ public class GameControllerImpl implements GameController {
 	private GameView gameView; 
 	
 	public GameControllerImpl(GameView gv) {
-		player = new PlayerMovementImpl("bird.png",400,600);
 		this.gameView = gv;
+	}
+	
+	@Override
+	public void setup() {
+		player = new PlayerMovementImpl("bird.png",400,600);
 		this.collisionController = new CollisionControllerImpl(this, gameView);
 		this.input = new InputImpl(this, collisionController); 
+		
 	}
 	
 	public Boolean getPause() {
@@ -179,4 +184,6 @@ public class GameControllerImpl implements GameController {
 	public int getRealScore() {
 		return this.realScore;
 	}
+
+
 }

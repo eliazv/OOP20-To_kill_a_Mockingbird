@@ -17,13 +17,14 @@ public class MainMenuControllerImpl implements MainMenuController {
    
     @Override
     public void setup() {
-        this.view.show();
+        this.view.setup();
     }
 
     @Override
     public void newGame() {
-        this.view.hide();
+        this.view.exit();
         gameV = new GameView();
+        gameV.setup();
     }
     
 

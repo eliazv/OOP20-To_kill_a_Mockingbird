@@ -2,7 +2,9 @@ package model.map;
 
 import java.util.ArrayList;
 
-public interface Strip {
+import model.Model;
+
+public interface Strip extends Model{
 	
 	/**
      * Generate an array of 8 box with a random environment among the three total.

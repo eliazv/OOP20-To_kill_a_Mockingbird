@@ -83,12 +83,13 @@ public class EndGameViewImpl implements EndGameView {
 	}
 	
 	@Override
-	public void show() {
+	public void setup() {
 		this.frame.setVisible(true);
 	}
 
 	@Override
-	public void hide() {
+	public void exit() {
 		this.frame.dispose();
 	}
+
 }

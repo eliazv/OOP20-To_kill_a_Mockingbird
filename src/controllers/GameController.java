@@ -7,7 +7,7 @@ import model.map.Box;
 import model.player.PlayerMovement;
 import model.score.Coin;
 
-public interface GameController {
+public interface GameController extends Controller {
 
 	
     /**

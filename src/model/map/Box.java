@@ -4,9 +4,10 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import model.Model;
 import view.ImageLoader;
 
-public interface Box {
+public interface Box extends Model{
 
 	/**
      * set an image (via filename) for the specified box
@@ -74,10 +75,6 @@ public interface Box {
      */
 	void setXDir(double xdir);
 	
-	/**
-     * method that allows the boxes to move, adding the direction to their position 
-     */
-	void move();
 	
 	/*
 	 * method that return the width of the image

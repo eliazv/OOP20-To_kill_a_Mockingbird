@@ -11,7 +11,7 @@ public class EndGameControllerImpl implements EndGameController {
 	
 	public EndGameControllerImpl() {
 		this.view = new EndGameViewImpl(this);
-		this.view.hide();
+		this.view.exit();
 	}
 	
 	@Override
@@ -21,13 +21,14 @@ public class EndGameControllerImpl implements EndGameController {
 
 	@Override
 	public void restart() {
-		this.view.hide();
+		this.view.exit();
         gameV = new GameView();
+        gameV.setup();
 	}
 	
 	@Override
 	public void setup() {
-		this.view.show();
+		this.view.setup();
 	}
 
 }
