@@ -58,7 +58,7 @@ public class KeyInputImpl implements KeyInput{
 			break;
 		}
 		
-		if (KeyEvent.VK_ESCAPE == e.getKeyCode()) {
+		if (KeyEvent.VK_ESCAPE == event.getKeyCode()) {
 
 			gameController.setPause();
 			if (gameController.getPause()) {
