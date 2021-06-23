@@ -5,8 +5,8 @@ import java.awt.event.KeyEvent;
 public interface KeyInput {
 	
 	/**
-	 * menagement KeyEvents
+	 * administration KeyEvents
 	 * @param e
 	 */
-	void command(KeyEvent e);
+	void command(KeyEvent event);
 }

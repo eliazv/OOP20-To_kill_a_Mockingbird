@@ -26,8 +26,8 @@ public class KeyInputImpl implements KeyInput{
      * {@inheritDoc}
      */
 	@Override
-	public void command(KeyEvent e) {
-		switch (e.getKeyCode()) {
+	public void command(KeyEvent event) {
+		switch (event.getKeyCode()) {
 		case KeyEvent.VK_UP: 
 			if (collisionController.checkDir(Directions.UP) && !gameController.getPause()) {
 				this.player.moveDirection(Directions.UP);

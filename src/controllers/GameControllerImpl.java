@@ -60,7 +60,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     public void setup() {
-        player = new PlayerMovementImpl("bird.png", 400, 600);
+        this.player = new PlayerMovementImpl("bird.png", 400, 600);
         this.collisionController = new CollisionControllerImpl(this, gameView);
         this.input = new KeyInputImpl(this, collisionController); 
     }
