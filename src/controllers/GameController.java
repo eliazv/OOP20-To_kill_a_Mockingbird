@@ -51,7 +51,7 @@ public interface GameController extends Controller {
 	 * @param trains contains all trains on the map.
 	 * @param i is the line you want to check on.
 	 */
-	void checkOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i);
+	void spawnVehicle(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i);
 
 	/**
 	 * Set cars on the road.

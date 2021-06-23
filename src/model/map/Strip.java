@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import model.Model;
 
+/**
+ * An interface for create the map.
+ * 
+ * Is an extension of Model
+ */
 public interface Strip extends Model{
 	
 	/**

@@ -7,9 +7,14 @@ import model.map.BoxImpl;
 
 /**
  * A implementation of the Interface Vehicle.
+ * 
+ * It contains methods for create different type of vehicles with different speeds and different images.
  */
 public class VehicleImpl extends BoxImpl implements Vehicle {
 
+	/**
+	 * constant
+	 */
 	private static final int MAP_SCROLL = 1;
 	private static final int HIGHER_LIMIT = 900;
 	private static final int INFERIOR_LIMIT = -100;

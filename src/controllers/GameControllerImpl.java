@@ -187,7 +187,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void checkOnRoad(final ArrayList<ArrayList<Box>> allStrips, final ArrayList<Vehicle> cars, 
+    public void spawnVehicle(final ArrayList<ArrayList<Box>> allStrips, final ArrayList<Vehicle> cars, 
             final ArrayList<Vehicle> trains, final int i) {
         this.carOnRoad(allStrips, cars, i);
         this.trainOnRail(allStrips, trains, i);
@@ -240,7 +240,7 @@ public class GameControllerImpl implements GameController {
                 allStrip.add(this.striscia.getSpecificStrip("Grass.png", i));
             } else {
                 allStrip.add(this.striscia.getSpecificStrip("Grass.png", "Tree.png", i));
-                this.checkOnRoad(allStrip, vehiclesonroad, trains, i);
+                this.spawnVehicle(allStrip, vehiclesonroad, trains, i);
             }
         }
     }
@@ -254,7 +254,7 @@ public class GameControllerImpl implements GameController {
         for (int i = 0; i < NSTRIP_TO_GENERATE; i++) {
             if (allStrip.get(i).get(0).getYLoc() > MAP_HIGHER_LIMIT) {
                 allStrip.set(i, this.striscia.getRndStrip(GameControllerImpl.NSTRIP_TO_GENERATE));
-                this.checkOnRoad(allStrip, vehiclesonroad, trains, i);
+                this.spawnVehicle(allStrip, vehiclesonroad, trains, i);
 
                 if (rndYLoc.nextInt(COIN_SPAWN_PROB + 1) == COIN_SPAWN_PROB) {
                     this.spawnCoin(allStrip, coins, i, rndYLoc.nextInt(BOXFORSTRIP));

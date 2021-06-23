@@ -3,11 +3,23 @@ package model.map;
 import java.util.ArrayList;
 import java.util.Random;
 
-
+/**
+ * The implementation of Strip
+ * 
+ * It contains random and non-random methods for generating different types of strip.
+ */
 public class StripImpl implements Strip{
 
+	/**
+	 * constants for generating the strip.
+	 */
 	private static final int STRIP_LENGTH = 8;
+	private static final int PROBABILITY_OF_STRIPENV = 3;
+	private static final int PROBABILITY_OF_SPAWN_OBSTACLE = 4;
 	
+	/**
+	 * local variables.
+	 */
 	ArrayList<Box> boxesStrip;
 	Random gen = new Random();
 	StripEnvironment env;
@@ -19,7 +31,7 @@ public class StripImpl implements Strip{
 	public ArrayList<Box> getRndStrip(int y) {
 
 		this.boxesStrip = new ArrayList<>();
-		int rnd_env = gen.nextInt(3); 
+		int rnd_env = gen.nextInt(PROBABILITY_OF_STRIPENV); 
 
 		switch (rnd_env) {
 			
@@ -65,7 +77,7 @@ public class StripImpl implements Strip{
 	public Box getBoxObstacles(String background, String specialBlock, int x, int y) {
 
 		Box oneBlock;
-		int rand = gen.nextInt(4);
+		int rand = gen.nextInt(PROBABILITY_OF_SPAWN_OBSTACLE);
 		
 		if (rand == 3) { 	
 			 oneBlock = new BoxImpl(specialBlock, x, y);
