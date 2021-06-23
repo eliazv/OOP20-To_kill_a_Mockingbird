@@ -9,21 +9,24 @@ import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
 import model.player.*;
 
-public class InputImpl implements Input{
+public class KeyInputImpl implements KeyInput{
 	
 	private PlayerMovement player;
 	private InGameMenuController controllerMenu = new InGameMenuControllerImpl();
 	private GameController gameController;
 	private CollisionController collisionController;
 	
-	public InputImpl(GameControllerImpl gameController, CollisionController cc) {
+	public KeyInputImpl(GameControllerImpl gameController, CollisionController cc) {
 		this.player = gameController.getPlayer();
 		this.gameController = gameController;
 		this.collisionController = cc;
 	}
 	
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void keyInput(KeyEvent e) {
+	public void command(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP: 
 			if (collisionController.checkDir(Directions.UP) && !gameController.getPause()) {

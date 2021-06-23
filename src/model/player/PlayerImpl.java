@@ -4,22 +4,29 @@ import model.map.BoxImpl;
 
 public class PlayerImpl extends BoxImpl implements Player{
 	
+	private static final int MAP_SCROLL = 1;
 	private int collectedCoins;
 	
 	public PlayerImpl(String filename, double xPos, double yPos) {
 		setImage(filename);
 		this.setXLoc(xPos);
 		this.setYLoc(yPos);
-		this.setYDir(1);
+		this.setYDir(MAP_SCROLL);
 		this.collectedCoins=0;
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
 	public int getCoins() {
 		
 		return this.collectedCoins;
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
 	public void setCoins(int numberOfCoins) {
 		
@@ -27,6 +34,9 @@ public class PlayerImpl extends BoxImpl implements Player{
 
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
 	public void increaseCoins() {
 		this.collectedCoins++;

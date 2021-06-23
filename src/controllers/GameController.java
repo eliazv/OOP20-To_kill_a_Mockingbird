@@ -99,7 +99,7 @@ public interface GameController extends Controller {
 	
 	/**
 	 * 
-	 * @return
+	 * @return PlayerMovement
 	 */
 	PlayerMovement getPlayer();
 	

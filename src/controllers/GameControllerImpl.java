@@ -4,8 +4,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import input.player.Input;
-import input.player.InputImpl;
+import input.player.KeyInput;
+import input.player.KeyInputImpl;
 import model.enemy.Vehicle;
 import model.enemy.VehicleImpl;
 import model.map.Box;
@@ -50,7 +50,7 @@ public class GameControllerImpl implements GameController {
 	private Boolean pause = false;
 	private PlayerMovement player;
 	private CollisionController collisionController;
-	private Input input;
+	private KeyInput input;
 	private GameView gameView; 
     public GameControllerImpl(final GameView gv) {
         this.gameView = gv;
@@ -62,7 +62,7 @@ public class GameControllerImpl implements GameController {
     public void setup() {
         player = new PlayerMovementImpl("bird.png", 400, 600);
         this.collisionController = new CollisionControllerImpl(this, gameView);
-        this.input = new InputImpl(this, collisionController); 
+        this.input = new KeyInputImpl(this, collisionController); 
     }
 
     /**
@@ -257,7 +257,7 @@ public class GameControllerImpl implements GameController {
      * @param e
      */
     public void keyCatch(final KeyEvent e) {
-        this.input.keyInput(e);
+        this.input.command(e);
     }
 
     /**
