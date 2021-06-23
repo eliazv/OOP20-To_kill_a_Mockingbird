@@ -12,7 +12,7 @@ public interface Player extends Box{
 	
 	/**
 	 * set the new number of coins
-	 * @param newCoins
+	 * @param numberOfCoins
 	 */
 	void setCoins(int numberOfCoins);
 	

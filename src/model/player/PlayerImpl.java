@@ -4,7 +4,7 @@ import model.map.BoxImpl;
 
 public class PlayerImpl extends BoxImpl implements Player{
 	
-	private static final int MAP_SCROLL = 1;
+	private static final double MAP_SCROLL = 1;
 	private int collectedCoins;
 	
 	public PlayerImpl(String filename, double xPos, double yPos) {
@@ -31,7 +31,6 @@ public class PlayerImpl extends BoxImpl implements Player{
 	public void setCoins(int numberOfCoins) {
 		
 		this.collectedCoins=numberOfCoins;
-
 	}
 
     /**
@@ -39,8 +38,8 @@ public class PlayerImpl extends BoxImpl implements Player{
      */
 	@Override
 	public void increaseCoins() {
-		this.collectedCoins++;
 		
+		this.collectedCoins++;
 	}
 
 }

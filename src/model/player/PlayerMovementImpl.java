@@ -2,7 +2,10 @@ package model.player;
 
 
 public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
-
+	
+	private final double X_MOVE = 100;
+	private final double Y_MOVE = 100.2;
+	
 	public PlayerMovementImpl(String filename, double xPos, double yPos) {
 		
 		super(filename, xPos, yPos);
@@ -13,7 +16,7 @@ public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 	 */
 	private void goUp() {
 		
-		this.setYLoc(this.getYLoc()-100.2);
+		this.setYLoc(this.getYLoc() - Y_MOVE);
 	}
 
 	/**
@@ -21,7 +24,7 @@ public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 	 */
 	private void goDown() {
 		
-		this.setYLoc(this.getYLoc()+100.2);
+		this.setYLoc(this.getYLoc() + Y_MOVE);
 	}
 	
 	/**
@@ -29,7 +32,7 @@ public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 	 */
 	private void goLeft() {
 		
-		this.setXLoc(this.getXLoc()-100);
+		this.setXLoc(this.getXLoc() - X_MOVE);
 	}
 	
 
@@ -38,7 +41,7 @@ public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 	 */
 	private void goRight() {
 		
-		this.setXLoc(this.getXLoc()+100);
+		this.setXLoc(this.getXLoc() + X_MOVE);
 	}
 
 
