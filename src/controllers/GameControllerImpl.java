@@ -20,28 +20,38 @@ import view.GameView;
 public class GameControllerImpl implements GameController {
 
 
-    private static final int NSTRIP = 11;
-    private static final int BOXFORSTRIP = 8;
-    private static final int MAP_SCROLL = 1;
-    private static final int MAP_HIGHER_LIMIT = 800;
-    private static final int VEHICLE_HIGHER_LIMIT = 900;
-    private static final int VEHICLE_INFERIOR_LIMIT = -100;
-    private static final int SPEED_MOLTIPLICATOR = 30;
-    private static final int ADJUST_ON_ROAD = 10;
-    private static final int IRIGA = 11;
-    private static final int SPAWN_CHARACTER_LINE = 2;
-    private static final int COIN_SPAWN_PROB = 2;
+	
+	/**
+	 * constants for generating the map.
+	 */
+	private static final int NSTRIP_TO_GENERATE = 11;
+	private static final int BOXFORSTRIP = 8;
+	private static final int MAP_SCROLL = 1;
+	private static final int MAP_HIGHER_LIMIT = 800;
+	
+	/**
+	 * constants for vehicles.
+	 */
+	private static final int VEHICLE_HIGHER_LIMIT = 900;
+	private static final int VEHICLE_INFERIOR_LIMIT = -100;
+	private static final int SPEED_MOLTIPLICATOR = 30;
+	private static final int ADJUST_ON_ROAD = 10;
+	
+	private static final int SPAWN_CHARACTER_LINE = 2;
+	private static final int COIN_SPAWN_PROB = 2;
+	
 
-    private final Strip striscia = new StripImpl();
-    private int score;
-    private int realScore;
-    private Boolean pause = false;
-
-    private PlayerMovement player;
-    private CollisionController collisionController;
-    private Input input;
-    private final GameView gameView; 
-
+	/**
+	 * local variables.
+	 */
+	private Strip striscia = new StripImpl();	
+	private int score = 0;
+	private int realScore = 0;
+	private Boolean pause = false;
+	private PlayerMovement player;
+	private CollisionController collisionController;
+	private Input input;
+	private GameView gameView; 
     public GameControllerImpl(final GameView gv) {
         this.gameView = gv;
     }
@@ -210,7 +220,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void SetInitialPosition(final ArrayList<ArrayList<Box>> allStrip,  final ArrayList<Vehicle> vehiclesonroad, final ArrayList<Vehicle> trains) {
-        for (int i = 0; i < NSTRIP; i++) {
+        for (int i = 0; i < NSTRIP_TO_GENERATE; i++) {
             /**
              * Set the line where the character will be spawn and the next one without any
              * obstacles
@@ -230,9 +240,9 @@ public class GameControllerImpl implements GameController {
     @Override
     public void generateMap(final ArrayList<ArrayList<Box>> allStrip, final ArrayList<Vehicle> vehiclesonroad, final ArrayList<Vehicle> trains, final ArrayList<Coin> coins) {
         final Random rndYLoc = new Random();
-        for (int i = 0; i < NSTRIP; i++) {
+        for (int i = 0; i < NSTRIP_TO_GENERATE; i++) {
             if (allStrip.get(i).get(0).getYLoc() > MAP_HIGHER_LIMIT) {
-                allStrip.set(i, this.striscia.getRndStrip(GameControllerImpl.IRIGA));
+                allStrip.set(i, this.striscia.getRndStrip(GameControllerImpl.NSTRIP_TO_GENERATE));
                 this.checkOnRoad(allStrip, vehiclesonroad, trains, i);
 
                 if (rndYLoc.nextInt(COIN_SPAWN_PROB + 1) == COIN_SPAWN_PROB) {

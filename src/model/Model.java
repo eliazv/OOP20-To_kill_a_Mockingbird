@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * An interface that represent a generic Model.
+ */
 public interface Model {
 
 	/**

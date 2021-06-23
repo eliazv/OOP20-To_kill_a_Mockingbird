@@ -20,12 +20,22 @@ import model.enemy.VehicleImpl;
 import model.map.Box;
 import model.score.Coin;
 
+/**
+ * 
+ *
+ */
 public class GameView  implements  KeyListener, View {
 
-	private final int SIZE = 800;
+	/**
+	 * constants.
+	 */
+	private static final int SIZE = 800;
+	
+	/**
+	 * 	local variables.
+	 */
 	private JFrame frame;
 	private panelGame panelGame;
-	
 	private GameView gv = this;
 	
 	@Override
@@ -36,7 +46,7 @@ public class GameView  implements  KeyListener, View {
 		this.frame.addKeyListener(this);
 		this.frame.getContentPane().add(panelGame);
 		this.frame.setTitle("Mockingbird");
-		this.frame.setSize(this.SIZE, this.SIZE);
+		this.frame.setSize(SIZE, SIZE);
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);

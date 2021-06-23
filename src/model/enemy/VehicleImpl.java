@@ -4,9 +4,12 @@ import java.util.Random;
 
 import model.map.BoxImpl;
 
+
+/**
+ * A implementation of the Interface Vehicle.
+ */
 public class VehicleImpl extends BoxImpl implements Vehicle {
 
-	//local variables
 	private static final int MAP_SCROLL = 1;
 	private static final int HIGHER_LIMIT = 900;
 	private static final int INFERIOR_LIMIT = -100;
@@ -16,6 +19,9 @@ public class VehicleImpl extends BoxImpl implements Vehicle {
 	private static final int RANDOM_SPEED_ADDITION = 10;
 	private static final int RANDOM_XLOCSPAWN_ADDITION = 1500;
 
+	/**
+	 * 	local variables.
+	 */
 	private Random rand = new Random();
 	private int vehicleSpeed = 0;
 	private int vehicleXLocSpawn;

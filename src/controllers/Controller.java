@@ -1,5 +1,8 @@
 package controllers;
 
+/**
+ * An interface that represent a generic Controller.
+ */
 public interface Controller {
 
     /**
