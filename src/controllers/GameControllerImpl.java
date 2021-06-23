@@ -2,6 +2,7 @@ package controllers;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 
 import input.player.KeyInput;
@@ -19,39 +20,37 @@ import view.GameView;
 
 public class GameControllerImpl implements GameController {
 
+    /**
+     * constants for generating the map.
+     */
+    private static final int NSTRIP_TO_GENERATE = 11;
+    private static final int BOXFORSTRIP = 8;
+    private static final int MAP_SCROLL = 1;
+    private static final int MAP_HIGHER_LIMIT = 800;
 
-	
-	/**
-	 * constants for generating the map.
-	 */
-	private static final int NSTRIP_TO_GENERATE = 11;
-	private static final int BOXFORSTRIP = 8;
-	private static final int MAP_SCROLL = 1;
-	private static final int MAP_HIGHER_LIMIT = 800;
-	
-	/**
-	 * constants for vehicles.
-	 */
-	private static final int VEHICLE_HIGHER_LIMIT = 900;
-	private static final int VEHICLE_INFERIOR_LIMIT = -100;
-	private static final int SPEED_MOLTIPLICATOR = 30;
-	private static final int ADJUST_ON_ROAD = 10;
-	
-	private static final int SPAWN_CHARACTER_LINE = 2;
-	private static final int COIN_SPAWN_PROB = 2;
-	
+    /**
+     * constants for vehicles.
+     */
+    private static final int VEHICLE_HIGHER_LIMIT = 900;
+    private static final int VEHICLE_INFERIOR_LIMIT = -100;
+    private static final int SPEED_MOLTIPLICATOR = 30;
+    private static final int ADJUST_ON_ROAD = 10;
+    private static final int SPAWN_CHARACTER_LINE = 2;
+    private static final int COIN_SPAWN_PROB = 2;
 
-	/**
-	 * local variables.
-	 */
-	private Strip striscia = new StripImpl();	
-	private int score = 0;
-	private int realScore = 0;
-	private Boolean pause = false;
-	private PlayerMovement player;
-	private CollisionController collisionController;
-	private KeyInput input;
-	private GameView gameView; 
+
+    /**
+     * local variables.
+     */
+    private final Strip striscia = new StripImpl();
+    private int score;
+    private int realScore;
+    private Boolean pause = false;
+    private PlayerMovement player;
+    private CollisionController collisionController;
+    private KeyInput input;
+    private final GameView gameView;
+
     public GameControllerImpl(final GameView gv) {
         this.gameView = gv;
     }
@@ -61,7 +60,7 @@ public class GameControllerImpl implements GameController {
      */
     public void setup() {
         this.player = new PlayerMovementImpl("bird.png", 400, 600);
-        this.collisionController = new CollisionControllerImpl(this, gameView);
+        this.collisionController = new CollisionControllerImpl(this.player);
         this.input = new KeyInputImpl(this, collisionController); 
     }
 
@@ -152,15 +151,24 @@ public class GameControllerImpl implements GameController {
 
             collisionController.unBlockAll();
 
-            cars.forEach(x -> collisionController.collideWithVehicles(x));
-            trains.forEach(x -> collisionController.collideWithVehicles(x));
+            final Optional<Vehicle> car = cars.stream().filter(x -> collisionController.collideWithVehicles(x)).findAny();
 
-            for (int i = 0; i < coins.size(); i++) {
-                final Coin x = coins.get(i);
-                if (collisionController.collideWithCoins(x)) { 
-                    coins.remove(x); 
-                    System.out.println("moneta raccolta");
-                }
+            if (car.orElse(null) != null) {
+                this.gameOver();
+            }
+            //cars.forEach(x -> collisionController.collideWithVehicles(x));
+            //trains.forEach(x -> collisionController.collideWithVehicles(x));
+
+            final Optional<Vehicle> train = trains.stream().filter(x -> collisionController.collideWithVehicles(x)).findAny();
+
+            if (train.orElse(null) != null) {
+                this.gameOver();
+            }
+
+            final Optional<Coin> coin = coins.stream().filter(x -> collisionController.collideWithCoins(x)).findAny();
+
+            if (coin.orElse(null) != null) {
+                coins.remove(coin.get()); 
             }
 
             allStrips.forEach(strip -> strip.forEach(box -> {
@@ -168,7 +176,10 @@ public class GameControllerImpl implements GameController {
                     collisionController.checkTrees(box);
                 }
             }));
-            collisionController.checkBorders();
+
+            if (collisionController.checkBorders()) {
+                this.gameOver();
+            }
         }
     }
 
@@ -293,5 +304,15 @@ public class GameControllerImpl implements GameController {
     @Override
     public int getRealScore() {
         return this.realScore;
+    }
+
+    /**
+     * Throws Game Over screen.
+     */
+    public void gameOver() {
+        final EndGameController endGame = new EndGameControllerImpl();
+        this.setPause();
+        endGame.setup();
+        this.gameView.exit();
     }
 }

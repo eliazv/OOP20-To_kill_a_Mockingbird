@@ -10,35 +10,37 @@ import model.enemy.Vehicle;
 import model.map.Box;
 import model.player.PlayerMovement;
 import model.score.Coin;
-import view.GameView;
 
 public class CollisionControllerImpl implements CollisionController {
 
-    private final GameController gameController;
     private final PlayerMovement player;
     private final Map<Directions, Boolean> enabledDir = new HashMap<>();
-    private final GameView gameView;
 
-    private int ERROR = 20;
+    private static final int ERROR = 20;
+    private static final double MAXHEIGH = 40.0;
+    private static final double LEFTBORDERLIMIT = 0.0;
+    private static final double RIGHTBORDERLIMIT = 700.0;
+    private static final double MINHEIGH = 750.0;
 
-    public CollisionControllerImpl(final GameController gc, final GameView gv) {
-        this.gameController = gc;
-        this.gameView = gv;
-        this.player = gameController.getPlayer();
-        //this.unBlockAll();
+    public CollisionControllerImpl(final PlayerMovement player) {
+        this.player = player;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void collideWithVehicles(final Vehicle v) {
+    public void setup() {
+        this.unBlockAll();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean collideWithVehicles(final Vehicle v) {
         final Rectangle borderVehicle = new Rectangle((int) v.getXLoc() - ERROR, (int) v.getYLoc() - ERROR, v.getWidth() - ERROR, 1);
         final Rectangle borderPlayer = new Rectangle((int) player.getXLoc() - ERROR, (int) player.getYLoc() - ERROR, 100 - ERROR, 100 - ERROR);
-        if (borderPlayer.intersects(borderVehicle)) {
-            //System.out.println("Sei stato colpito da " + v.getName());
-            this.gameOver();
-        }
+        return borderPlayer.intersects(borderVehicle);
     }
 
     /**
@@ -79,19 +81,17 @@ public class CollisionControllerImpl implements CollisionController {
      * {@inheritDoc}
      */
     @Override
-    public void checkBorders() {
-        if (player.getXLoc() == 700.0) {
+    public boolean checkBorders() {
+        if (player.getXLoc() == RIGHTBORDERLIMIT) {
             enabledDir.put(Directions.RIGHT, false);
         }
-        if (player.getXLoc() == 0.0) {
+        if (player.getXLoc() == LEFTBORDERLIMIT) {
             enabledDir.put(Directions.LEFT, false);
         }
-        if (player.getYLoc() <= 40.0) {
+        if (player.getYLoc() <= MAXHEIGH) {
             enabledDir.put(Directions.UP, false);
         }
-        if (player.getYLoc() >= 750.0) {
-            this.gameOver();
-        }
+        return player.getYLoc() >= MINHEIGH;
     }
 
     /**
@@ -120,15 +120,4 @@ public class CollisionControllerImpl implements CollisionController {
     public boolean checkDir(final Directions dir) {
         return enabledDir.get(dir);
     }
-
-    /**
-     * Throws Game Over screen.
-     */
-    public void gameOver() {
-        final EndGameController endGame = new EndGameControllerImpl();
-        this.gameController.setPause();
-        endGame.setup();
-        this.gameView.exit();
-    }
-
 }
