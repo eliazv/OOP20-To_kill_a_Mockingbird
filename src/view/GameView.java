@@ -26,150 +26,158 @@ import model.score.Coin;
  */
 public class GameView  implements  KeyListener, View {
 
-	/**
-	 * constants.
-	 */
-	private static final int SIZE = 800;
-	
-	/**
-	 * 	local variables.
-	 */
-	private JFrame frame;
-	private panelGame panelGame;
-	private GameView gv = this;
-	
-	@Override
-	public void setup() {
+    /**
+     * constants.
+     */
+    private static final int SIZE = 800;
 
-		this.panelGame = new panelGame();
-		this.frame = new JFrame();
-		this.frame.addKeyListener(this);
-		this.frame.getContentPane().add(panelGame);
-		this.frame.setTitle("Mockingbird");
-		this.frame.setSize(SIZE, SIZE);
-		this.frame.setLocationRelativeTo(null);
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.frame.setResizable(false);
-		this.frame.setVisible(true);
-		
-	}
+    /**
+     * local variables.
+     */
+    private JFrame frame;
+    private panelGame panelGame;
+    private final GameView gv = this;
 
-	public class panelGame extends JPanel implements ActionListener {
+    /**
+     * Create the whole frame.
+     */
+    @Override
+    public void setup() {
 
-		private static final long serialVersionUID = 1L;
-		private static final int NSTRIP = 11;
-		private static final int BOXFORSTRIP = 8;
-		private final int TIMER_DELAY = 10;
+        this.panelGame = new panelGame();
+        this.frame = new JFrame();
+        this.frame.addKeyListener(this);
+        this.frame.getContentPane().add(panelGame);
+        this.frame.setTitle("Mockingbird");
+        this.frame.setSize(SIZE, SIZE);
+        this.frame.setLocationRelativeTo(null);
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setResizable(false);
+        this.frame.setVisible(true);
+
+    }
+
+    public class panelGame extends JPanel implements ActionListener {
+
+        private static final long serialVersionUID = 1L;
+        private static final int NSTRIP = 11;
+        private static final int BOXFORSTRIP = 8;
+        private static final int TIMER_DELAY = 10;
 
 
-	    private final Rectangle rlblCoinCounter;
-	    private final JLabel lblCoinCounter = new JLabel();
-		private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
-		
+        private final Rectangle rlblCoinCounter;
+        private final JLabel lblCoinCounter = new JLabel();
+        private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
 
-		private ArrayList<Vehicle> VehiclesOnRoad = new ArrayList<>();
-		private ArrayList<Vehicle> Trains = new ArrayList<>();
-		private Vehicle vehicleManager = new VehicleImpl();
-		private ArrayList<Coin> coins = new ArrayList<>();
+        private ArrayList<Vehicle> vehiclesOnRoad = new ArrayList<>();
+        private ArrayList<Vehicle> trains = new ArrayList<>();
+        private Vehicle vehicleManager = new VehicleImpl();
+        private ArrayList<Coin> coins = new ArrayList<>();
 
-		private Timer timer;
+        private Timer timer;
 
-		private GameControllerImpl gameController;
-		
-		
-		public panelGame() {
-			
-			gameController = new GameControllerImpl(gv);
-			
-			gameController.setup();
+        private GameControllerImpl gameController;
 
-			this.timer = new Timer(this.TIMER_DELAY, this);
+        public panelGame() {
 
-			gameController.SetInitialPosition(allStrip, VehiclesOnRoad, Trains);
+            gameController = new GameControllerImpl(gv);
 
-			this.repaint();
+            gameController.setup();
 
-			this.add(lblCoinCounter);
-			lblCoinCounter.setText("Score: 0");
-		    lblCoinCounter.setForeground(Color.white);
-		    lblCoinCounter.setFont(new Font("Helvetica", Font.ITALIC, 40));
-		    rlblCoinCounter = new Rectangle(10,10,30,30);
-		    lblCoinCounter.setBounds(rlblCoinCounter);
-		    
-			this.timer.start();
-		}
+            this.timer = new Timer(this.TIMER_DELAY, this);
 
-		/**
-		 * 
-		 */
-		public void paintComponent(Graphics g) {
+            gameController.SetInitialPosition(allStrip, vehiclesOnRoad, trains);
 
-			/**
-			 * Erases the previous screen.
-			 */
-			super.paintComponent(g);
+            this.repaint();
 
-			/**
-			 * Draws strips.
-			 */
-			for (int i = 0; i < NSTRIP; i++) {
-				for (int x = 0; x < BOXFORSTRIP; x++) {
-					this.allStrip.get(i).get(x).paint(g, this);
-				}
-			}
+            this.add(lblCoinCounter);
+            lblCoinCounter.setText("Score: 0");
+            lblCoinCounter.setForeground(Color.white);
+            lblCoinCounter.setFont(new Font("Helvetica", Font.ITALIC, 40));
+            rlblCoinCounter = new Rectangle(10, 10, 30, 30);
+            lblCoinCounter.setBounds(rlblCoinCounter);
 
-			/**
-			 * Draws vehicles.
-			 */
-			this.coins.forEach(v -> v.paint(g, this));
-			this.VehiclesOnRoad.forEach(v -> v.paint(g, this));
-			this.Trains.forEach(v -> v.paint(g, this));
-			
+            this.timer.start();
+        }
 
-			gameController.getPlayer().paint(g, this);
-			lblCoinCounter.setText("Score: " + gameController.getScore());
-		}
+        /**
+         * @param g 
+         * 
+         */
+        public void paintComponent(final Graphics g) {
 
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
+            /**
+             * Erases the previous screen.
+             */
+            super.paintComponent(g);
 
-			this.repaint();
-			gameController.generateMap(allStrip, VehiclesOnRoad,Trains,coins);
-			gameController.actionPerformed(this.allStrip, this.vehicleManager, this.VehiclesOnRoad, this.coins,
-					this.Trains);
-		}
-		
-		public GameControllerImpl getGameController() {
-			return gameController;
-		}
-	}
+            /**
+             * Draws strips.
+             */
+            for (int i = 0; i < NSTRIP; i++) {
+                for (int x = 0; x < BOXFORSTRIP; x++) {
+                    this.allStrip.get(i).get(x).paint(g, this);
 
-	
-	@Override
-	public void keyPressed(KeyEvent e) {
-		panelGame.getGameController().keyCatch(e);
-	}
+                }
+            }
 
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+            /**
+             * Draws vehicles.
+             */
+            this.coins.forEach(v -> v.paint(g, this));
+            this.vehiclesOnRoad.forEach(v -> v.paint(g, this));
+            this.trains.forEach(v -> v.paint(g, this));
 
-	}
+            gameController.getPlayer().paint(g, this);
+            lblCoinCounter.setText("Score: " + gameController.getScore());
+        }
 
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+        /**
+         * @param e
+         * Repaints all elements and calls gameController to perform a game cycle
+         */
+        @Override
+        public void actionPerformed(final ActionEvent e) {
 
-	}
-	
-	/**
-	 * 
-	 */
-	@Override
-	public void exit() {
-		this.frame.dispose();
-	}
+            this.repaint();
+            gameController.generateMap(allStrip, vehiclesOnRoad, trains, coins);
+            gameController.actionPerformed(this.allStrip, this.vehicleManager, this.vehiclesOnRoad, this.coins,
+                    this.trains);
+        }
 
+        /**
+         * @return gameController
+         */
+        private GameControllerImpl getGameController() {
+            return gameController;
+        }
+    }
+
+    /**
+     * @param e
+     * 
+     */
+    @Override
+    public void keyPressed(final KeyEvent e) {
+        panelGame.getGameController().keyCatch(e);
+    }
+
+    @Override
+    public void keyReleased(final KeyEvent arg0) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void keyTyped(final KeyEvent arg0) {
+        // TODO Auto-generated method stub
+    }
+
+    /**
+     * 
+     */
+    @Override
+    public void exit() {
+        this.frame.dispose();
+    }
 
 }
