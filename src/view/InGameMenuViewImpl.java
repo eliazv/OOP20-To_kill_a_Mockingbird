@@ -35,7 +35,7 @@ public class InGameMenuViewImpl implements InGameMenuView {
 		this.frame.setTitle("To Kill a Mockingbird");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
-		this.frame.setLocation(450,100);
+		this.frame.setLocation(450, 100);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menu);
 		this.frame.setBackground(BACKGROUND_COLOR);
@@ -51,22 +51,22 @@ public class InGameMenuViewImpl implements InGameMenuView {
 
 		public InGameMenuPanel() {
 			
-			rLblBackground = new Rectangle(0,0,400,500);
+			rLblBackground = new Rectangle(0, 0, 400, 500);
 			ImageIcon background = new ImageIcon(new ImageIcon("resources/InGameMenu.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
 
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
-			ImageIcon resumeImage = new ImageIcon (new ImageIcon("resources/resumeButton.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
-			ImageIcon controlsImage = new ImageIcon (new ImageIcon("resources/controlsButton2.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
-			ImageIcon exitImage = new ImageIcon (new ImageIcon("resources/exitButton.png").getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+			ImageIcon resumeImage = new ImageIcon(new ImageIcon("resources/resumeButton.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
+			ImageIcon controlsImage = new ImageIcon(new ImageIcon("resources/controlsButton2.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
+			ImageIcon exitImage = new ImageIcon(new ImageIcon("resources/exitButton.png").getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 
-			rResumeButton = new Rectangle(MENU_WIDTH/2-80, 250, 150, 30);
-			rControlsButton = new Rectangle(MENU_WIDTH/2-80, 300, 150, 30);
-			rExitButton = new Rectangle(MENU_WIDTH-80, 400, 30, 30);
+			rResumeButton = new Rectangle(MENU_WIDTH / 2 - 80, 250, 150, 30);
+			rControlsButton = new Rectangle(MENU_WIDTH / 2 - 80, 300, 150, 30);
+			rExitButton = new Rectangle(MENU_WIDTH - 80, 400, 30, 30);
 
 			//Create button component, set image, remove borders.
-			resumeButton = new JButton ("", resumeImage);
+			resumeButton = new JButton("", resumeImage);
 			resumeButton.setBounds(rResumeButton);
 			resumeButton.setBorder(BorderFactory.createEmptyBorder());
 			
@@ -91,12 +91,12 @@ public class InGameMenuViewImpl implements InGameMenuView {
 			});
 			
 			controlsButton.addActionListener(e -> {
-				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the character." +
-						"\nEsc:  Pause / Resume the game." +
-						"\n");
+				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the character." 
+			+ "\nEsc:  Pause / Resume the game.");
 			});
 		}
 	}
+	
 	@Override
 	public void setup() {
 		this.frame.setVisible(true);

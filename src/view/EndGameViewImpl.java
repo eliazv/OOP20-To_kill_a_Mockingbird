@@ -32,7 +32,7 @@ public class EndGameViewImpl implements EndGameView {
 		this.frame.setTitle("To Kill a Mockingbird");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
-		this.frame.setLocation(450,100);
+		this.frame.setLocation(450, 100);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menu);
 		this.frame.setBackground(BACKGROUND_COLOR);
@@ -48,20 +48,20 @@ public class EndGameViewImpl implements EndGameView {
 
 		public EndGamePanel() {
 			
-			rLblBackground = new Rectangle(0,0,400,500);
+			rLblBackground = new Rectangle(0, 0, 400, 500);
 			ImageIcon background = new ImageIcon(new ImageIcon("resources/GameOver.png").getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH));
 
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
-			ImageIcon restartImage = new ImageIcon (new ImageIcon("resources/RestartButton.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
-			ImageIcon exitImage = new ImageIcon (new ImageIcon("resources/ExitButton2.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
+			ImageIcon restartImage = new ImageIcon(new ImageIcon("resources/RestartButton.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
+			ImageIcon exitImage = new ImageIcon(new ImageIcon("resources/ExitButton2.png").getImage().getScaledInstance(150, 30, Image.SCALE_SMOOTH));
 
-			rRestartButton = new Rectangle(MENU_WIDTH/2-80, 150, 150, 30);
-			rExitButton = new Rectangle(MENU_WIDTH/2-80, 200, 150, 30);
+			rRestartButton = new Rectangle(MENU_WIDTH / 2 - 80, 150, 150, 30);
+			rExitButton = new Rectangle(MENU_WIDTH / 2 - 80, 200, 150, 30);
 
 			//Create button component, set image, remove borders.
-			restartButton = new JButton ("", restartImage);
+			restartButton = new JButton("", restartImage);
 			restartButton.setBounds(rRestartButton);
 			restartButton.setBorder(BorderFactory.createEmptyBorder());
 			

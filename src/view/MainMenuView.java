@@ -1,5 +1,5 @@
 package view;
 
-public interface MainMenuView extends View{
+public interface MainMenuView extends View {
 
 }

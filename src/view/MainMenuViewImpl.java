@@ -32,7 +32,7 @@ public class MainMenuViewImpl implements MainMenuView {
 		this.frame.setTitle("To Kill a Mockingbird");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
-		this.frame.setLocation(350,10);
+		this.frame.setLocation(350, 10);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menuPanel);
 		this.frame.setBackground(BACKGROUND_COLOR);
@@ -47,19 +47,19 @@ public class MainMenuViewImpl implements MainMenuView {
 
 		public panelMenu() {
 
-			rLblBackground = new Rectangle(0,0,600,700);
+			rLblBackground = new Rectangle(0, 0, 600, 700);
 			ImageIcon background = new ImageIcon(new ImageIcon("resources/MainMenu.png").getImage().getScaledInstance(600, 700, Image.SCALE_SMOOTH));
 
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
-			ImageIcon startImage = new ImageIcon (new ImageIcon("resources/startButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			ImageIcon controlsImage = new ImageIcon (new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			rStartButton = new Rectangle(MENU_WIDTH/2-80, 450, 150, 70);
-			rControlsButton = new Rectangle(MENU_WIDTH/2-80, 550, 150, 70);
+			ImageIcon startImage = new ImageIcon(new ImageIcon("resources/startButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
+			ImageIcon controlsImage = new ImageIcon(new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
+			rStartButton = new Rectangle(MENU_WIDTH / 2 - 80, 450, 150, 70);
+			rControlsButton = new Rectangle(MENU_WIDTH / 2 - 80, 550, 150, 70);
 			
 			//Create button component, set image, remove borders.
-			startButton = new JButton ("", startImage);
+			startButton = new JButton("", startImage);
 			startButton.setBounds(rStartButton);
 			startButton.setBorder(BorderFactory.createEmptyBorder());
 			lblBackground.add(startButton);
@@ -75,11 +75,8 @@ public class MainMenuViewImpl implements MainMenuView {
 			});
 
 			controlsButton.addActionListener(e -> {
-				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the frog." +
-						"\nCtrl:  Activates 3 seconds of invincibility once per game." +
-						"\n         (Makes frog pass through any object)" +
-						"\nShift:  Pause / Resume the game." +
-						"\nEnter:  Start game / Restart game while paused.");
+				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the character."
+			+ "\nEsc:  Pause / Resume the game.");
 			});
 
 		}

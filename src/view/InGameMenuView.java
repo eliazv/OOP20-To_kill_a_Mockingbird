@@ -1,5 +1,5 @@
 package view;
 
-public interface InGameMenuView extends View{
+public interface InGameMenuView extends View {
 
 }
