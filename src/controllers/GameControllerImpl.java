@@ -37,6 +37,8 @@ public class GameControllerImpl implements GameController {
     private static final int ADJUST_ON_ROAD = 10;
     private static final int SPAWN_CHARACTER_LINE = 2;
     private static final int COIN_SPAWN_PROB = 2;
+    private static final int CAR_DELAY = 1500;
+    private static final int TRAIN_DELAY = 5000;
 
 
     /**
@@ -144,8 +146,8 @@ public class GameControllerImpl implements GameController {
              final ArrayList<Coin> coins, final ArrayList<Vehicle> trains) {
         if (!pause) {
             this.scrollScreen(allStrips);
-            this.startVehicle(vehicleManager, cars, 1500);
-            this.startVehicle(vehicleManager, trains, 5000);
+            this.startVehicle(vehicleManager, cars, CAR_DELAY);
+            this.startVehicle(vehicleManager, trains, TRAIN_DELAY);
             this.moveMoney(coins);
             this.player.move();
 

@@ -60,23 +60,27 @@ public class GameView  implements  KeyListener, View {
     public class panelGame extends JPanel implements ActionListener {
 
         private static final long serialVersionUID = 1L;
-        private static final int NSTRIP = 11;
+        
+        /**
+         * constants.
+         */
+        private static final int NSTRIP_TO_GENERATE = 11;
         private static final int BOXFORSTRIP = 8;
         private static final int TIMER_DELAY = 10;
 
-
+        /**
+         * local variables.
+         */
         private final Rectangle rlblCoinCounter;
         private final JLabel lblCoinCounter = new JLabel();
         private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
-
         private ArrayList<Vehicle> vehiclesOnRoad = new ArrayList<>();
         private ArrayList<Vehicle> trains = new ArrayList<>();
         private Vehicle vehicleManager = new VehicleImpl();
         private ArrayList<Coin> coins = new ArrayList<>();
-
         private Timer timer;
-
         private GameControllerImpl gameController;
+        
 
         public panelGame() {
 
@@ -84,7 +88,7 @@ public class GameView  implements  KeyListener, View {
 
             gameController.setup();
 
-            this.timer = new Timer(this.TIMER_DELAY, this);
+            this.timer = new Timer(TIMER_DELAY, this);
 
             gameController.SetInitialPosition(allStrip, vehiclesOnRoad, trains);
 
@@ -114,7 +118,7 @@ public class GameView  implements  KeyListener, View {
             /**
              * Draws strips.
              */
-            for (int i = 0; i < NSTRIP; i++) {
+            for (int i = 0; i < NSTRIP_TO_GENERATE; i++) {
                 for (int x = 0; x < BOXFORSTRIP; x++) {
                     this.allStrip.get(i).get(x).paint(g, this);
 

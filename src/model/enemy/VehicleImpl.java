@@ -28,7 +28,7 @@ public class VehicleImpl extends BoxImpl implements Vehicle {
 	 * 	local variables.
 	 */
 	private Random rand = new Random();
-	private int vehicleSpeed = 0;
+	private int vehicleSpeed;
 	private int vehicleXLocSpawn;
 	private VehicleType type; 
 
