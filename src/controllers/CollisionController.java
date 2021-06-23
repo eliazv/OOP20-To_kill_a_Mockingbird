@@ -9,21 +9,21 @@ public interface CollisionController extends Controller {
 
     /**
      * method that checks the collision with the vehicle v.
-     * @param v
+     * @param v : vehicle
      * @return true if colliding, false otherwise.
      */
     boolean collideWithVehicles(Vehicle v);
 
     /**
      * method that checks the collision with coins.
-     * @param c
+     * @param c : coin
      * @return true if colliding, false if not.
      */
     boolean collideWithCoins(Coin c);
 
     /**
      * check if the player is too close to trees and blocks input to prevent overlapping.
-     * @param tree
+     * @param tree : a box containing a tree
      */
     void checkTrees(Box tree);
 
@@ -35,7 +35,7 @@ public interface CollisionController extends Controller {
 
     /**
      * blocks a certain direction.
-     * @param dir the direction i want to block.
+     * @param dir : the direction i want to block.
      */
     void block(Directions dir);
 
@@ -46,7 +46,7 @@ public interface CollisionController extends Controller {
 
     /**
      * check if the player can move in a certain direction.
-     * @param dir the direction i want to check.
+     * @param dir : the direction i want to check.
      * @return true if the direction is blocked, false otherwise.
      */
     boolean checkDir(Directions dir);
