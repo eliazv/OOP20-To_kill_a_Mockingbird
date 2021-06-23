@@ -6,47 +6,42 @@ import model.score.Coin;
 import model.player.Directions;
 
 public interface CollisionController {
-	
-	/**
-	 * method that checks the collision with the vehicle v.
-	 * @return true if colliding, false if not.
-	 */
-	public void collideWithVehicles(Vehicle v) ;
+
+    /**
+     * method that checks the collision with the vehicle v.
+     */
+    void collideWithVehicles(Vehicle v) ;
 	
 	/**
 	 * method that checks the collision with coins.
 	 * @return true if colliding, false if not.
 	 */
-	public boolean collideWithCoins(Coin c);
+    boolean collideWithCoins(Coin c);
 
-	/**
-	 * check if the player is too close to trees and blocks input
-	 * to prevent overlapping
+    /**
+	 * check if the player is too close to trees and blocks input to prevent overlapping.
 	 */
-	public void checkTrees(Box tree);
+    void checkTrees(Box tree);
 	
 	/**
 	 * check if the player is too close to borders.
 	 */
-	public void checkBorders();
+    void checkBorders();
 
 	/**
 	 * blocks a certain direction.
 	 */
-	public void block(Directions dir);
-	
-	/**
-	 * unblocks a certain direction.
-	 */
-	public void unBlock(Directions dir);
+    void block(Directions dir);
 	
 	/**
 	 * blocks all directions.
 	 */
-	public void unBlockAll();
+    void unBlockAll();
 	
 	/**
 	 * check if the player can move in a certain direction.
+	 * @return TODO
 	 */
-	public boolean checkDir(Directions dir);
+    boolean checkDir(Directions dir);
+
 }

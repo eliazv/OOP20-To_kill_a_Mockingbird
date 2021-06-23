@@ -1,8 +1,9 @@
 package controllers;
 
-public interface InGameMenuController extends Controller{
+public interface InGameMenuController extends Controller {
 
-	void exit();
-	
-	void resume();
+    void exit();
+
+    void resume();
+
 }
