@@ -1,12 +1,12 @@
 package controllers;
 
-import view.EndGameView;
+import view.View;
 import view.EndGameViewImpl;
 import view.GameView;
 
 public class EndGameControllerImpl implements EndGameController {
 
-    private final EndGameView view;
+    private final View view;
     private GameView gameV;
 
     public EndGameControllerImpl() {

@@ -1,14 +1,12 @@
 package controllers;
 
 import view.GameView;
-import view.MainMenuView;
+import view.View;
 import view.MainMenuViewImpl;
 
 public class MainMenuControllerImpl implements MainMenuController {
 
-
-    private final MainMenuView view;
-
+    private final View view;
     private GameView gameV;
 
     public MainMenuControllerImpl() {
@@ -32,7 +30,4 @@ public class MainMenuControllerImpl implements MainMenuController {
         gameV = new GameView();
         gameV.setup();
     }
-
-
-
 }

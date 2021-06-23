@@ -13,7 +13,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import controllers.MainMenuController;
 
-public class MainMenuViewImpl implements MainMenuView {
+public class MainMenuViewImpl implements View {
 
 	private static final int MENU_WIDTH = 600;
 	private static final int MENU_HEIGHT = 700;

@@ -1,11 +1,11 @@
 package controllers;
 
-import view.InGameMenuView;
+import view.View;
 import view.InGameMenuViewImpl;
 
 public class InGameMenuControllerImpl implements InGameMenuController {
 
-    private InGameMenuView view;
+    private View view;
 
     /**
      * {@inheritDoc}

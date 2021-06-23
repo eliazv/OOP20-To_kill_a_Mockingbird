@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 import controllers.InGameMenuController;
 
-public class InGameMenuViewImpl implements InGameMenuView {
+public class InGameMenuViewImpl implements View {
 
 	private static final int MENU_WIDTH = 400;
 	private static final int MENU_HEIGHT = 500;

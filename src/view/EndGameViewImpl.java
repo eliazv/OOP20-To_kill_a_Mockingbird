@@ -13,7 +13,7 @@ import javax.swing.JLayeredPane;
 
 import controllers.EndGameController;
 
-public class EndGameViewImpl implements EndGameView {
+public class EndGameViewImpl implements View {
 	private static final int MENU_WIDTH = 400;
 	private static final int MENU_HEIGHT = 500;
 	private static final Color BACKGROUND_COLOR = new Color(60, 179, 113);
