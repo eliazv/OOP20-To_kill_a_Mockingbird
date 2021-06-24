@@ -1,31 +1,35 @@
 package controllers;
 
-import view.InGameMenuView;
+import view.View;
 import view.InGameMenuViewImpl;
 
 public class InGameMenuControllerImpl implements InGameMenuController {
 
-	private InGameMenuView view;
+    private View view;
 
-	
-	public InGameMenuControllerImpl() {
-		
-	}
-	
-	@Override
-	public void exit() {
-		System.exit(0);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void exit() {
+        System.exit(0);
+    }
 
-	@Override
-	public void resume() {
-		this.view.hide();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void resume() {
+        this.view.exit();
+    }
 
-	@Override
-	public void setup() {
-		this.view = new InGameMenuViewImpl(this);
-		this.view.show();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setup() {
+        this.view = new InGameMenuViewImpl(this);
+        this.view.setup();
+    }
 
 }

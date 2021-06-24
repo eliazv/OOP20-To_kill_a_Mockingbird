@@ -2,7 +2,11 @@ package model.enemy;
 
 import model.map.Box;
 
-
+/**
+ * An interface that describe a vehicle.
+ * 
+ * Is an extension of Box.
+ */
 public interface Vehicle extends Box{ 
 
     /**

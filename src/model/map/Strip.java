@@ -2,7 +2,14 @@ package model.map;
 
 import java.util.ArrayList;
 
-public interface Strip {
+import model.Model;
+
+/**
+ * An interface for create the map.
+ * 
+ * Is an extension of Model
+ */
+public interface Strip extends Model{
 	
 	/**
      * Generate an array of 8 box with a random environment among the three total.

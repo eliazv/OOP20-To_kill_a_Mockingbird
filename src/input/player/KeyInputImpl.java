@@ -7,49 +7,50 @@ import controllers.GameController;
 import controllers.GameControllerImpl;
 import controllers.InGameMenuController;
 import controllers.InGameMenuControllerImpl;
-import model.player.PlayerMovement;
+import model.player.*;
 
-import controllers.CollisionController.Directions;
-
-public class InputImpl implements Input{
+public class KeyInputImpl implements KeyInput{
 	
 	private PlayerMovement player;
 	private InGameMenuController controllerMenu = new InGameMenuControllerImpl();
 	private GameController gameController;
 	private CollisionController collisionController;
 	
-	public InputImpl(GameControllerImpl gameController, CollisionController cc) {
+	public KeyInputImpl(GameControllerImpl gameController, CollisionController cc) {
 		this.player = gameController.getPlayer();
 		this.gameController = gameController;
 		this.collisionController = cc;
 	}
 	
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void keyInput(KeyEvent e) {
-		switch (e.getKeyCode()) {
+	public void command(KeyEvent event) {
+		switch (event.getKeyCode()) {
 		case KeyEvent.VK_UP: 
 			if (collisionController.checkDir(Directions.UP) && !gameController.getPause()) {
-				this.player.goUp();
+				this.player.moveDirection(Directions.UP);
 				gameController.setScore(gameController.getRealScore()+1);
 			}
 			break;
 			
 		case KeyEvent.VK_DOWN:
 			if (collisionController.checkDir(Directions.DOWN) && !gameController.getPause()) {
-				this.player.goDown();
+				this.player.moveDirection(Directions.DOWN);;
 				gameController.setScore(gameController.getRealScore()-1);
 			}
 			break;
 			
 		case KeyEvent.VK_LEFT:
 			if (collisionController.checkDir(Directions.LEFT) && !gameController.getPause()) {
-				this.player.goLeft();
+				this.player.moveDirection(Directions.LEFT);;
 			}
 			break;
 			
 		case KeyEvent.VK_RIGHT:
 			if (collisionController.checkDir(Directions.RIGHT) && !gameController.getPause()) {
-				this.player.goRight();
+				this.player.moveDirection(Directions.RIGHT);;
 			}
 			break;
 			
@@ -57,7 +58,7 @@ public class InputImpl implements Input{
 			break;
 		}
 		
-		if (KeyEvent.VK_ESCAPE == e.getKeyCode()) {
+		if (KeyEvent.VK_ESCAPE == event.getKeyCode()) {
 
 			gameController.setPause();
 			if (gameController.getPause()) {

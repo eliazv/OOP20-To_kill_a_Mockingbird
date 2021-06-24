@@ -1,8 +1,7 @@
 package controllers;
 
-public interface MainMenuController {
+public interface MainMenuController  extends Controller {
 
-	void newGame();
+    void newGame();
 
-	void setup();
 }

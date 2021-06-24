@@ -7,7 +7,7 @@ import model.map.Box;
 import model.player.PlayerMovement;
 import model.score.Coin;
 
-public interface GameController {
+public interface GameController extends Controller {
 
 	
     /**
@@ -51,7 +51,7 @@ public interface GameController {
 	 * @param trains contains all trains on the map.
 	 * @param i is the line you want to check on.
 	 */
-	void checkOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i);
+	void spawnVehicle(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i);
 
 	/**
 	 * Set cars on the road.
@@ -79,23 +79,58 @@ public interface GameController {
 	 */
 	void spawnCoin(ArrayList<ArrayList<Box>> allStrips, ArrayList<Coin> coins, int i, int j);
 
-	/*
-	 * return the score that should be displayed
+	/**
+	 * 
+	 * @return return the score that should be displayed
 	 */
 	int getScore();
 	
-	/*
-	 * return the score that should be used internally
+	/**
+	 * 
+	 * @return return the score that should be used internally
 	 */
 	int getRealScore();
 	
+	/**
+	 * 
+	 * @param score
+	 */
 	void setScore(int score);
 	
+	/**
+	 * 
+	 * @return PlayerMovement
+	 */
 	PlayerMovement getPlayer();
 	
+	/**
+	 * 
+	 * @return
+	 */
 	Boolean getPause();
 
+	/**
+	 * 
+	 */
 	void setPause();
+	
+	/**
+	 * 
+	 * @param allStrip
+	 * @param VehiclesOnRoad
+	 * @param Trains
+	 */
+	void SetInitialPosition(ArrayList<ArrayList<Box>> allStrip,  ArrayList<Vehicle> VehiclesOnRoad, ArrayList<Vehicle> Trains);
+	
+	/**
+	 * 
+	 * @param allStrip
+	 * @param VehiclesOnRoad
+	 * @param Trains
+	 * @param coins
+	 */
+	void generateMap(ArrayList<ArrayList<Box>> allStrip, ArrayList<Vehicle> VehiclesOnRoad, ArrayList<Vehicle> Trains, ArrayList<Coin> coins);
 
+	
 
 }

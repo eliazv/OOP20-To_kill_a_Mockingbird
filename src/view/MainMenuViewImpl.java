@@ -13,10 +13,14 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import controllers.MainMenuController;
 
-public class MainMenuViewImpl implements MainMenuView {
+public class MainMenuViewImpl implements View {
 
 	private static final int MENU_WIDTH = 600;
 	private static final int MENU_HEIGHT = 700;
+	private static final int HALF_MENU_WIDTH = MENU_WIDTH / 2 - 80;
+	private static final int IMAGE_WIDTH = 150;
+	private static final int IMAGE_HEIGHT = 70;
+	private static final int FIRST_IMAGE_Y= 450;
 	private static final Color BACKGROUND_COLOR = new Color(60, 179, 113);
 
 	private final MainMenuController controller;
@@ -32,13 +36,11 @@ public class MainMenuViewImpl implements MainMenuView {
 		this.frame.setTitle("To Kill a Mockingbird");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setResizable(false);
-		//this.frame.setLocation();
-		this.frame.setLocation(350,10);
+		this.frame.setLocation(350, 10);
 		this.frame.setSize(MENU_WIDTH, MENU_HEIGHT);
 		this.frame.getContentPane().add(menuPanel);
 		this.frame.setBackground(BACKGROUND_COLOR);
 		this.frame.setVisible(true);
-
 		//Set layout to absolute for buttons.
 		this.frame.setLayout(null);
 	}
@@ -48,19 +50,19 @@ public class MainMenuViewImpl implements MainMenuView {
 
 		public panelMenu() {
 
-			rLblBackground = new Rectangle(0,0,600,700);
-			ImageIcon background = new ImageIcon(new ImageIcon("resources/MainMenu.png").getImage().getScaledInstance(600, 700, Image.SCALE_SMOOTH));
+			rLblBackground = new Rectangle(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			ImageIcon background = new ImageIcon(new ImageIcon("resources/MainMenu.png").getImage().getScaledInstance(MENU_WIDTH, MENU_HEIGHT, Image.SCALE_SMOOTH));
 
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
-			ImageIcon startImage = new ImageIcon (new ImageIcon("resources/startButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			ImageIcon controlsImage = new ImageIcon (new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			rStartButton = new Rectangle(MENU_WIDTH/2-80, 450, 150, 70);
-			rControlsButton = new Rectangle(MENU_WIDTH/2-80, 550, 150, 70);
 			
+			ImageIcon startImage = new ImageIcon(new ImageIcon("resources/startButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
+			ImageIcon controlsImage = new ImageIcon(new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
+			rStartButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y, IMAGE_WIDTH, IMAGE_HEIGHT);
+			rControlsButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y + 100, IMAGE_WIDTH, IMAGE_HEIGHT);
 			//Create button component, set image, remove borders.
-			startButton = new JButton ("", startImage);
+			startButton = new JButton("", startImage);
 			startButton.setBounds(rStartButton);
 			startButton.setBorder(BorderFactory.createEmptyBorder());
 			lblBackground.add(startButton);
@@ -69,38 +71,26 @@ public class MainMenuViewImpl implements MainMenuView {
 			controlsButton.setBorder(BorderFactory.createEmptyBorder());
 			controlsButton.setBounds(rControlsButton);
 			lblBackground.add(controlsButton);
-			
-			
-			//this.add(imgLabel);
-			//this.add(startButton);
-			//this.add(controlsButton);
-
-			//startButton.setBounds(250, 175, 300, 200);
-			//controlsButton.setBounds(300, 390, 200, 100);
 
 			startButton.addActionListener(e -> {
 				controller.newGame();
 			});
 
 			controlsButton.addActionListener(e -> {
-				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the frog." +
-						"\nCtrl:  Activates 3 seconds of invincibility once per game." +
-						"\n         (Makes frog pass through any object)" +
-						"\nShift:  Pause / Resume the game." +
-						"\nEnter:  Start game / Restart game while paused.");
+				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the character."
+			+ "\nEsc:  Pause / Resume the game.");
 			});
-
 		}
-
 	}
 
-
-	public void hide() {
+	@Override
+	public void exit() {
 		this.frame.dispose();
 	}
 
-	public void show() {
-		//this.frame.pack();
+	@Override
+	public void setup() {
+
 		this.frame.setVisible(true);
 	}
 }

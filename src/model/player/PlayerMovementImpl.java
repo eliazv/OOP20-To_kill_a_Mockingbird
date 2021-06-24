@@ -1,45 +1,75 @@
 package model.player;
 
-public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
 
+public class PlayerMovementImpl extends PlayerImpl implements PlayerMovement {
+	
+	private final double X_MOVE = 100;
+	private final double Y_MOVE = 100.2;
+	
 	public PlayerMovementImpl(String filename, double xPos, double yPos) {
+		
 		super(filename, xPos, yPos);
 	}
 
-	@Override
-	public void goUp() {
+	/**
+	 * move character one box up
+	 */
+	private void goUp() {
 		
-		this.setYLoc(this.getYLoc()-100.2);
-		
+		this.setYLoc(this.getYLoc() - Y_MOVE);
 	}
 
-	@Override
-	public void goDown() {
+	/**
+	 * move character one box down
+	 */
+	private void goDown() {
 		
-		this.setYLoc(this.getYLoc()+100.2);
+		this.setYLoc(this.getYLoc() + Y_MOVE);
+	}
+	
+	/**
+	 * move character one Box left
+	 */
+	private void goLeft() {
 		
+		this.setXLoc(this.getXLoc() - X_MOVE);
+	}
+	
+
+	/**
+	 * move character one Box right
+	 */
+	private void goRight() {
+		
+		this.setXLoc(this.getXLoc() + X_MOVE);
 	}
 
-	@Override
-	public void goLeft() {
-		
-		this.setXLoc(this.getXLoc()-100);
-		
-	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public void goRight() {
+	public void moveDirection(Directions direction) {
 		
-		this.setXLoc(this.getXLoc()+100);
+		switch (direction) {
+		case UP:
+			this.goUp();
+			break;
+			
+		case DOWN:
+			this.goDown();
+			break;
+			
+		case RIGHT:
+			this.goRight();
+			break;
+			
+		case LEFT:
+			this.goLeft();
+			break;
 		
+		default:
+			break;
+		}
 	}
-	
-	public double getX() {
-		return this.getXLoc();
-	}
-	
-	public double getY() {
-		return this.getYLoc();
-	}
-	
 }

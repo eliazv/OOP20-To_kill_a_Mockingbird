@@ -1,11 +1,9 @@
 package controllers;
 
-public interface EndGameController {
+public interface EndGameController extends Controller {
 
-	void exit();
+    void exit();
 
-	void restart();
-
-	void setup();
+    void restart();
 
 }

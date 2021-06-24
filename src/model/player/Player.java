@@ -1,17 +1,24 @@
 package model.player;
 
-public interface Player {
+import model.map.Box;
+
+public interface Player extends Box{
 	
 	/**
 	 * 
 	 * @return the number of coins
 	 */
-	public int getCoins();
+	int getCoins();
 	
 	/**
 	 * set the new number of coins
-	 * @param newCoins
+	 * @param numberOfCoins
 	 */
-	public void setCoins(int newCoins);
+	void setCoins(int numberOfCoins);
+	
+	/**
+	 * increase the number of coins
+	 */
+	void increaseCoins();
 	
 }

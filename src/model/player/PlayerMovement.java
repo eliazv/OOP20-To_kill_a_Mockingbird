@@ -1,33 +1,11 @@
 package model.player;
 
-public interface PlayerMovement {
-	/**
-	 * move one box up
-	 */
-	void goUp();
+
+public interface PlayerMovement extends Player {
 	
 	/**
-	 * move one box down
+	 * move character in any direction
+	 * @param direction
 	 */
-	void goDown();
-	
-	/**
-	 * move one box left
-	 */
-	void goLeft();
-	
-	/**
-	 * move one box right
-	 */
-	void goRight();
-	
-	/**
-	 * returns x coordinate
-	 */
-	double getX();
-	
-	/**
-	 * returns y coordinate
-	 */
-	double getY();
+	void moveDirection(Directions direction);
 }
