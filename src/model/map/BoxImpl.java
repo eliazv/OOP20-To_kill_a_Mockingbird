@@ -7,6 +7,8 @@ import view.ImageLoader;
 
 public class BoxImpl implements Box {
 
+    private static final int MAP_SIZE = 800;
+    private static final int BOX_SIZE = 100;
     //local variables
     private ImageLoader imgLoader;
     private double xloc, yloc;
@@ -27,8 +29,8 @@ public class BoxImpl implements Box {
 
     public BoxImpl(final String filename, final double xloc, final double yloc) {
         this.setImage(filename);
-        this.xloc = xloc * 100; 
-        this.yloc = 800 - yloc * 100;
+        this.xloc = xloc * BOX_SIZE; 
+        this.yloc = MAP_SIZE - yloc * BOX_SIZE;
         this.name = filename;
     }
 
@@ -145,7 +147,7 @@ public class BoxImpl implements Box {
     public void paint(final Graphics g, final JPanel panel) {
         //if no image has been uploaded, will be drawn an empy square: otherwise will be drawn a square filled with the image 
         if (imgLoader == null) {
-            g.drawRect((int) xloc, (int) yloc, 100, 100);
+            g.drawRect((int) xloc, (int) yloc, BOX_SIZE, BOX_SIZE);
         } else {
             g.drawImage(imgLoader.getImage(), (int) xloc, (int) yloc, imgLoader.getImgWidth(), imgLoader.getImgHeight(), null);
         }

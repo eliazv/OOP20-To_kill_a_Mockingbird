@@ -35,7 +35,7 @@ public class GameView  implements  KeyListener, View {
      * local variables.
      */
     private JFrame frame;
-    private panelGame panelGame;
+    private PanelGame panelGame;
     private final GameView gv = this;
 
     /**
@@ -44,7 +44,7 @@ public class GameView  implements  KeyListener, View {
     @Override
     public void setup() {
 
-        this.panelGame = new panelGame();
+        this.panelGame = new PanelGame();
         this.frame = new JFrame();
         this.frame.addKeyListener(this);
         this.frame.getContentPane().add(panelGame);
@@ -57,7 +57,7 @@ public class GameView  implements  KeyListener, View {
 
     }
 
-    public class panelGame extends JPanel implements ActionListener {
+    public class PanelGame extends JPanel implements ActionListener {
 
         private static final long serialVersionUID = 1L;
 
@@ -67,6 +67,7 @@ public class GameView  implements  KeyListener, View {
         private static final int NSTRIP_TO_GENERATE = 11;
         private static final int BOXFORSTRIP = 8;
         private static final int TIMER_DELAY = 10;
+        private static final int FONT_SIZE = 40;
 
         /**
          * local variables.
@@ -82,7 +83,7 @@ public class GameView  implements  KeyListener, View {
         private final GameControllerImpl gameController;
 
 
-        public panelGame() {
+        public PanelGame() {
 
             gameController = new GameControllerImpl(gv);
 
@@ -97,7 +98,7 @@ public class GameView  implements  KeyListener, View {
             this.add(lblCoinCounter);
             lblCoinCounter.setText("Score: 0");
             lblCoinCounter.setForeground(Color.white);
-            lblCoinCounter.setFont(new Font("Helvetica", Font.ITALIC, 40));
+            lblCoinCounter.setFont(new Font("Helvetica", Font.ITALIC, FONT_SIZE));
             rlblCoinCounter = new Rectangle(10, 10, 30, 30);
             lblCoinCounter.setBounds(rlblCoinCounter);
 

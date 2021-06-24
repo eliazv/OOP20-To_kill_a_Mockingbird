@@ -39,6 +39,8 @@ public class GameControllerImpl implements GameController {
     private static final int COIN_SPAWN_PROB = 2;
     private static final int CAR_DELAY = 1500;
     private static final int TRAIN_DELAY = 5000;
+    private static final int X_SPAWN_PLAYER = 400;
+    private static final int Y_SPAWN_PLAYER = 600;
 
 
     /**
@@ -61,7 +63,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     public void setup() {
-        this.player = new PlayerMovementImpl("bird.png", 400, 600);
+        this.player = new PlayerMovementImpl("bird.png", X_SPAWN_PLAYER, Y_SPAWN_PLAYER);
         this.collisionController = new CollisionControllerImpl(this.player);
         this.input = new KeyInputImpl(this, collisionController); 
     }
