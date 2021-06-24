@@ -10,7 +10,7 @@ import model.map.Box;
 public interface Vehicle extends Box {
 
     /**
-     * Randomly create a car or truck and set his own position and direction of the car.
+     * Randomly create a car or truck and set his own position and direction.
      * 
      * @param stripYLoc contains the line where the vehicle will be printed
      * @return get the vehicle
@@ -26,9 +26,9 @@ public interface Vehicle extends Box {
     Vehicle setTrain(double stripYLoc);
 
     /**
-     * Sets the position and direction of the vehicles.
+     * Sets randomly the position and direction of the vehicles.
      * 
-     * @param speed   of the vehicle.
+     * @param speed   speed of the vehicle.
      * @param imgR    right sprite of the vehicle.
      * @param imgL    left sprite of the vehicle.
      */

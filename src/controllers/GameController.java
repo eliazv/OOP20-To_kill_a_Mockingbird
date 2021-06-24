@@ -121,17 +121,17 @@ public interface GameController extends Controller {
     void setPause();
 
     /**
-     * 
-     * @param allStrip
+     * Generates the initial area of the map with only Grass strips, the character's spawn zone is without obstacles.
+     * @param allStrip strips that generate the map
      */
     void SetInitialPosition(ArrayList<ArrayList<Box>> allStrip);
 
     /**
-     * 
-     * @param allStrip
-     * @param VehiclesOnRoad
-     * @param Trains
-     * @param coins
+     * Generates the map and above it the vehicles and coins
+     * @param allStrip strips that generate the map
+     * @param VehiclesOnRoad car or truck in the map
+     * @param Trains trains in the map
+     * @param coins coins in the map
      */
     void generateMap(ArrayList<ArrayList<Box>> allStrip, ArrayList<Vehicle> VehiclesOnRoad, ArrayList<Vehicle> Trains,
             ArrayList<Coin> coins);
