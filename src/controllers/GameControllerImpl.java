@@ -303,7 +303,7 @@ public class GameControllerImpl implements GameController {
     }
 
     /**
-     * Throws Game Over screen.
+     * {@inheritDoc}
      */
     public void gameOver() {
         final EndGameController endGame = new EndGameControllerImpl();
