@@ -154,23 +154,19 @@ public class GameControllerImpl implements GameController {
             collisionController.unBlockAll();
 
             final Optional<Vehicle> car = cars.stream().filter(x -> collisionController.collideWithVehicles(x)).findAny();
-
             if (car.orElse(null) != null) {
                 this.gameOver();
             }
-            //cars.forEach(x -> collisionController.collideWithVehicles(x));
-            //trains.forEach(x -> collisionController.collideWithVehicles(x));
 
             final Optional<Vehicle> train = trains.stream().filter(x -> collisionController.collideWithVehicles(x)).findAny();
-
             if (train.orElse(null) != null) {
                 this.gameOver();
             }
 
             final Optional<Coin> coin = coins.stream().filter(x -> collisionController.collideWithCoins(x)).findAny();
-
             if (coin.orElse(null) != null) {
-                coins.remove(coin.get()); 
+                coins.remove(coin.get());
+                player.increaseCoins();
             }
 
             allStrips.forEach(strip -> strip.forEach(box -> {
