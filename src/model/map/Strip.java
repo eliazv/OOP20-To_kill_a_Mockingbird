@@ -17,7 +17,7 @@ public interface Strip extends Model {
      * @param y contains the line where the array will be printed
      * @return get an array of 8 box
      */
-    ArrayList<Box> getRndStrip(int y);
+    ArrayList<Box> initializeRndStrip(int y);
 
     /**
      * returns a box that can be an obstacle once in four.
@@ -28,7 +28,7 @@ public interface Strip extends Model {
      * @param y            contains the line where the array will be printed
      * @return get a box
      */
-    Box getBoxObstacles(String background, String specialBlock, int x, int y);
+    Box insertBoxObstacles(String background, String specialBlock, int x, int y);
 
     /**
      * returns a specific environment strip.
@@ -37,7 +37,7 @@ public interface Strip extends Model {
      * @param y          contains the line where the array will be printed
      * @return get an array of 8 box
      */
-    ArrayList<Box> getSpecificStrip(String background, int y);
+    ArrayList<Box> initializeSpecificStrip(String background, int y);
 
     /**
      * returns a specific environment strip with specific obstacles. useful for
@@ -48,7 +48,7 @@ public interface Strip extends Model {
      * @param y            contains the line where the array will be printed
      * @return get an array of 8 box
      */
-    ArrayList<Box> getSpecificStrip(String background, String specialBlock, int y);
+    ArrayList<Box> initializeSpecificStrip(String background, String specialBlock, int y);
 
     /**
      * returns the generated strip.

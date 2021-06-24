@@ -234,9 +234,9 @@ public class GameControllerImpl implements GameController {
     public void setInitialPosition(final List<ArrayList<Box>> allStrip) {
         for (int i = 0; i < NSTRIP_TO_GENERATE; i++) {
             if (i == SPAWN_CHARACTER_LINE || i == SPAWN_CHARACTER_LINE + 1) {
-                allStrip.add(this.striscia.getSpecificStrip("Grass.png", i));
+                allStrip.add(this.striscia.initializeSpecificStrip("Grass.png", i));
             } else {
-                allStrip.add(this.striscia.getSpecificStrip("Grass.png", "Tree.png", i));
+                allStrip.add(this.striscia.initializeSpecificStrip("Grass.png", "Tree.png", i));
             }
         }
     }
@@ -249,7 +249,7 @@ public class GameControllerImpl implements GameController {
         final Random rndYLoc = new Random();
         for (int i = 0; i < NSTRIP_TO_GENERATE; i++) {
             if (allStrip.get(i).get(0).getYLoc() > MAP_HIGHER_LIMIT) {
-                allStrip.set(i, this.striscia.getRndStrip(GameControllerImpl.NSTRIP_TO_GENERATE));
+                allStrip.set(i, this.striscia.initializeRndStrip(GameControllerImpl.NSTRIP_TO_GENERATE));
                 this.spawnVehicle(allStrip, vehiclesonroad, trains, i);
 
                 if (rndYLoc.nextInt(COIN_SPAWN_PROB + 1) == COIN_SPAWN_PROB) {

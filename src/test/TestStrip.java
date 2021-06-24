@@ -17,15 +17,15 @@ public class TestStrip {
 
         Strip strip = new StripImpl();
 
-        strip.getRndStrip(6);
+        strip.initializeRndStrip(6);
         assertEquals(8, strip.getStrip().size());
 
-        strip.getSpecificStrip("Grass.png", "Tree.png", 2);
+        strip.initializeSpecificStrip("Grass.png", "Tree.png", 2);
         assertEquals(8, strip.getStrip().size());
         assertEquals(StripEnvironment.GRASS, strip.getStripEnvironment());
         assertTrue(strip.getTreeNumber() <= 8 && strip.getTreeNumber() >= 0);
 
-        strip.getSpecificStrip("Rail.png", 5);
+        strip.initializeSpecificStrip("Rail.png", 5);
         assertEquals(8, strip.getStrip().size());
         assertEquals("Rail.png", strip.getBoxOfStrip(2).getImage().getFileName());
         assertEquals(StripEnvironment.RAIL, strip.getStripEnvironment());

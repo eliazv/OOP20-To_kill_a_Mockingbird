@@ -30,7 +30,7 @@ public class StripImpl implements Strip {
      * {@inheritDoc}
      */
     @Override
-    public ArrayList<Box> getRndStrip(final int y) {
+    public ArrayList<Box> initializeRndStrip(final int y) {
 
         this.boxesStrip = new ArrayList<>();
         final int rndEnv = gen.nextInt(PROBABILITY_OF_STRIPENV);
@@ -64,7 +64,7 @@ public class StripImpl implements Strip {
             case 2:
                 env = StripEnvironment.GRASS;
                 for (int i = 0; i < STRIP_LENGTH; i++) {
-                    this.boxesStrip.add(getBoxObstacles("Grass.png", "Tree.png", i, y));
+                    this.boxesStrip.add(insertBoxObstacles("Grass.png", "Tree.png", i, y));
                 }
                 break;
             default:
@@ -77,7 +77,7 @@ public class StripImpl implements Strip {
      * {@inheritDoc}
      */
     @Override
-    public Box getBoxObstacles(final String background, final String specialBlock, final int x, final int y) {
+    public Box insertBoxObstacles(final String background, final String specialBlock, final int x, final int y) {
 
         Box oneBlock;
         final int rand = gen.nextInt(PROBABILITY_OF_SPAWN_OBSTACLE);
@@ -123,7 +123,7 @@ public class StripImpl implements Strip {
      * {@inheritDoc}
      */
     @Override
-    public ArrayList<Box> getSpecificStrip(final String background, final int y) {
+    public ArrayList<Box> initializeSpecificStrip(final String background, final int y) {
 
         this.boxesStrip = new ArrayList<>();
         this.setStripEnvironment(background);
@@ -138,12 +138,12 @@ public class StripImpl implements Strip {
      * {@inheritDoc}
      */
     @Override
-    public ArrayList<Box> getSpecificStrip(final String background, final String specialBlock, final int y) {
+    public ArrayList<Box> initializeSpecificStrip(final String background, final String specialBlock, final int y) {
 
         this.boxesStrip = new ArrayList<>();
         this.setStripEnvironment(background);
         for (int i = 0; i < STRIP_LENGTH; i++) {
-            this.boxesStrip.add(getBoxObstacles(background, specialBlock, i, y));
+            this.boxesStrip.add(insertBoxObstacles(background, specialBlock, i, y));
         }
         return this.boxesStrip;
     }
