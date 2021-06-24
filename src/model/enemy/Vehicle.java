@@ -10,10 +10,10 @@ import model.map.Box;
 public interface Vehicle extends Box {
 
     /**
-     * Call the methods sets the position and direction of the car.
+     * Randomly create a car or truck and set his own position and direction of the car.
      * 
-     * @param stripYLoc contains the line where the car will be printed
-     * @return get the car
+     * @param stripYLoc contains the line where the vehicle will be printed
+     * @return get the vehicle
      */
     Vehicle setCar(double stripYLoc);
 

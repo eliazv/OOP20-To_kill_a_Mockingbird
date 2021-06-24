@@ -230,7 +230,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void SetInitialPosition(final ArrayList<ArrayList<Box>> allStrip,  final ArrayList<Vehicle> vehiclesonroad, final ArrayList<Vehicle> trains) {
+    public void SetInitialPosition(final ArrayList<ArrayList<Box>> allStrip) {
         for (int i = 0; i < NSTRIP_TO_GENERATE; i++) {
             /**
              * Set the line where the character will be spawn and the next one without any
@@ -240,7 +240,6 @@ public class GameControllerImpl implements GameController {
                 allStrip.add(this.striscia.getSpecificStrip("Grass.png", i));
             } else {
                 allStrip.add(this.striscia.getSpecificStrip("Grass.png", "Tree.png", i));
-                this.spawnVehicle(allStrip, vehiclesonroad, trains, i);
             }
         }
     }

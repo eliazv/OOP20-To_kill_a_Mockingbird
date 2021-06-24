@@ -26,7 +26,7 @@ public class TestEnemy {
     	vehicle.setCar(4);
     	assertEquals(4, vehicle.getVehicle().getYLoc());
     	assertEquals(VEHICLE_SCROLL, vehicle.getVehicle().getYDir());
-    	assertTrue(vehicle.getVehicleType()==VehicleType.CAMION || vehicle.getVehicleType()==VehicleType.CAR);
+    	assertTrue(vehicle.getVehicleType()==VehicleType.TRUCK || vehicle.getVehicleType()==VehicleType.CAR);
     	assertTrue(vehicle.getVehicleSpeed()>= CAMION_SPEED &&  vehicle.getVehicleSpeed() <= CAR_SPEED + RANDOM_SPEED_ADDITION );
     	assertTrue(vehicle.getVehicleXLocSpawn() >= CAMION_SPEED && vehicle.getVehicleXLocSpawn() <= CAR_SPEED * RANDOM_XLOCSPAWN_ADDITION );
     }

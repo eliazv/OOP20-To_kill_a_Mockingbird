@@ -24,7 +24,7 @@ import model.score.Coin;
  * 
  *
  */
-public class GameView  implements  KeyListener, View {
+public class GameView implements KeyListener, View {
 
     /**
      * constants.
@@ -82,7 +82,6 @@ public class GameView  implements  KeyListener, View {
         private final Timer timer;
         private final GameControllerImpl gameController;
 
-
         public PanelGame() {
 
             gameController = new GameControllerImpl(gv);
@@ -91,7 +90,7 @@ public class GameView  implements  KeyListener, View {
 
             this.timer = new Timer(TIMER_DELAY, this);
 
-            gameController.SetInitialPosition(allStrip, vehiclesOnRoad, trains);
+            gameController.SetInitialPosition(allStrip);
 
             this.repaint();
 
@@ -106,7 +105,7 @@ public class GameView  implements  KeyListener, View {
         }
 
         /**
-         * @param g 
+         * @param g
          * 
          */
         public void paintComponent(final Graphics g) {
@@ -138,8 +137,8 @@ public class GameView  implements  KeyListener, View {
         }
 
         /**
-         * @param e
-         * Repaints all elements and calls gameController to perform a game cycle
+         * @param e Repaints all elements and calls gameController to perform a game
+         *          cycle
          */
         @Override
         public void actionPerformed(final ActionEvent e) {

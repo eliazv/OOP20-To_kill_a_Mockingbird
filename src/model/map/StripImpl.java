@@ -3,9 +3,6 @@ package model.map;
 import java.util.ArrayList;
 import java.util.Random;
 
-
-
-
 /**
  * The implementation of Strip
  * 
@@ -42,35 +39,35 @@ public class StripImpl implements Strip {
         /**
          * fills the array with street environment
          */
-            case 0:
-                env = StripEnvironment.ROAD;
-                for (int i = 0; i < STRIP_LENGTH; i++) {
-                    this.boxesStrip.add(new BoxImpl("Road.png", i, y));
+        case 0:
+            env = StripEnvironment.ROAD;
+            for (int i = 0; i < STRIP_LENGTH; i++) {
+                this.boxesStrip.add(new BoxImpl("Road.png", i, y));
 
-                }
-                break;
+            }
+            break;
 
         /**
          * fills the array with rail environment
          */
-            case 1:
-                env = StripEnvironment.RAIL;
-                for (int i = 0; i < STRIP_LENGTH; i++) {
-                    this.boxesStrip.add(new BoxImpl("Rail.png", i, y));
-                }
-                break;
+        case 1:
+            env = StripEnvironment.RAIL;
+            for (int i = 0; i < STRIP_LENGTH; i++) {
+                this.boxesStrip.add(new BoxImpl("Rail.png", i, y));
+            }
+            break;
 
         /**
          * fills the array with nature environment
          */
-            case 2:
-                env = StripEnvironment.GRASS;
-                for (int i = 0; i < STRIP_LENGTH; i++) {
-                    this.boxesStrip.add(getBoxObstacles("Grass.png", "Tree.png", i, y));
-                }
-                break;
-            default:
-                break;
+        case 2:
+            env = StripEnvironment.GRASS;
+            for (int i = 0; i < STRIP_LENGTH; i++) {
+                this.boxesStrip.add(getBoxObstacles("Grass.png", "Tree.png", i, y));
+            }
+            break;
+        default:
+            break;
         }
         return this.boxesStrip;
     }

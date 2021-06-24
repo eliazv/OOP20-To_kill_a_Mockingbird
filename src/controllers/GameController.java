@@ -123,11 +123,8 @@ public interface GameController extends Controller {
     /**
      * 
      * @param allStrip
-     * @param VehiclesOnRoad
-     * @param Trains
      */
-    void SetInitialPosition(ArrayList<ArrayList<Box>> allStrip, ArrayList<Vehicle> VehiclesOnRoad,
-            ArrayList<Vehicle> Trains);
+    void SetInitialPosition(ArrayList<ArrayList<Box>> allStrip);
 
     /**
      * 

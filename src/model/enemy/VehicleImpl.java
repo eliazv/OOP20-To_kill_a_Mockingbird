@@ -19,7 +19,7 @@ public class VehicleImpl extends BoxImpl implements Vehicle {
     private static final int HIGHER_LIMIT = 900;
     private static final int INFERIOR_LIMIT = -100;
     private static final int CAR_SPEED = 2;
-    private static final int CAMION_SPEED = 1;
+    private static final int TRUCK_SPEED = 1;
     private static final int TRAIN_SPEED = 10;
     private static final int RANDOM_SPEED_ADDITION = 10;
     private static final int RANDOM_XLOCSPAWN_ADDITION = 1500;
@@ -47,8 +47,8 @@ public class VehicleImpl extends BoxImpl implements Vehicle {
         }
 
         else {
-            this.setRndDir(CAMION_SPEED, "Camion_L.png", "Camion_R.png");
-            this.type = VehicleType.CAMION;
+            this.setRndDir(TRUCK_SPEED, "Truck_L.png", "Truck_R.png");
+            this.type = VehicleType.TRUCK;
         }
         return this;
     }
