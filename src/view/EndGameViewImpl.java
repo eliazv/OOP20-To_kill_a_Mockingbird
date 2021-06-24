@@ -53,13 +53,13 @@ public class EndGameViewImpl implements View {
 		public EndGamePanel() {
 			
 			rLblBackground = new Rectangle(0, 0, MENU_WIDTH, MENU_HEIGHT);
-			ImageIcon background = new ImageIcon(new ImageIcon("resources/GameOver.png").getImage().getScaledInstance(MENU_WIDTH, MENU_HEIGHT, Image.SCALE_SMOOTH));
+			ImageIcon background = new ImageIcon(new ImageIcon(this.getClass().getResource("/GameOver.png")).getImage().getScaledInstance(MENU_WIDTH, MENU_HEIGHT, Image.SCALE_SMOOTH));
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
 			
-			ImageIcon restartImage = new ImageIcon(new ImageIcon("resources/RestartButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
-			ImageIcon exitImage = new ImageIcon(new ImageIcon("resources/ExitButton2.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
+			ImageIcon restartImage = new ImageIcon(new ImageIcon(this.getClass().getResource("/RestartButton.png")).getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
+			ImageIcon exitImage = new ImageIcon(new ImageIcon(this.getClass().getResource("/ExitButton2.png")).getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
 			rRestartButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y, IMAGE_WIDTH, IMAGE_HEIGHT);
 			rExitButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y + 50, IMAGE_WIDTH, IMAGE_HEIGHT);
 
