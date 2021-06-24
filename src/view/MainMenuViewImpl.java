@@ -17,6 +17,10 @@ public class MainMenuViewImpl implements View {
 
 	private static final int MENU_WIDTH = 600;
 	private static final int MENU_HEIGHT = 700;
+	private static final int HALF_MENU_WIDTH = MENU_WIDTH / 2 - 80;
+	private static final int IMAGE_WIDTH = 150;
+	private static final int IMAGE_HEIGHT = 70;
+	private static final int FIRST_IMAGE_Y= 450;
 	private static final Color BACKGROUND_COLOR = new Color(60, 179, 113);
 
 	private final MainMenuController controller;
@@ -37,7 +41,6 @@ public class MainMenuViewImpl implements View {
 		this.frame.getContentPane().add(menuPanel);
 		this.frame.setBackground(BACKGROUND_COLOR);
 		this.frame.setVisible(true);
-
 		//Set layout to absolute for buttons.
 		this.frame.setLayout(null);
 	}
@@ -47,17 +50,17 @@ public class MainMenuViewImpl implements View {
 
 		public panelMenu() {
 
-			rLblBackground = new Rectangle(0, 0, 600, 700);
-			ImageIcon background = new ImageIcon(new ImageIcon("resources/MainMenu.png").getImage().getScaledInstance(600, 700, Image.SCALE_SMOOTH));
+			rLblBackground = new Rectangle(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			ImageIcon background = new ImageIcon(new ImageIcon("resources/MainMenu.png").getImage().getScaledInstance(MENU_WIDTH, MENU_HEIGHT, Image.SCALE_SMOOTH));
 
 			lblBackground = new JLabel(background);
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
-			ImageIcon startImage = new ImageIcon(new ImageIcon("resources/startButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			ImageIcon controlsImage = new ImageIcon(new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(150, 70, Image.SCALE_SMOOTH));
-			rStartButton = new Rectangle(MENU_WIDTH / 2 - 80, 450, 150, 70);
-			rControlsButton = new Rectangle(MENU_WIDTH / 2 - 80, 550, 150, 70);
 			
+			ImageIcon startImage = new ImageIcon(new ImageIcon("resources/startButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
+			ImageIcon controlsImage = new ImageIcon(new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
+			rStartButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y, IMAGE_WIDTH, IMAGE_HEIGHT);
+			rControlsButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y + 100, IMAGE_WIDTH, IMAGE_HEIGHT);
 			//Create button component, set image, remove borders.
 			startButton = new JButton("", startImage);
 			startButton.setBounds(rStartButton);
@@ -68,7 +71,6 @@ public class MainMenuViewImpl implements View {
 			controlsButton.setBorder(BorderFactory.createEmptyBorder());
 			controlsButton.setBounds(rControlsButton);
 			lblBackground.add(controlsButton);
-			
 
 			startButton.addActionListener(e -> {
 				controller.newGame();
@@ -78,9 +80,7 @@ public class MainMenuViewImpl implements View {
 				JOptionPane.showMessageDialog(null, "Arrow Keys:  Move the character."
 			+ "\nEsc:  Pause / Resume the game.");
 			});
-
 		}
-
 	}
 
 	@Override
