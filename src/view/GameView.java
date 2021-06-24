@@ -90,7 +90,7 @@ public class GameView implements KeyListener, View {
 
             this.timer = new Timer(TIMER_DELAY, this);
 
-            gameController.SetInitialPosition(allStrip);
+            gameController.setInitialPosition(allStrip);
 
             this.repaint();
 

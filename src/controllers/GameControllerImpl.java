@@ -230,12 +230,8 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void SetInitialPosition(final ArrayList<ArrayList<Box>> allStrip) {
+    public void setInitialPosition(final ArrayList<ArrayList<Box>> allStrip) {
         for (int i = 0; i < NSTRIP_TO_GENERATE; i++) {
-            /**
-             * Set the line where the character will be spawn and the next one without any
-             * obstacles
-             */
             if (i == SPAWN_CHARACTER_LINE || i == SPAWN_CHARACTER_LINE + 1) {
                 allStrip.add(this.striscia.getSpecificStrip("Grass.png", i));
             } else {
