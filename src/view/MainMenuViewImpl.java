@@ -57,7 +57,7 @@ public class MainMenuViewImpl implements View {
 			lblBackground.setBounds(rLblBackground);
 			add(lblBackground, DEFAULT_LAYER);
 			
-			ImageIcon startImage = new ImageIcon(new ImageIcon("resources/startButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
+			ImageIcon startImage = new ImageIcon(new ImageIcon("startButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
 			ImageIcon controlsImage = new ImageIcon(new ImageIcon("resources/controlsButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
 			rStartButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y, IMAGE_WIDTH, IMAGE_HEIGHT);
 			rControlsButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y + 100, IMAGE_WIDTH, IMAGE_HEIGHT);
