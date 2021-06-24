@@ -39,7 +39,8 @@ public class CollisionControllerImpl implements CollisionController {
     @Override
     public boolean collideWithVehicles(final Vehicle v) {
         final Rectangle borderVehicle = new Rectangle((int) v.getXLoc() - ERROR, (int) v.getYLoc() - ERROR, v.getWidth() - ERROR, 1);
-        final Rectangle borderPlayer = new Rectangle((int) player.getXLoc() - ERROR, (int) player.getYLoc() - ERROR, 100 - ERROR, 100 - ERROR);
+        final Rectangle borderPlayer = new Rectangle((int) player.getXLoc() - ERROR, (int) player.getYLoc() - ERROR, 
+                player.getWidth() - ERROR, player.getHeight() - ERROR);
         return borderPlayer.intersects(borderVehicle);
     }
 
@@ -48,8 +49,10 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public boolean collideWithCoins(final Coin c) {
-        final Rectangle borderCoin = new Rectangle((int) c.getXLoc(), (int) c.getYLoc(), c.getWidth(), 50);
-        final Rectangle borderPlayer = new Rectangle((int) player.getXLoc(), (int) player.getYLoc(), 100, 100);
+        final Rectangle borderCoin = new Rectangle((int) c.getXLoc() - ERROR, (int) c.getYLoc() - ERROR,
+                c.getWidth() - ERROR, c.getHeight() - ERROR);
+        final Rectangle borderPlayer = new Rectangle((int) player.getXLoc() - ERROR, (int) player.getYLoc() - ERROR,
+                player.getWidth() - ERROR, player.getHeight() - ERROR);
         return borderPlayer.intersects(borderCoin);
     }
 
@@ -58,21 +61,23 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public void checkTrees(final Box tree) {
-        final Rectangle borderTree = new Rectangle((int) tree.getXLoc(), (int) tree.getYLoc(), 60, 60);
+        final Rectangle borderTree = new Rectangle((int) tree.getXLoc() - ERROR, (int) tree.getYLoc() - ERROR, 
+                tree.getWidth() - ERROR, tree.getHeight() - ERROR);
+
         if (borderTree.intersects(new Rectangle((int) player.getXLoc() + 100 - ERROR, (int) player.getYLoc() - ERROR,
-            100 - ERROR, 100 - ERROR))) {
+                player.getWidth() - ERROR, player.getHeight() - ERROR))) {
             enabledDir.put(Directions.RIGHT, false);
         }
         if (borderTree.intersects(new Rectangle((int) player.getXLoc() - 100 - ERROR, (int) player.getYLoc() - ERROR,
-                100 - ERROR, 100 - ERROR))) {
+                player.getWidth() - ERROR, player.getHeight() - ERROR))) {
             enabledDir.put(Directions.LEFT, false);
         }
         if (borderTree.intersects(new Rectangle((int) player.getXLoc() - ERROR, (int) player.getYLoc() + 100 - ERROR,
-            100 - ERROR, 100 - ERROR))) {
+                player.getWidth() - ERROR, player.getHeight() - ERROR))) {
             enabledDir.put(Directions.DOWN, false);
         }
         if (borderTree.intersects(new Rectangle((int) player.getXLoc() - ERROR, (int) player.getYLoc() - 100 - ERROR, 
-            100 - ERROR, 100 - ERROR))) {
+                player.getWidth() - ERROR, player.getHeight() - ERROR))) {
             enabledDir.put(Directions.UP, false);
         }
     }

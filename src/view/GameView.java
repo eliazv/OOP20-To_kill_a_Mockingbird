@@ -60,7 +60,7 @@ public class GameView  implements  KeyListener, View {
     public class panelGame extends JPanel implements ActionListener {
 
         private static final long serialVersionUID = 1L;
-        
+
         /**
          * constants.
          */
@@ -73,14 +73,14 @@ public class GameView  implements  KeyListener, View {
          */
         private final Rectangle rlblCoinCounter;
         private final JLabel lblCoinCounter = new JLabel();
-        private ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
-        private ArrayList<Vehicle> vehiclesOnRoad = new ArrayList<>();
-        private ArrayList<Vehicle> trains = new ArrayList<>();
-        private Vehicle vehicleManager = new VehicleImpl();
-        private ArrayList<Coin> coins = new ArrayList<>();
-        private Timer timer;
-        private GameControllerImpl gameController;
-        
+        private final ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
+        private final ArrayList<Vehicle> vehiclesOnRoad = new ArrayList<>();
+        private final ArrayList<Vehicle> trains = new ArrayList<>();
+        private final Vehicle vehicleManager = new VehicleImpl();
+        private final ArrayList<Coin> coins = new ArrayList<>();
+        private final Timer timer;
+        private final GameControllerImpl gameController;
+
 
         public panelGame() {
 
@@ -168,12 +168,10 @@ public class GameView  implements  KeyListener, View {
 
     @Override
     public void keyReleased(final KeyEvent arg0) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void keyTyped(final KeyEvent arg0) {
-        // TODO Auto-generated method stub
     }
 
     /**
