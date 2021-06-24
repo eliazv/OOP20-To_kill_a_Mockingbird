@@ -19,6 +19,7 @@ public class EndGameViewImpl implements View {
 	private static final int HALF_MENU_WIDTH = MENU_WIDTH / 2 - 80;
 	private static final int IMAGE_WIDTH = 150;
 	private static final int IMAGE_HEIGHT= 30;
+	private static final int FIRST_IMAGE_Y= 150;
 	private static final Color BACKGROUND_COLOR = new Color(60, 179, 113);
 
 	private final EndGameController controller;
@@ -59,8 +60,8 @@ public class EndGameViewImpl implements View {
 			
 			ImageIcon restartImage = new ImageIcon(new ImageIcon("resources/RestartButton.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
 			ImageIcon exitImage = new ImageIcon(new ImageIcon("resources/ExitButton2.png").getImage().getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH));
-			rRestartButton = new Rectangle(HALF_MENU_WIDTH, 150, IMAGE_WIDTH, IMAGE_HEIGHT);
-			rExitButton = new Rectangle(HALF_MENU_WIDTH, 200, IMAGE_WIDTH, IMAGE_HEIGHT);
+			rRestartButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y, IMAGE_WIDTH, IMAGE_HEIGHT);
+			rExitButton = new Rectangle(HALF_MENU_WIDTH, FIRST_IMAGE_Y + 50, IMAGE_WIDTH, IMAGE_HEIGHT);
 
 			//Create button component, set image, remove borders.
 			restartButton = new JButton("", restartImage);
