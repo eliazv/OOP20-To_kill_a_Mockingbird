@@ -15,7 +15,7 @@ public interface Vehicle extends Box {
      * @param stripYLoc contains the line where the vehicle will be printed
      * @return get the vehicle
      */
-    Vehicle setCar(double stripYLoc);
+    Vehicle initializeCar(double stripYLoc);
 
     /**
      * Call the methods for sets the position and direction of the train.
@@ -23,7 +23,7 @@ public interface Vehicle extends Box {
      * @param stripYLoc contains the line where the train will be printed
      * @return get the train
      */
-    Vehicle setTrain(double stripYLoc);
+    Vehicle initializeTrain(double stripYLoc);
 
     /**
      * Sets randomly the position and direction of the vehicles.
@@ -35,28 +35,28 @@ public interface Vehicle extends Box {
     void setRndDir(int speed, String imgR, String imgL);
 
     /**
-     * return the vehicle
+     * return the vehicle.
      * 
      * @return get the vehicle
      */
     Vehicle getVehicle();
 
     /**
-     * return the vehicle type
+     * return the vehicle type.
      * 
      * @return get the vehicle type
      */
     VehicleType getVehicleType();
 
     /**
-     * return the vehicle speed
+     * return the vehicle speed.
      * 
      * @return the speed of the vehicle
      */
     int getVehicleSpeed();
 
     /**
-     * return the vehicle's X spawn position
+     * return the vehicle's X spawn position.
      * 
      * @return the vehicle's X spawn position
      */

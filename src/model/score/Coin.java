@@ -4,7 +4,7 @@ import model.map.Box;
 
 public interface Coin extends Box {
     /**
-     * initialize a coin with X and Y position and the coin image (coin.png)
+     * initialize a coin with X and Y position and the coin image (coin.png).
      * 
      * @param xLoc is the X coordinate
      * @param yLoc is the Y coordinate

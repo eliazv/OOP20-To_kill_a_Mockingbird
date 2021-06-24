@@ -20,7 +20,7 @@ public interface Strip extends Model {
     ArrayList<Box> getRndStrip(int y);
 
     /**
-     * returns a box that can be an obstacle once in four
+     * returns a box that can be an obstacle once in four.
      * 
      * @param background   contains the environment
      * @param specialBlock contains the obstacle which could be printed
@@ -31,7 +31,7 @@ public interface Strip extends Model {
     Box getBoxObstacles(String background, String specialBlock, int x, int y);
 
     /**
-     * returns a specific environment strip
+     * returns a specific environment strip.
      * 
      * @param background contains the environment of the desired strip
      * @param y          contains the line where the array will be printed
@@ -51,14 +51,14 @@ public interface Strip extends Model {
     ArrayList<Box> getSpecificStrip(String background, String specialBlock, int y);
 
     /**
-     * returns the generated strip
+     * returns the generated strip.
      * 
      * @return get an array of 8 box
      */
     ArrayList<Box> getStrip();
 
     /**
-     * returns the box of the strip specified by the index
+     * returns the box of the strip specified by the index.
      * 
      * @param x strip vector index
      * @return get a box
@@ -66,14 +66,14 @@ public interface Strip extends Model {
     Box getBoxOfStrip(int x);
 
     /**
-     * returns the environment type of the Strip
+     * returns the environment type of the Strip.
      * 
      * @return get the environment type of the Strip
      */
     StripEnvironment getStripEnvironment();
 
     /**
-     * set the environment type of the Strip
+     * set the environment type of the Strip.
      * 
      * @param background strip background
      */

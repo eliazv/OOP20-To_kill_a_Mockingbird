@@ -13,7 +13,7 @@ import model.map.BoxImpl;
 public class VehicleImpl extends BoxImpl implements Vehicle {
 
     /**
-     * constant
+     * constant.
      */
     private static final int MAP_SCROLL = 1;
     private static final int HIGHER_LIMIT = 900;
@@ -36,7 +36,7 @@ public class VehicleImpl extends BoxImpl implements Vehicle {
      * {@inheritDoc}
      */
     @Override
-    public Vehicle setCar(final double stripYLoc) {
+    public Vehicle initializeCar(final double stripYLoc) {
 
         this.setYDir(MAP_SCROLL);
         this.setYLoc(stripYLoc);
@@ -44,9 +44,7 @@ public class VehicleImpl extends BoxImpl implements Vehicle {
         if (rand.nextInt(2) == 1) {
             this.setRndDir(CAR_SPEED, "Car_Left.png", "Car_Right.png");
             this.type = VehicleType.CAR;
-        }
-
-        else {
+        } else {
             this.setRndDir(TRUCK_SPEED, "Truck_L.png", "Truck_R.png");
             this.type = VehicleType.TRUCK;
         }
@@ -59,7 +57,7 @@ public class VehicleImpl extends BoxImpl implements Vehicle {
      * @return
      */
     @Override
-    public Vehicle setTrain(final double stripYLoc) {
+    public Vehicle initializeTrain(final double stripYLoc) {
 
         this.setYDir(MAP_SCROLL);
         this.setYLoc(stripYLoc);
@@ -90,8 +88,8 @@ public class VehicleImpl extends BoxImpl implements Vehicle {
              * Sets the direction from left to right.
              */
         } else {
-            this.setXLoc((-vehicleXLocSpawn - INFERIOR_LIMIT));
-            this.setXDir((vehicleSpeed));
+            this.setXLoc(-vehicleXLocSpawn - INFERIOR_LIMIT);
+            this.setXDir(vehicleSpeed);
             this.setImage(imgL);
         }
     }

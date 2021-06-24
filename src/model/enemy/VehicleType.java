@@ -6,17 +6,17 @@ package model.enemy;
 public enum VehicleType {
 
     /**
-     * Identify a car
+     * Identify a car.
      */
     CAR,
 
     /**
-     * Identify a camion
+     * Identify a camion.
      */
     TRUCK,
 
     /**
-     * Identify a train
+     * Identify a train.
      */
     TRAIN;
 }

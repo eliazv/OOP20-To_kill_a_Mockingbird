@@ -22,7 +22,8 @@ public class StripImpl implements Strip {
      * local variables.
      */
     private ArrayList<Box> boxesStrip;
-    private Random gen = new Random();
+    private final Random gen = new Random();
+    private static final String IMAGETREE = "Tree.png";
     private StripEnvironment env;
 
     /**
@@ -32,42 +33,42 @@ public class StripImpl implements Strip {
     public ArrayList<Box> getRndStrip(final int y) {
 
         this.boxesStrip = new ArrayList<>();
-        int rndEnv = gen.nextInt(PROBABILITY_OF_STRIPENV);
+        final int rndEnv = gen.nextInt(PROBABILITY_OF_STRIPENV);
 
         switch (rndEnv) {
 
         /**
          * fills the array with street environment
          */
-        case 0:
-            env = StripEnvironment.ROAD;
-            for (int i = 0; i < STRIP_LENGTH; i++) {
-                this.boxesStrip.add(new BoxImpl("Road.png", i, y));
+            case 0:
+                env = StripEnvironment.ROAD;
+                for (int i = 0; i < STRIP_LENGTH; i++) {
+                    this.boxesStrip.add(new BoxImpl("Road.png", i, y));
 
-            }
-            break;
+                }
+                break;
 
         /**
          * fills the array with rail environment
          */
-        case 1:
-            env = StripEnvironment.RAIL;
-            for (int i = 0; i < STRIP_LENGTH; i++) {
-                this.boxesStrip.add(new BoxImpl("Rail.png", i, y));
-            }
-            break;
+            case 1:
+                env = StripEnvironment.RAIL;
+                for (int i = 0; i < STRIP_LENGTH; i++) {
+                    this.boxesStrip.add(new BoxImpl("Rail.png", i, y));
+                }
+                break;
 
         /**
          * fills the array with nature environment
          */
-        case 2:
-            env = StripEnvironment.GRASS;
-            for (int i = 0; i < STRIP_LENGTH; i++) {
-                this.boxesStrip.add(getBoxObstacles("Grass.png", "Tree.png", i, y));
-            }
-            break;
-        default:
-            break;
+            case 2:
+                env = StripEnvironment.GRASS;
+                for (int i = 0; i < STRIP_LENGTH; i++) {
+                    this.boxesStrip.add(getBoxObstacles("Grass.png", "Tree.png", i, y));
+                }
+                break;
+            default:
+                break;
         }
         return this.boxesStrip;
     }
@@ -79,7 +80,7 @@ public class StripImpl implements Strip {
     public Box getBoxObstacles(final String background, final String specialBlock, final int x, final int y) {
 
         Box oneBlock;
-        int rand = gen.nextInt(PROBABILITY_OF_SPAWN_OBSTACLE);
+        final int rand = gen.nextInt(PROBABILITY_OF_SPAWN_OBSTACLE);
 
         if (rand == 3) {
             oneBlock = new BoxImpl(specialBlock, x, y);
@@ -96,17 +97,17 @@ public class StripImpl implements Strip {
     @Override
     public void setStripEnvironment(final String background) {
         switch (background) {
-        case "Road.png":
-            env = StripEnvironment.ROAD;
-            break;
-        case "Rail.png":
-            env = StripEnvironment.RAIL;
-            break;
-        case "Grass.png":
-            env = StripEnvironment.GRASS;
-            break;
-        default:
-            break;
+            case "Road.png":
+                env = StripEnvironment.ROAD;
+                break;
+            case "Rail.png":
+                env = StripEnvironment.RAIL;
+                break;
+            case "Grass.png":
+                env = StripEnvironment.GRASS;
+                break;
+            default:
+                break;
         }
     }
 
@@ -168,7 +169,7 @@ public class StripImpl implements Strip {
      */
     @Override
     public int getTreeNumber() {
-        return (int) this.boxesStrip.stream().filter(o -> o.getImage().getFileName() == "Tree.png").count();
+        return (int) this.boxesStrip.stream().filter(o -> o.getImage().getFileName().equals(IMAGETREE)).count();
     }
 
     @Override

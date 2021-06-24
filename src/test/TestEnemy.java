@@ -24,7 +24,7 @@ public class TestEnemy {
     @org.junit.Test
     public void testCar() {
         VehicleImpl vehicle = new VehicleImpl();
-        vehicle.setCar(4);
+        vehicle.initializeCar(4);
         assertEquals(4, vehicle.getVehicle().getYLoc());
         assertEquals(VEHICLE_SCROLL, vehicle.getVehicle().getYDir());
         assertTrue(vehicle.getVehicleType() == VehicleType.TRUCK || vehicle.getVehicleType() == VehicleType.CAR);
@@ -40,7 +40,7 @@ public class TestEnemy {
     @org.junit.Test
     public void testTrain() {
         VehicleImpl vehicle = new VehicleImpl();
-        vehicle.setTrain(4);
+        vehicle.initializeTrain(4);
         assertEquals(4, vehicle.getVehicle().getYLoc());
         assertEquals(VEHICLE_SCROLL, vehicle.getVehicle().getYDir());
         assertEquals(VehicleType.TRAIN, vehicle.getVehicleType());

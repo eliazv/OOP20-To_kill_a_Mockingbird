@@ -38,7 +38,7 @@ public class BoxImpl implements Box {
      * {@inheritDoc}
      */
     @Override
-    public void setImage(final String filename) {
+    public final void setImage(final String filename) {
         imgLoader = new ImageLoader(filename);
         this.name = filename;
     }

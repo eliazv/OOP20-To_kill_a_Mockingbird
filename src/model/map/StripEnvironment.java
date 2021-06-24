@@ -6,17 +6,17 @@ package model.map;
 public enum StripEnvironment {
 
     /**
-     * Identify a grass strip
+     * Identify a grass strip.
      */
     GRASS,
 
     /**
-     * Identify a road strip
+     * Identify a road strip.
      */
     ROAD,
 
     /**
-     * Identify a rail strip
+     * Identify a rail strip.
      */
     RAIL;
 }

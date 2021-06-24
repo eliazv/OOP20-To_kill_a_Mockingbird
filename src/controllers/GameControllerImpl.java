@@ -201,7 +201,7 @@ public class GameControllerImpl implements GameController {
     public void carOnRoad(final List<ArrayList<Box>> allStrips, final List<Vehicle> cars, final int i) {
         final Box tile = allStrips.get(i).get(0);
         if ("Road.png".equals(tile.getName())) {
-            cars.add(new VehicleImpl().setCar(tile.getYLoc() + ADJUST_ON_ROAD));
+            cars.add(new VehicleImpl().initializeCar(tile.getYLoc() + ADJUST_ON_ROAD));
         }
     }
 
@@ -212,7 +212,7 @@ public class GameControllerImpl implements GameController {
     public void trainOnRail(final List<ArrayList<Box>> allStrips, final List<Vehicle> trains, final int i) {
         final Box tile = allStrips.get(i).get(0);
         if ("Rail.png".equals(tile.getName())) {
-            trains.add(new VehicleImpl().setTrain(tile.getYLoc() + ADJUST_ON_ROAD));
+            trains.add(new VehicleImpl().initializeTrain(tile.getYLoc() + ADJUST_ON_ROAD));
         }
     }
 

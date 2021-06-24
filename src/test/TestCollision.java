@@ -25,11 +25,11 @@ public class TestCollision {
     @org.junit.Test
     public void testVehicles() {
         final Vehicle car1 = new VehicleImpl();
-        car1.setCar(2.0);
+        car1.initializeCar(2.0);
         car1.setXLoc(XPOS);
         car1.setYLoc(YPOS);
         final Vehicle train1 = new VehicleImpl();
-        train1.setTrain(10.0);
+        train1.initializeTrain(10.0);
         train1.setXLoc(0.0);
         train1.setYLoc(YPOS);
 
@@ -37,11 +37,11 @@ public class TestCollision {
         assertTrue(cm.collideWithVehicles(train1));
 
         final Vehicle car2 = new VehicleImpl();
-        car2.setCar(2.0);
+        car2.initializeCar(2.0);
         car2.setXLoc(XPOS + 100.0);
         car2.setYLoc(YPOS);
         final Vehicle train2 = new VehicleImpl();
-        train2.setTrain(10.0);
+        train2.initializeTrain(10.0);
         train2.setXLoc(XPOS);
         train2.setYLoc(YPOS + 100);
 
