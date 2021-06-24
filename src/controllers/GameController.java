@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.enemy.Vehicle;
 import model.map.Box;
@@ -14,14 +15,14 @@ public interface GameController extends Controller {
      * 
      * @param vehicles containing all vehicles
      */
-    void moveVehicle(ArrayList<Vehicle> vehicles);
+    void moveVehicle(List<Vehicle> vehicles);
 
     /**
      * moves all coins downward
      * 
      * @param coins contains all coins
      */
-    void moveMoney(ArrayList<Coin> coins);
+    void moveMoney(List<Coin> coins);
 
     /**
      * moves vehicles on the map and restart them when they are out of bounds
@@ -30,7 +31,7 @@ public interface GameController extends Controller {
      * @param vehicles       box of the vehicles
      * @param delay          delay in the departure of vehicles
      */
-    void startVehicle(Vehicle vehicleManager, ArrayList<Vehicle> vehicles, int delay);
+    void startVehicle(Vehicle vehicleManager, List<Vehicle> vehicles, int delay);
 
     /**
      * Restart the vehicles out of the map
@@ -38,14 +39,14 @@ public interface GameController extends Controller {
      * @param vehicles containing all vehicles
      * @param delay    vehicles delay
      */
-    void restartVehicle(ArrayList<Vehicle> vehicles, int delay);
+    void restartVehicle(List<Vehicle> vehicles, int delay);
 
     /**
      * assigns each box of the map the speed and direction of scrolling of the map
      * 
      * @param allStrips contains all the strips that make up the map.
      */
-    void scrollScreen(ArrayList<ArrayList<Box>> allStrips);
+    void scrollScreen(List<ArrayList<Box>> allStrips);
 
     /**
      * Call the methods that set vehicles on the map.
@@ -55,7 +56,7 @@ public interface GameController extends Controller {
      * @param trains    contains all trains on the map.
      * @param i         is the line you want to check on.
      */
-    void spawnVehicle(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, ArrayList<Vehicle> trains, int i);
+    void spawnVehicle(List<ArrayList<Box>> allStrips, List<Vehicle> cars, List<Vehicle> trains, int i);
 
     /**
      * Set cars on the road.
@@ -64,7 +65,7 @@ public interface GameController extends Controller {
      * @param cars      contains all cars on the map.
      * @param i         is the line you want to check on.
      */
-    void carOnRoad(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> cars, int i);
+    void carOnRoad(List<ArrayList<Box>> allStrips, List<Vehicle> cars, int i);
 
     /**
      * Set train on the rail
@@ -73,7 +74,7 @@ public interface GameController extends Controller {
      * @param trains    contains all trains on the map.
      * @param i         is the line you want to check on.
      */
-    void trainOnRail(ArrayList<ArrayList<Box>> allStrips, ArrayList<Vehicle> trains, int i);
+    void trainOnRail(List<ArrayList<Box>> allStrips, List<Vehicle> trains, int i);
 
     /**
      * Set coins in the map, except where there is a tree
@@ -83,7 +84,7 @@ public interface GameController extends Controller {
      * @param i         is the line you want to check on.
      * @param j         is the column you want to check on.
      */
-    void spawnCoin(ArrayList<ArrayList<Box>> allStrips, ArrayList<Coin> coins, int i, int j);
+    void spawnCoin(List<ArrayList<Box>> allStrips, List<Coin> coins, int i, int j);
 
     /**
      * 
@@ -124,7 +125,7 @@ public interface GameController extends Controller {
      * Generates the initial area of the map with only Grass strips, the character's spawn zone is without obstacles.
      * @param allStrip strips that generate the map
      */
-    void setInitialPosition(ArrayList<ArrayList<Box>> allStrip);
+    void setInitialPosition(List<ArrayList<Box>> allStrip);
 
     /**
      * Generates the map and above it the vehicles and coins
@@ -133,7 +134,7 @@ public interface GameController extends Controller {
      * @param Trains trains in the map
      * @param coins coins in the map
      */
-    void generateMap(ArrayList<ArrayList<Box>> allStrip, ArrayList<Vehicle> VehiclesOnRoad, ArrayList<Vehicle> Trains,
-            ArrayList<Coin> coins);
+    void generateMap(List<ArrayList<Box>> allStrip, List<Vehicle> VehiclesOnRoad, List<Vehicle> Trains,
+            List<Coin> coins);
 
 }

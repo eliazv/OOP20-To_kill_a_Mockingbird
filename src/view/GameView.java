@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -74,9 +76,9 @@ public class GameView implements KeyListener, View {
          */
         private final Rectangle rlblCoinCounter;
         private final JLabel lblCoinCounter = new JLabel();
-        private final ArrayList<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
-        private final ArrayList<Vehicle> vehiclesOnRoad = new ArrayList<>();
-        private final ArrayList<Vehicle> trains = new ArrayList<>();
+        private final List<ArrayList<Box>> allStrip = new ArrayList<ArrayList<Box>>();
+        private final List<Vehicle> vehiclesOnRoad = new ArrayList<>();
+        private final List<Vehicle> trains = new ArrayList<>();
         private final Vehicle vehicleManager = new VehicleImpl();
         private final ArrayList<Coin> coins = new ArrayList<>();
         private final Timer timer;
